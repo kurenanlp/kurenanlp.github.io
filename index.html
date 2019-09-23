@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Pi Address Explorer</title>
+    <!-- Importing jQuery -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <!-- Importing web3.js client -->
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.2.0/dist/web3.min.js"></script>
+    <!-- Establishment of routines and functions -->
+    <script type="text/javascript">
+      // 
+      // Main script
+      function run(callAction) {
+        // 
+        // Formating
+        var mySpace1 = "&nbsp&nbsp&nbsp&nbsp&nbsp";
+        var mySpace2 = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+        // 
+        // Statements: ABI, Addr Contract, Addr Wallet...
+        var tokenABI = [{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"approve","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_from","type":"address"}],"name":"transferFrom","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_spender","type":"address"}],"name":"disapprove","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"balances","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_value","type":"uint256"}],"name":"tokenFallback","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"mint","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_value","type":"uint256"}],"name":"burn","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_from","type":"address"},{"name":"_value","type":"uint256"}],"name":"transferFromValue","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_user","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"charge","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"_owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"emisorAddress","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_value","type":"uint256"},{"name":"receiving","type":"address"},{"name":"price","type":"uint256"},{"name":"side","type":"uint256"},{"name":"exchangeAddress","type":"address"}],"name":"setDexOrder","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"},{"name":"","type":"address"}],"name":"approved","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"name","type":"string"},{"name":"symbol","type":"string"},{"name":"owner","type":"address"},{"name":"initialSupply","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"name":"charger","type":"address"},{"indexed":true,"name":"charged","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Charge","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"owner","type":"address"},{"indexed":true,"name":"spender","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"},{"indexed":true,"name":"data","type":"bytes"}],"name":"Transfer","type":"event"}];
+        var tokenADDRESS = document.getElementById("addr_contract").value;
+          if(tokenADDRESS == "") tokenADDRESS = document.querySelector('#myTokenSelect').value;
+          if(!tokenADDRESS && callAction != "allTokensBalances") {
+            console.log("You must select or specify a (token) contract address to check");
+            alert("You must select or specify a (token) contract address to check");
+            return;
+          }
+        var walletADDRESS = document.getElementById("addr_review").value;
+        var fromADDRESS = document.getElementById("addr_from").value;
+        // 
+        // The magic of the Iker
+        var chainReview = document.querySelector('input[name="myChain"]:checked').value;
+        // 
+        // Connecting to the blockchain and specifying the browser
+        if(chainReview == "currentNet") {
+          var web3 = new Web3(new Web3.providers.HttpProvider("https://connect.pichain.io"));
+          var urlEXPLORER = "https://blockexplorer.pichain.io/";
+          console.log("web3.js v" + web3.version);
+          console.log("Consulting in current blockchain...")
+        } else if(chainReview == "previousNet") {
+          var web3 = new Web3(new Web3.providers.HttpProvider("https://original.pichain.io"));
+          var urlEXPLORER = "https://blockexplorer-original.pichain.io/";
+          console.log("web3.js v" + web3.version);
+          console.log("Consulting in previous blockchain...")
+        } else {
+          console.log("> > >  Leaving the script  < < <");
+          return;
+        }
+        // 
+        // Connecting to the contract
+        var myCONTRACT = new web3.eth.Contract(tokenABI, tokenADDRESS);
+        // 
+        // Logging reference values
+        // console.log(web3);
+        // console.log(myCONTRACT);
+        // console.log(myCONTRACT.options.jsonInterface);
+        // 
+        // Latest block
+        web3.eth.getBlockNumber().then(lastBlock => {
+          // 
+          // Actions: getTXs (all, fromAddr, fromBck, fromDay), tokenBalance, allToeknsBalances
+          console.log("Latest Block: " + lastBlock);
+          console.log("Addr Contract: " + myCONTRACT.options.address);
+          console.log("Addr Wallet: " + walletADDRESS);
+          console.log("From Addr: " + fromADDRESS);
+          // 
+          // Check transactions
+          if(callAction == "getTXs") {
+            if(document.getElementById("back_blocks").value != "" && document.getElementById("back_days").value != "") {
+              console.log("You must specify only a number of blocks or a number of days;\nuse both filters at the same time is not programmed");
+              alert("You must specify only a number of blocks or a number of days;\nuse both filters at the same time is not programmed");
+            } else {
+              var sinceBLOCK = 0;
+              var nBLOCK = Number(document.getElementById("back_blocks").value);
+              var nDAYS = Number(document.getElementById("back_days").value);
+              console.log("Back blocks: " + nBLOCK + "  -  Back days: " + nDAYS);
+              // 
+              if(nBLOCK != 0) sinceBLOCK = lastBlock - nBLOCK;
+              else if(nDAYS != 0) sinceBLOCK = lastBlock - (nDAYS * 17280);
+              // 
+              var myOptions = {
+                filter: {
+                  from: fromADDRESS,
+                  to: walletADDRESS
+                },
+                fromBlock: sinceBLOCK,
+                toBlock: 'latest'
+              };
+              //
+              myCONTRACT.getPastEvents('Transfer', myOptions, function(err, events) {
+                if(err) {
+                  console.log(err);
+                } else {
+                  // console.log(events);
+                  var rowCount = 0;
+                  var nowDate = new Date();
+                  // var omitted_contracts = ["0x0000000000000000000000000000000000000000", "0x917a8d3415f5fe494ddfb029cb0dfdfb242b6942", "0x93039bab251668bacb349667323cecffe9522f5f", "0x0cc81083895ffb0d60710fe5e9ad3f2f01ee2b93", "0x0000000000000000000000000000000000000010", "0x0000000000000000000000000000000000000015"];
+                  var omitted_contracts = [];
+                  document.getElementById("txs").innerHTML = "<br>Latest Block: <b>" + lastBlock + "</b><br>Search time: <b>" + nowDate.toUTCString() + "</b><br>";
+                  events.forEach(function(tx) {
+                    // console.log(tx);
+                    var _from = tx.returnValues.from;
+                    if(!omitted_contracts.includes(_from.toLowerCase())) {
+                      rowCount++;
+                      // var value = web3.utils.hexToNumberString(tx.returnValues.value);
+                      var value = tx.returnValues.value;
+                      var theValue = valueToBalance(value, 18, web3);
+                      var txUrl = urlEXPLORER+"tx/"+tx.transactionHash;
+                      var inp = document.getElementById("txs").innerHTML;
+                      document.getElementById("txs").innerHTML = inp + "<p>#" + rowCount + mySpace1 + "Block: " + tx.blockNumber + mySpace1 + "Hash: <a href='" + txUrl + "' target='_blank'>" + tx.transactionHash + "</a><br>from: " + tx.returnValues.from + mySpace1 + "to: " + tx.returnValues.to + mySpace1 + "value: " + theValue + "</p>";
+                      var strOut = "#" + rowCount + " - Block: " + tx.blockNumber + " - urlHash: " + txUrl + " from: " + tx.returnValues.from + " to: " + tx.returnValues.to + " value: " + theValue + "(" + value + ")";
+                      console.log(strOut);
+                    }
+                  });
+                  nowDate = new Date();
+                  document.getElementById("txs").innerHTML = document.getElementById("txs").innerHTML + "Finish search: <b>" + nowDate.toUTCString() + "</b><br>Latest Block: <b>" + lastBlock + "</b><br>";
+                }
+              });
+            }
+          } // End of getTXs
+          // 
+          // Check the token balance
+          if(callAction == "tokenBalance") {
+            if(!walletADDRESS) {
+              console.log("You must specify a wallet address to consult");
+              alert("You must specify a wallet address to consult");
+            } else {
+              var nowDate = new Date();
+              document.getElementById("txs").innerHTML = "<br>Latest Block: <b>" + lastBlock + "</b><br>Search time: <b>" + nowDate.toUTCString() + "</b><br><br>";
+              // 
+              // Consulting the decimals
+              // myCONTRACT.methods.decimals().call().then(myDecimals => {
+                // var myDivider = Math.pow(10, myDecimals);
+                // 18 decimals are assigned directly, because the blockchain so determines.
+                // var myDivider = Math.pow(10, 18);
+                if(tokenADDRESS == "0x0000000000000000000000000000000000000000") {
+                  web3.eth.getBalance(String(walletADDRESS)).then(balance => {
+                    // var myBalance = (parseFloat(balance)/myDivider).toFixed(18);
+                    // var myBalance = valueToBalance(balance, myDecimals, web3);
+                    var myBalance = valueToBalance(balance, 18, web3);
+                    var inp = document.getElementById("txs").innerHTML;
+                    document.getElementById("txs").innerHTML = inp + "Balance: " + myBalance + " " + " PI<br>";
+                    var strOut = "Balance: " + myBalance + " PI [value: " + balance + "]";
+                    console.log(strOut);
+                  });
+                } else {
+                  // Getting the token symbol
+                  myCONTRACT.methods.symbol().call().then(mySymbol => {
+                    // Consulting token balance
+                    myCONTRACT.methods.balanceOf(walletADDRESS).call().then(balance => {
+                      // var myBalance = (parseFloat(balance)/myDivider).toFixed(18);
+                      // var myBalance = valueToBalance(balance, myDecimals, web3);
+                      var myBalance = valueToBalance(balance, 18, web3);
+                      var inp = document.getElementById("txs").innerHTML;
+                      document.getElementById("txs").innerHTML = inp + "Balance: " + myBalance + " " + mySymbol + "<br>";
+                      var strOut = "Balance: " + myBalance + " " + mySymbol + " [value: " + balance + "]";
+                      console.log(strOut);
+                    });
+                  });
+                }
+              // });
+            }
+          } // End of tokenBalance
+          // 
+          // Check the all tokens balances
+          if(callAction == "allTokensBalances") {
+            if(!walletADDRESS) {
+              console.log("You must specify a wallet address to consult");
+              alert("You must specify a wallet address to consult");
+            } else {
+              var nowDate = new Date();
+              document.getElementById("txs").innerHTML = "<br>Latest Block: <b>" + lastBlock + "</b><br>Search time: <b>" + nowDate.toUTCString() + "</b><br><br>";
+              var rowCount = 0;
+              var all_contratcs = ["0x0000000000000000000000000000000000000014", "0x6943e925fd4e9e243230da2e26056b9c8a9cd8ce", "0x0ecfe89acdef3ad2e34e90916d50280ba9b22460", "0x4c3c844b751c18299932dcd18a3032bd3481d61a", "0x4ffb535bbbbd3d74d2f593bd9c21daa946a68c56", "0xf26904604b5f52186175ae8e629fd635af243376", "0x1cd116825039b7feac8cabc2ce83259d8bc9c106", "0x3a87d32E436D7fCe41D2d30F7CaebC33B8edB437", "0x3d8a507E356c698DD7F36A2f600Af4451C090e73", "0x4DFC34E47db2e3E1C1b1BABd7d0352375edAeC74", "0xF56D11Cce74759D81Ee574c6b47f4d6be3891664", "0x67f3C0b9ABdFCBDC035E4D9845Ce60d02CCd3311", "0x0e435Ad350B3C135e9C1737Efff180b24138953D", "0xdd71103F04913Ce28D1DE36DE92F56cE9695dbE5", "0xCEDa47E2EDBC6f6468484d68cD92Cb651171175b", "0x64C718b4fb92cE321830238a1692B8a0BC0Be555", "0x384ba9a8046F1987CC1137dC5A96f373CF2fb28E", "0xdC21A89348302576948cf600B1E0133d18DE94B1", "0x1d9CDd424903AB495BB1BE177AfC6D7d01837ad1", "0x5a179F7ABD022DA34A9431f6536504a4A93db9D6", "0xFdd99eD93352dC42c8F37b03Da1A240cE7043423", "0x3d2a07f30e960780E4Babed497682c092d1381b2", "0xA51FcA88fa4E3C97194e1eB6C79B83389fb4E470", "0x29075049b9e1F3C91E1215E02510007f7B55C4AA", "0xa1B463eF2BB962d5762377C65eBfb76444c0A8b4"];
+              all_contratcs.forEach(tokenCONTRACT => {
+                var myCONTRACT = new web3.eth.Contract(tokenABI, tokenCONTRACT);
+                // 
+                // Consulting the decimals
+                // myCONTRACT.methods.decimals().call().then(myDecimals => {
+                  // var myDivider = Math.pow(10, myDecimals);
+                  // 18 decimals are assigned directly, because the blockchain so determines.
+                  // var myDivider = Math.pow(10, 18);
+                  // Consulting only the base crypto balance
+                  if(rowCount == 0) {
+                    rowCount++;
+                    web3.eth.getBalance(String(walletADDRESS)).then(balance => {
+                      if(balance != 0) {
+                        // var myPI = (parseFloat(balance)/myDivider).toFixed(18);
+                        // var myPI = valueToBalance(balance, myDecimals, web3);
+                        var myPI = valueToBalance(balance, 18, web3);
+                        var inp = document.getElementById("txs").innerHTML;
+                        document.getElementById("txs").innerHTML = inp + "#" + rowCount + mySpace1 + "Balance: " + myPI + " PI<br>";
+                        var strOut = "#" + rowCount + " - Balance: " + myPI + " PI [value: " + balance + "]";
+                        console.log(strOut);
+                      }
+                    });
+                  }
+                  // Getting the token symbol
+                  myCONTRACT.methods.symbol().call().then(mySymbol => {
+                    // Consulting token balance
+                    myCONTRACT.methods.balanceOf(walletADDRESS).call().then(balance => {
+                      if(balance != 0) {
+                        rowCount++;
+                        // var myBalance = (parseFloat(balance)/myDivider).toFixed(18);
+                        // var myBalance = valueToBalance(balance, myDecimals, web3);
+                        var myBalance = valueToBalance(balance, 18, web3);
+                        var inp = document.getElementById("txs").innerHTML;
+                        document.getElementById("txs").innerHTML = inp + "#" + rowCount + mySpace1 + "Balance: " + myBalance + " " + mySymbol + "<br>";
+                        var strOut = "#" + rowCount + " - Balance: " + myBalance + " " + mySymbol + " [value: " + balance + "]";
+                        console.log(strOut);
+                      }
+                    });
+                  });
+                // });
+              });
+            }
+          } // End of allTokensBalances
+        });
+      } // End of run function
+      // 
+      // Transforming value to precise balance
+      function valueToBalance(value, decimals, web3) {
+        var strLeft = "";
+        var strRight = "";
+        var returnBalance = "";
+        // 
+        if(value.length <= decimals) {
+          strLeft = "0";
+          strRight = web3.utils.padLeft(value, decimals);
+          returnBalance = strLeft + "." + strRight;
+        } else {
+          var myDot = value.length - decimals;
+          strLeft = value.slice(0, myDot);
+          strRight = value.slice(myDot);
+          returnBalance = strLeft + "." + strRight;
+        }
+        return(returnBalance);
+      } // End of valueToBalance
+      // 
+      // Clean screen and console
+      function clsPage() {
+        document.getElementById("txs").innerHTML = "<br><b>Cleaning done...</b>";
+        document.getElementById("addr_contract").value = "";
+        document.getElementById("addr_review").value = "";
+        document.getElementById("addr_from").value = "";
+        document.getElementById("back_blocks").value = "";
+        document.getElementById("back_days").value = "";
+        console.clear();
+      } // End of clsPage function
+    </script>
+    <style>
+      html {
+        font-size: 12px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: #d6d6d6!important;
+        background-color: #2e2e2e
+      }
+      body {
+        font-size: 12px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: #d6d6d6!important
+      }
+      header {
+        margin: 0.5em;
+        text-align: left!important
+      }
+      main {
+        margin: 0.5em;
+        position: relative;
+        font-size: 12px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: #d6d6d6!important;
+        background-color: #3b3b3b
+      }
+      footer {
+        margin: 0.5em;
+        text-align: right!important
+      }
+      p,
+      div {
+        margin: 1.0em
+      }
+      h1 {
+        margin: 0.2em;
+        font-size: 24px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif
+      }
+      a {
+        text-decoration: none;
+        color:rgba(162,185,200,.7)
+      }
+      a:hover {
+        color:#a2b9c8
+      }
+      .form-control {
+        margin: 0.1em;
+        padding: 0.25em;
+        color: #d6d6d6!important;
+        border: solid 0.1em;
+        border-color: #7c7c7c!important;
+        border-radius: 5px;
+        background-color: #242424!important
+      }
+      .form-control::placeholder {
+        color: gray;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-style: italic;
+        font-size: 11px
+      }
+      button {
+        font-size: 12px;
+        /* font-weight: bold; */
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        background-color: lightgray;
+        border: 1;
+        color: black;
+        padding: 5px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 9px
+      }
+      button:hover {
+        color: lightgray;
+        background-color: #0a95eb51
+      }
+      .opacity {
+        opacity: 0.2
+      }
+      .u-go-to {
+        display: none;
+        position: fixed;
+        top: 15px;
+        right: 25px;
+        /* z-index: 100; */
+        padding: .75em;
+        background-color: lightgray;
+        color: black;
+        font-size: 10px;
+        border-radius: .25rem;
+        opacity: .5;
+        transition: .3s ease-out;
+        text-decoration: none
+      }
+      .u-go-to:hover {
+        color: lightgray;
+        background-color: #0a95eb51
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <a name="top"></a>
+      <h1>Pi Address Explorer</h1>
+      <hr class="opacity">
+    </header>
+    <!-- Main -->
+    <main>
+      <p>
+      <br>
+      Select the blockchain to consult:
+      <br>
+      <br>
+      <!-- Network selection -->
+      <input type="radio" name="myChain" value="currentNet" checked>
+      <a href="https://blockexplorer.pichain.io/" target="_blank"><b> Pi Main Network </b><img border="0" alt="Block explorer" src="https://en.wikipedia.org/w/skins/Vector/images/external-link-ltr-icon.png"></a>
+      <br>
+      <input type="radio" name="myChain" value="previousNet">
+      <a href="https://blockexplorer-original.pichain.io/" target="_blank"><b> Pi Previous Network </b><img border="0" alt="Old Block Explorer" src="https://en.wikipedia.org/w/skins/Vector/images/external-link-ltr-icon.png"></a>
+      <br>
+      <br>
+      <!-- Token list -->
+      <select class="form-control" id="myTokenSelect">
+        <option disabled value="" selected>Select Asset/Token</option>
+        <option value="0x0000000000000000000000000000000000000000">PI (Pi)</option>
+        <option disabled value="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCURRUENCIES</option>
+        <option value="0x0000000000000000000000000000000000000014">EURx (Euro)</option>
+        <option value="0x6943e925fd4e9e243230da2e26056b9c8a9cd8ce">VESx (Bolivar Soberano)</option>
+        <option value="0x0ecfe89acdef3ad2e34e90916d50280ba9b22460">COPx (Peso Colombiano)</option>
+        <option value="0x4c3c844b751c18299932dcd18a3032bd3481d61a">BTCx (Bitcoin)</option>
+        <option value="0x4ffb535bbbbd3d74d2f593bd9c21daa946a68c56">ETHx (Ether)</option>
+        <option value="0xf26904604b5f52186175ae8e629fd635af243376">USDTx (Tether)</option>
+        <option disabled value="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCOMMODITIES</option>
+        <option value="0x1cd116825039b7feac8cabc2ce83259d8bc9c106">GLDx (Oro Internacional)</option>
+        <option disabled value="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspALT COINS</option>
+        <option value="0x3a87d32E436D7fCe41D2d30F7CaebC33B8edB437">PTR (Petro)</option>
+        <option value="0x3d8a507E356c698DD7F36A2f600Af4451C090e73">USDR (Dolar R)</option>
+        <option value="0x4DFC34E47db2e3E1C1b1BABd7d0352375edAeC74">PKV9000 (PKVMONEY)</option>
+        <option value="0xF56D11Cce74759D81Ee574c6b47f4d6be3891664">BULL (Bull Income Fund)</option>
+        <option value="0x67f3C0b9ABdFCBDC035E4D9845Ce60d02CCd3311">PoPiC (PoPiC)</option>
+        <option disabled value="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspNODES POOL</option>
+        <option value="0x0e435Ad350B3C135e9C1737Efff180b24138953D">Pedrox (Pedro)</option>
+        <option value="0xdd71103F04913Ce28D1DE36DE92F56cE9695dbE5">CTO (CUTUTONUDEX)</option>
+        <option value="0xCEDa47E2EDBC6f6468484d68cD92Cb651171175b">CLAx (Clan A)</option>
+        <option value="0x64C718b4fb92cE321830238a1692B8a0BC0Be555">PAHORRO (Pool Ahorro)</option>
+        <option value="0x384ba9a8046F1987CC1137dC5A96f373CF2fb28E">Clan B (Clan B)</option>
+        <option value="0xdC21A89348302576948cf600B1E0133d18DE94B1">CLAN (CLAN)</option>
+        <option value="0x1d9CDd424903AB495BB1BE177AfC6D7d01837ad1">THMx (To the moon)</option>
+        <option value="0x5a179F7ABD022DA34A9431f6536504a4A93db9D6">CUT (CUTUTONUDEX2)</option>
+        <option value="0xFdd99eD93352dC42c8F37b03Da1A240cE7043423">ASD (ASD)</option>
+        <option value="0x3d2a07f30e960780E4Babed497682c092d1381b2">NEN (NEN)</option>
+        <option value="0xA51FcA88fa4E3C97194e1eB6C79B83389fb4E470">TOE (TOE)</option>
+        <option value="0x29075049b9e1F3C91E1215E02510007f7B55C4AA">DAS (DAS)</option>
+        <option value="0xa1B463eF2BB962d5762377C65eBfb76444c0A8b4">ESD (ESD)</option>
+      </select> or enter a token contract
+      <br>
+      <!-- Entering values for arguments -->
+      <input class="form-control" type="text" name="" value="" id="addr_contract" size="42" maxlength="42" placeholder="eg: 0x14af2...   <42 digits>" pattern="[A-Fa-f0-9x-x]{42}" title="Token contract"> Token Contract (address)<br>
+      <input class="form-control" type="text" name="" value="" id="addr_review" size="42" maxlength="42" placeholder="eg: 0x30f92...   <42 digits>" pattern="[A-Fa-f0-9x-x]{42}"  title="Wallet address (to:)" list="addresses"> Wallet address to check<br>
+        <datalist id="addresses">
+          <option value="0x917a8d3415f5fe494ddfb029cb0dfdfb242b6942">PiDEX</option>
+          <option value="0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513">Brigde</option>
+          <option value="0x0000000000000000000000000000000000000009">Block rewards</option>
+          <option value="0x0000000000000000000000000000000000000010">Pi issuing contract</option>
+          <option value="0x0000000000000000000000000000000000000012">Collected by nodes</option>
+          <!-- <option value="0x2762c01534b75D4453c262D95Ae9f1d5c4fAC81a">EuroPillon</option>
+          <option value="0xA22E777556ca0149B6754C918c2115898A5C95Cd">EuroPillon Inverse</option> -->
+        </datalist>
+      <input class="form-control" type="text" name="" value="" id="addr_from" size="42" maxlength="42" placeholder="eg: 0x13f74...   <42 digits>" pattern="[A-Fa-f0-9x-x]{42}" title="Address (from:)"> Address from<br>
+      <input class="form-control" type="text" name="" value="" id="back_blocks" size="10" maxlength="42" placeholder="eg: 31075" pattern="[0-9]{42}" title="Back blocks"> Back blocks or <input class="form-control" type="text" name="" value="" id="back_days" size="10" maxlength="42" placeholder="eg: 365" pattern="[0-9]{42}" title="Back dayss"> Back days
+      <br>
+      <br>
+      <!-- Buttons -->
+      <button onclick="run('getTXs');">Get TXs</button>&nbsp&nbsp&nbsp
+      <button onclick="run('tokenBalance');">Token Balance</button>&nbsp&nbsp&nbsp
+      <button onclick="run('allTokensBalances');">All Tokens Balances</button>&nbsp&nbsp&nbsp
+      <button onclick="clsPage();">Clear page</button>&nbsp&nbsp&nbsp
+      <br>
+      <br>
+      <!-- Results -->
+      <div id="txs"></div>
+      <br>
+      <a class="u-go-to" href="#top">Top</a>
+      </p>
+      <script>
+        jQuery(document).ready(function() {
+          var offset = 370;
+          var duration = 500;
+          jQuery(window).scroll(function() {
+            if (jQuery(this).scrollTop() > offset) {
+              jQuery('.u-go-to').fadeIn(duration);
+            } else {
+              jQuery('.u-go-to').fadeOut(duration);
+            }
+          });
+          // 
+          jQuery('.u-go-to').click(function(event) {
+            event.preventDefault();
+            jQuery('html, body').animate({scrollTop: 0}, duration);
+            return false;
+          })
+        });
+		  </script>
+    </main>
+    <!-- Footer -->
+    <footer>
+      <hr class="opacity">
+      <!-- Credits -->
+      <details>
+        <summary>v0.01 &nbsp</summary>
+          Contribution of <a href="https://t.me/baudenay">Oscar Baudenay</a> to the <a href="https://t.me/Picripto">Community of Pi</a> &nbsp<br>
+          Based on source provided by: Manuel Fajardo García, <a href="https://t.me/sosajohan">Johan Sosa Salazar</a>, <a href="https://t.me/gperezalba">Guillermo Pérez Alba</a>, <a href="https://t.me/clrgn">Carlos García Navarro</a> &nbsp<br>
+      </details>
+      --- &nbsp<br>
+      Donations <a target="_blank" href="https://blockexplorer.pichain.io/address/0xd6C2A4f5aDdF2026cB07b37a4B43B3B744023545">0xd6C2A4f5aDdF2026cB07b37a4B43B3B744023545</a> &nbsp<br>
+      Address for donations in Pi, Ether and tokens &nbsp
+      <a name="bottom"></a>
+    </footer>
+  </body>
+</html>
