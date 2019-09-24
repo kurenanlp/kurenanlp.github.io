@@ -115,7 +115,8 @@
                       rowCount++;
                       // var value = web3.utils.hexToNumberString(tx.returnValues.value);
                       var value = tx.returnValues.value;
-                      var theValue = valueToBalance(value, 18, web3);
+                      // var theValue = valueToBalance(value, 18, web3);
+                      var theValue = web3.utils.fromWei(value);
                       var txUrl = urlEXPLORER+"tx/"+tx.transactionHash;
                       var inp = document.getElementById("txs").innerHTML;
                       document.getElementById("txs").innerHTML = inp + "<p>#" + rowCount + mySpace1 + "Block: " + tx.blockNumber + mySpace1 + "Hash: <a href='" + txUrl + "' target='_blank'>" + tx.transactionHash + "</a><br>from: " + tx.returnValues.from + mySpace1 + "to: " + tx.returnValues.to + mySpace1 + "value: " + theValue + "</p>";
@@ -148,7 +149,8 @@
                   web3.eth.getBalance(String(walletADDRESS)).then(balance => {
                     // var myBalance = (parseFloat(balance)/myDivider).toFixed(18);
                     // var myBalance = valueToBalance(balance, myDecimals, web3);
-                    var myBalance = valueToBalance(balance, 18, web3);
+                    // var myBalance = valueToBalance(balance, 18, web3);
+                    var myBalance = web3.utils.fromWei(balance);
                     var inp = document.getElementById("txs").innerHTML;
                     document.getElementById("txs").innerHTML = inp + "Balance: " + myBalance + " " + " PI<br>";
                     var strOut = "Balance: " + myBalance + " PI [value: " + balance + "]";
@@ -161,7 +163,8 @@
                     myCONTRACT.methods.balanceOf(walletADDRESS).call().then(balance => {
                       // var myBalance = (parseFloat(balance)/myDivider).toFixed(18);
                       // var myBalance = valueToBalance(balance, myDecimals, web3);
-                      var myBalance = valueToBalance(balance, 18, web3);
+                      // var myBalance = valueToBalance(balance, 18, web3);
+                      var myBalance = web3.utils.fromWei(balance);
                       var inp = document.getElementById("txs").innerHTML;
                       document.getElementById("txs").innerHTML = inp + "Balance: " + myBalance + " " + mySymbol + "<br>";
                       var strOut = "Balance: " + myBalance + " " + mySymbol + " [value: " + balance + "]";
@@ -198,7 +201,8 @@
                       if(balance != 0) {
                         // var myPI = (parseFloat(balance)/myDivider).toFixed(18);
                         // var myPI = valueToBalance(balance, myDecimals, web3);
-                        var myPI = valueToBalance(balance, 18, web3);
+                        // var myPI = valueToBalance(balance, 18, web3);
+                        var myPI = web3.utils.fromWei(balance);
                         var inp = document.getElementById("txs").innerHTML;
                         document.getElementById("txs").innerHTML = inp + "#" + rowCount + mySpace1 + "Balance: " + myPI + " PI<br>";
                         var strOut = "#" + rowCount + " - Balance: " + myPI + " PI [value: " + balance + "]";
@@ -214,7 +218,8 @@
                         rowCount++;
                         // var myBalance = (parseFloat(balance)/myDivider).toFixed(18);
                         // var myBalance = valueToBalance(balance, myDecimals, web3);
-                        var myBalance = valueToBalance(balance, 18, web3);
+                        // var myBalance = valueToBalance(balance, 18, web3);
+                        var myBalance = web3.utils.fromWei(balance);
                         var inp = document.getElementById("txs").innerHTML;
                         document.getElementById("txs").innerHTML = inp + "#" + rowCount + mySpace1 + "Balance: " + myBalance + " " + mySymbol + "<br>";
                         var strOut = "#" + rowCount + " - Balance: " + myBalance + " " + mySymbol + " [value: " + balance + "]";
@@ -230,22 +235,22 @@
       } // End of run function
       // 
       // Transforming value to precise balance
-      function valueToBalance(value, decimals, web3) {
-        var strLeft = "";
-        var strRight = "";
-        var returnBalance = "";
-        // 
-        if(value.length <= decimals) {
-          strLeft = "0";
-          strRight = web3.utils.padLeft(value, decimals);
-          returnBalance = strLeft + "." + strRight;
-        } else {
-          var myDot = value.length - decimals;
-          strLeft = value.slice(0, myDot);
-          strRight = value.slice(myDot);
-          returnBalance = strLeft + "." + strRight;
-        }
-        return(returnBalance);
+      // function valueToBalance(value, decimals, web3) {
+      //   var strLeft = "";
+      //   var strRight = "";
+      //   var returnBalance = "";
+      //   // 
+      //   if(value.length <= decimals) {
+      //     strLeft = "0";
+      //     strRight = web3.utils.padLeft(value, decimals);
+      //     returnBalance = strLeft + "." + strRight;
+      //   } else {
+      //     var myDot = value.length - decimals;
+      //     strLeft = value.slice(0, myDot);
+      //     strRight = value.slice(myDot);
+      //     returnBalance = strLeft + "." + strRight;
+      //   }
+      //   return(returnBalance);
       } // End of valueToBalance
       // 
       // Clean screen and console
