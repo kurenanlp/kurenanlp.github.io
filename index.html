@@ -115,8 +115,8 @@
                       rowCount++;
                       // var value = web3.utils.hexToNumberString(tx.returnValues.value);
                       var value = tx.returnValues.value;
-                      // var theValue = valueToBalance(value, 18, web3);
-                      var theValue = web3.utils.fromWei(value);
+                      var theValue = valueToBalance(value, 18, web3);
+                      // var theValue = web3.utils.fromWei(value);
                       var txUrl = urlEXPLORER+"tx/"+tx.transactionHash;
                       var inp = document.getElementById("txs").innerHTML;
                       document.getElementById("txs").innerHTML = inp + "<p>#" + rowCount + mySpace1 + "Block: " + tx.blockNumber + mySpace1 + "Hash: <a href='" + txUrl + "' target='_blank'>" + tx.transactionHash + "</a><br>from: " + tx.returnValues.from + mySpace1 + "to: " + tx.returnValues.to + mySpace1 + "value: " + theValue + "</p>";
@@ -149,8 +149,8 @@
                   web3.eth.getBalance(String(walletADDRESS)).then(balance => {
                     // var myBalance = (parseFloat(balance)/myDivider).toFixed(18);
                     // var myBalance = valueToBalance(balance, myDecimals, web3);
-                    // var myBalance = valueToBalance(balance, 18, web3);
-                    var myBalance = web3.utils.fromWei(balance);
+                    var myBalance = valueToBalance(balance, 18, web3);
+                    // var myBalance = web3.utils.fromWei(balance);
                     var inp = document.getElementById("txs").innerHTML;
                     document.getElementById("txs").innerHTML = inp + "Balance: " + myBalance + " " + " PI<br>";
                     var strOut = "Balance: " + myBalance + " PI [value: " + balance + "]";
@@ -163,8 +163,8 @@
                     myCONTRACT.methods.balanceOf(walletADDRESS).call().then(balance => {
                       // var myBalance = (parseFloat(balance)/myDivider).toFixed(18);
                       // var myBalance = valueToBalance(balance, myDecimals, web3);
-                      // var myBalance = valueToBalance(balance, 18, web3);
-                      var myBalance = web3.utils.fromWei(balance);
+                      var myBalance = valueToBalance(balance, 18, web3);
+                      // var myBalance = web3.utils.fromWei(balance);
                       var inp = document.getElementById("txs").innerHTML;
                       document.getElementById("txs").innerHTML = inp + "Balance: " + myBalance + " " + mySymbol + "<br>";
                       var strOut = "Balance: " + myBalance + " " + mySymbol + " [value: " + balance + "]";
@@ -201,8 +201,8 @@
                       if(balance != 0) {
                         // var myPI = (parseFloat(balance)/myDivider).toFixed(18);
                         // var myPI = valueToBalance(balance, myDecimals, web3);
-                        // var myPI = valueToBalance(balance, 18, web3);
-                        var myPI = web3.utils.fromWei(balance);
+                        var myPI = valueToBalance(balance, 18, web3);
+                        // var myPI = web3.utils.fromWei(balance);
                         var inp = document.getElementById("txs").innerHTML;
                         document.getElementById("txs").innerHTML = inp + "#" + rowCount + mySpace1 + "Balance: " + myPI + " PI<br>";
                         var strOut = "#" + rowCount + " - Balance: " + myPI + " PI [value: " + balance + "]";
@@ -218,8 +218,8 @@
                         rowCount++;
                         // var myBalance = (parseFloat(balance)/myDivider).toFixed(18);
                         // var myBalance = valueToBalance(balance, myDecimals, web3);
-                        // var myBalance = valueToBalance(balance, 18, web3);
-                        var myBalance = web3.utils.fromWei(balance);
+                        var myBalance = valueToBalance(balance, 18, web3);
+                        // var myBalance = web3.utils.fromWei(balance);
                         var inp = document.getElementById("txs").innerHTML;
                         document.getElementById("txs").innerHTML = inp + "#" + rowCount + mySpace1 + "Balance: " + myBalance + " " + mySymbol + "<br>";
                         var strOut = "#" + rowCount + " - Balance: " + myBalance + " " + mySymbol + " [value: " + balance + "]";
@@ -235,23 +235,23 @@
       } // End of run function
       // 
       // Transforming value to precise balance
-      // function valueToBalance(value, decimals, web3) {
-      //   var strLeft = "";
-      //   var strRight = "";
-      //   var returnBalance = "";
-      //   // 
-      //   if(value.length <= decimals) {
-      //     strLeft = "0";
-      //     strRight = web3.utils.padLeft(value, decimals);
-      //     returnBalance = strLeft + "." + strRight;
-      //   } else {
-      //     var myDot = value.length - decimals;
-      //     strLeft = value.slice(0, myDot);
-      //     strRight = value.slice(myDot);
-      //     returnBalance = strLeft + "." + strRight;
-      //   }
-      //   return(returnBalance);
-      // } // End of valueToBalance
+      function valueToBalance(value, decimals, web3) {
+        var strLeft = "";
+        var strRight = "";
+        var returnBalance = "";
+        // 
+        if(value.length <= decimals) {
+          strLeft = "0";
+          strRight = web3.utils.padLeft(value, decimals);
+          returnBalance = strLeft + "." + strRight;
+        } else {
+          var myDot = value.length - decimals;
+          strLeft = value.slice(0, myDot);
+          strRight = value.slice(myDot);
+          returnBalance = strLeft + "." + strRight;
+        }
+        return(returnBalance);
+      } // End of valueToBalance
       // 
       // Clean screen and console
       function clsPage() {
@@ -376,80 +376,84 @@
     <!-- Main -->
     <main>
       <p>
-      <br>
-      Select the blockchain to consult:
-      <br>
-      <br>
-      <!-- Network selection -->
-      <input type="radio" name="myChain" value="currentNet" checked>
-      <a href="https://blockexplorer.pichain.io/" target="_blank"><b> Pi Main Network </b><img border="0" alt="Block explorer" src="assets/icons/external-link-ltr-icon.png"></a>
-      <br>
-      <input type="radio" name="myChain" value="previousNet">
-      <a href="https://blockexplorer-original.pichain.io/" target="_blank"><b> Pi Previous Network </b><img border="0" alt="Old Block Explorer" src="assets/icons/external-link-ltr-icon.png"></a>
-      <br>
-      <br>
-      <!-- Token list -->
-      <select class="form-control" id="myTokenSelect">
-        <option disabled value="" selected>Select Asset/Token</option>
-        <option value="0x0000000000000000000000000000000000000000">PI (Pi)</option>
-        <option disabled value="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCURRUENCIES</option>
-        <option value="0x0000000000000000000000000000000000000014">EURx (Euro)</option>
-        <option value="0x6943e925fd4e9e243230da2e26056b9c8a9cd8ce">VESx (Bolivar Soberano)</option>
-        <option value="0x0ecfe89acdef3ad2e34e90916d50280ba9b22460">COPx (Peso Colombiano)</option>
-        <option value="0x4c3c844b751c18299932dcd18a3032bd3481d61a">BTCx (Bitcoin)</option>
-        <option value="0x4ffb535bbbbd3d74d2f593bd9c21daa946a68c56">ETHx (Ether)</option>
-        <option value="0xf26904604b5f52186175ae8e629fd635af243376">USDTx (Tether)</option>
-        <option disabled value="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCOMMODITIES</option>
-        <option value="0x1cd116825039b7feac8cabc2ce83259d8bc9c106">GLDx (Oro Internacional)</option>
-        <option disabled value="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspALT COINS</option>
-        <option value="0x3a87d32E436D7fCe41D2d30F7CaebC33B8edB437">PTR (Petro)</option>
-        <option value="0x3d8a507E356c698DD7F36A2f600Af4451C090e73">USDR (Dolar R)</option>
-        <option value="0x4DFC34E47db2e3E1C1b1BABd7d0352375edAeC74">PKV9000 (PKVMONEY)</option>
-        <option value="0xF56D11Cce74759D81Ee574c6b47f4d6be3891664">BULL (Bull Income Fund)</option>
-        <option value="0x67f3C0b9ABdFCBDC035E4D9845Ce60d02CCd3311">PoPiC (PoPiC)</option>
-        <option disabled value="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspNODES POOL</option>
-        <option value="0x0e435Ad350B3C135e9C1737Efff180b24138953D">Pedrox (Pedro)</option>
-        <option value="0xdd71103F04913Ce28D1DE36DE92F56cE9695dbE5">CTO (CUTUTONUDEX)</option>
-        <option value="0xCEDa47E2EDBC6f6468484d68cD92Cb651171175b">CLAx (Clan A)</option>
-        <option value="0x64C718b4fb92cE321830238a1692B8a0BC0Be555">PAHORRO (Pool Ahorro)</option>
-        <option value="0x384ba9a8046F1987CC1137dC5A96f373CF2fb28E">Clan B (Clan B)</option>
-        <option value="0xdC21A89348302576948cf600B1E0133d18DE94B1">CLAN (CLAN)</option>
-        <option value="0x1d9CDd424903AB495BB1BE177AfC6D7d01837ad1">THMx (To the moon)</option>
-        <option value="0x5a179F7ABD022DA34A9431f6536504a4A93db9D6">CUT (CUTUTONUDEX2)</option>
-        <option value="0xFdd99eD93352dC42c8F37b03Da1A240cE7043423">ASD (ASD)</option>
-        <option value="0x3d2a07f30e960780E4Babed497682c092d1381b2">NEN (NEN)</option>
-        <option value="0xA51FcA88fa4E3C97194e1eB6C79B83389fb4E470">TOE (TOE)</option>
-        <option value="0x29075049b9e1F3C91E1215E02510007f7B55C4AA">DAS (DAS)</option>
-        <option value="0xa1B463eF2BB962d5762377C65eBfb76444c0A8b4">ESD (ESD)</option>
-      </select> or enter a token contract
-      <br>
-      <!-- Entering values for arguments -->
-      <input class="form-control" type="text" name="" value="" id="addr_contract" size="42" maxlength="42" placeholder="eg: 0x14af2...   <42 digits>" pattern="[A-Fa-f0-9x-x]{42}" title="Token contract"> Token Contract (address)<br>
-      <input class="form-control" type="text" name="" value="" id="addr_review" size="42" maxlength="42" placeholder="eg: 0x30f92...   <42 digits>" pattern="[A-Fa-f0-9x-x]{42}"  title="Wallet address (to:)" list="addresses"> Wallet address to check<br>
-      <input class="form-control" type="text" name="" value="" id="addr_from" size="42" maxlength="42" placeholder="eg: 0x13f74...   <42 digits>" pattern="[A-Fa-f0-9x-x]{42}" title="Address (from:)" list="addresses"> Address from<br>
-      <input class="form-control" type="text" name="" value="" id="back_blocks" size="10" maxlength="42" placeholder="eg: 31075" pattern="[0-9]{42}" title="Back blocks"> Back blocks or <input class="form-control" type="text" name="" value="" id="back_days" size="10" maxlength="42" placeholder="eg: 365" pattern="[0-9]{42}" title="Back dayss"> Back days
-      <datalist id="addresses">
-        <option value="0x917a8d3415f5fe494ddfb029cb0dfdfb242b6942">PiDEX</option>
-        <option value="0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513">Brigde</option>
-        <option value="0x0000000000000000000000000000000000000009">Block rewards</option>
-        <option value="0x0000000000000000000000000000000000000010">Pi issuing contract</option>
-        <option value="0x0000000000000000000000000000000000000012">Collected by nodes</option>
-        <option value="0x2762c01534b75D4453c262D95Ae9f1d5c4fAC81a">EuroPillon</option>
-        <option value="0xA22E777556ca0149B6754C918c2115898A5C95Cd">EuroPillon Inverse</option>
-      </datalist>
-      <br>
-      <br>
-      <!-- Buttons -->
-      <button onclick="run('getTXs');">Get TXs</button>&nbsp&nbsp&nbsp
-      <button onclick="run('tokenBalance');">Token Balance</button>&nbsp&nbsp&nbsp
-      <button onclick="run('allTokensBalances');">All Tokens Balances</button>&nbsp&nbsp&nbsp
-      <button onclick="clsPage();">Clear page</button>&nbsp&nbsp&nbsp
-      <br>
-      <br>
-      <!-- Results -->
-      <div id="txs"></div>
-      <br>
-      <a class="u-go-to" href="#top">Top</a>
+        <br>
+        Select the blockchain to consult:
+        <br>
+        <br>
+        <!-- Network selection -->
+        <input type="radio" name="myChain" value="currentNet" checked>
+        <a href="https://blockexplorer.pichain.io/" target="_blank"><b> Pi Main Network </b><img border="0" alt="Block explorer" src="assets/icons/external-link-ltr-icon.png"></a>
+        <br>
+        <input type="radio" name="myChain" value="previousNet">
+        <a href="https://blockexplorer-original.pichain.io/" target="_blank"><b> Pi Previous Network </b><img border="0" alt="Old Block Explorer" src="assets/icons/external-link-ltr-icon.png"></a>
+        <br>
+        <br>
+        <!-- Token list -->
+        <select class="form-control" id="myTokenSelect">
+          <option disabled value="" selected>Select Asset/Token</option>
+          <option value="0x0000000000000000000000000000000000000000">PI (Pi)</option>
+          <option disabled value="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCURRUENCIES</option>
+          <option value="0x0000000000000000000000000000000000000014">EURx (Euro)</option>
+          <option value="0x6943e925fd4e9e243230da2e26056b9c8a9cd8ce">VESx (Bolivar Soberano)</option>
+          <option value="0x0ecfe89acdef3ad2e34e90916d50280ba9b22460">COPx (Peso Colombiano)</option>
+          <option value="0x4c3c844b751c18299932dcd18a3032bd3481d61a">BTCx (Bitcoin)</option>
+          <option value="0x4ffb535bbbbd3d74d2f593bd9c21daa946a68c56">ETHx (Ether)</option>
+          <option value="0xf26904604b5f52186175ae8e629fd635af243376">USDTx (Tether)</option>
+          <option disabled value="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCOMMODITIES</option>
+          <option value="0x1cd116825039b7feac8cabc2ce83259d8bc9c106">GLDx (Oro Internacional)</option>
+          <option disabled value="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspALT COINS</option>
+          <option value="0x3a87d32E436D7fCe41D2d30F7CaebC33B8edB437">PTR (Petro)</option>
+          <option value="0x3d8a507E356c698DD7F36A2f600Af4451C090e73">USDR (Dolar R)</option>
+          <option value="0x4DFC34E47db2e3E1C1b1BABd7d0352375edAeC74">PKV9000 (PKVMONEY)</option>
+          <option value="0xF56D11Cce74759D81Ee574c6b47f4d6be3891664">BULL (Bull Income Fund)</option>
+          <option value="0x67f3C0b9ABdFCBDC035E4D9845Ce60d02CCd3311">PoPiC (PoPiC)</option>
+          <option value="0xc5aD00Cb18F2868888D091637b4f4A84992CA37E">LCx (LCCx)</option>
+          <option disabled value="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspNODES POOL</option>
+          <option value="0x0e435Ad350B3C135e9C1737Efff180b24138953D">Pedrox (Pedro)</option>
+          <option value="0xdd71103F04913Ce28D1DE36DE92F56cE9695dbE5">CTO (CUTUTONUDEX)</option>
+          <option value="0xCEDa47E2EDBC6f6468484d68cD92Cb651171175b">CLAx (Clan A)</option>
+          <option value="0x64C718b4fb92cE321830238a1692B8a0BC0Be555">PAHORRO (Pool Ahorro)</option>
+          <option value="0x384ba9a8046F1987CC1137dC5A96f373CF2fb28E">Clan B (Clan B)</option>
+          <option value="0xdC21A89348302576948cf600B1E0133d18DE94B1">CLAN (CLAN)</option>
+          <option value="0x1d9CDd424903AB495BB1BE177AfC6D7d01837ad1">THMx (To the moon)</option>
+          <option value="0x5a179F7ABD022DA34A9431f6536504a4A93db9D6">CUT (CUTUTONUDEX2)</option>
+          <option value="0xFdd99eD93352dC42c8F37b03Da1A240cE7043423">ASD (ASD)</option>
+          <option value="0x3d2a07f30e960780E4Babed497682c092d1381b2">NEN (NEN)</option>
+          <option value="0xA51FcA88fa4E3C97194e1eB6C79B83389fb4E470">TOE (TOE)</option>
+          <option value="0x29075049b9e1F3C91E1215E02510007f7B55C4AA">DAS (DAS)</option>
+          <option value="0xa1B463eF2BB962d5762377C65eBfb76444c0A8b4">ESD (ESD)</option>
+        </select> or enter a token contract
+        <br>
+        <!-- Entering values for arguments -->
+        <input class="form-control" type="text" name="" value="" id="addr_contract" size="42" maxlength="42" placeholder="eg: 0x14af2...   <42 digits>" pattern="[A-Fa-f0-9x-x]{42}" title="Token contract"> Token Contract (address)<br>
+        <input class="form-control" type="text" name="" value="" id="addr_review" size="42" maxlength="42" placeholder="eg: 0x30f92...   <42 digits>" pattern="[A-Fa-f0-9x-x]{42}"  title="Wallet address (to:)" list="addresses"> Wallet address to check<br>
+        <input class="form-control" type="text" name="" value="" id="addr_from" size="42" maxlength="42" placeholder="eg: 0x13f74...   <42 digits>" pattern="[A-Fa-f0-9x-x]{42}" title="Address (from:)" list="addresses"> Address from<br>
+        <input class="form-control" type="text" name="" value="" id="back_blocks" size="10" maxlength="42" placeholder="eg: 31075" pattern="[0-9]{42}" title="Back blocks"> Back blocks or <input class="form-control" type="text" name="" value="" id="back_days" size="10" maxlength="42" placeholder="eg: 365" pattern="[0-9]{42}" title="Back dayss"> Back days
+        <datalist id="addresses">
+          <option value="0x917a8d3415f5fe494ddfb029cb0dfdfb242b6942">PiDEX</option>
+          <option value="0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513">Brigde</option>
+          <option value="0x0000000000000000000000000000000000000009">Block rewards</option>
+          <option value="0x0000000000000000000000000000000000000010">Pi issuing contract</option>
+          <option value="0x0000000000000000000000000000000000000012">Collected by nodes</option>
+          <option value="0x2762c01534b75D4453c262D95Ae9f1d5c4fAC81a">EuroPillon</option>
+          <option value="0xA22E777556ca0149B6754C918c2115898A5C95Cd">EuroPillon Inverse</option>
+          <option value="0xd7D0D606647D98Dc844a7dea00c0861E7215db7f">VENEPI</option>
+          <option value="0xcf98E77d3b663c58f4C262DA12D6b3b749BE4B10">COLPI</option>
+          <option value="0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513">ASESPI</option>
+        </datalist>
+        <br>
+        <br>
+        <!-- Buttons -->
+        <button onclick="run('getTXs');">Get TXs</button>&nbsp&nbsp&nbsp
+        <button onclick="run('tokenBalance');">Token Balance</button>&nbsp&nbsp&nbsp
+        <button onclick="run('allTokensBalances');">All Tokens Balances</button>&nbsp&nbsp&nbsp
+        <button onclick="clsPage();">Clear page</button>&nbsp&nbsp&nbsp
+        <br>
+        <br>
+        <!-- Results -->
+        <div id="txs"></div>
+        <br>
+        <a class="u-go-to" href="#top">Top</a>
       </p>
       <script>
         jQuery(document).ready(function() {
