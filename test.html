@@ -20,10 +20,10 @@
       gtag('config', 'G-C7L3CXQHSM');
     </script>
     <!-- Importing jQuery -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!-- Importing web3.js client -->
@@ -275,7 +275,7 @@
         console.clear();
       } // End of clsPage function
     </script>
-    <!-- <style>
+    <style>
       html {
         font-size: 12px;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -285,31 +285,37 @@
       body {
         font-size: 12px;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
-        color: #d6d6d6!important
+        color: #d6d6d6!important;
+        background-color: #2e2e2e
       }
       header {
         margin: 0.5em;
-        text-align: left!important
+        font-size: 12px;
+        text-align: left!important;
+        color: #d6d6d6!important;
+        background-color: #2e2e2e
       }
       main {
-        margin: 0.5em;
-        position: relative;
         font-size: 12px;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         color: #d6d6d6!important;
-        background-color: #3b3b3b
+        background-color: #2e2e2e
       }
       footer {
         margin: 0.5em;
-        text-align: right!important
+        font-size: 12px;
+        text-align: right!important;
+        color: #d6d6d6!important;
+        background-color: #2e2e2e
       }
       p,
       div {
         margin: 1.0em
       }
       h1 {
-        margin: 0.2em;
+        margin: 0em;
         font-size: 24px;
+        font-weight: bold;
         font-family: Verdana, Geneva, Tahoma, sans-serif
       }
       a {
@@ -336,7 +342,6 @@
       }
       button {
         font-size: 12px;
-        /* font-weight: bold; */
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         background-color: lightgray;
         border: 1em;
@@ -353,15 +358,21 @@
         color: lightgray;
         background-color: #0a95eb51
       }
-      .opacity {
-        opacity: 0.2
+      hr { 
+        display: block;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        margin-left: auto;
+        margin-right: auto;
+        border-style: inset;
+        border-width: 1px;
+        opacity: 0.33
       }
       .u-go-to {
         display: none;
         position: fixed;
         top: 15px;
         right: 25px;
-        /* z-index: 100; */
         padding: .75em;
         background-color: lightgray;
         color: black;
@@ -375,14 +386,14 @@
         color: lightgray;
         background-color: #0a95eb51
       }
-    </style> -->
+    </style>
   </head>
   <body>
     <!-- Header -->
     <header>
       <a name="top"></a>
       <h1>Pi Address Explorer</h1>
-      <hr class="opacity">
+      <hr class="sep-hor">
     </header>
     <!-- Main -->
     <main>
@@ -464,12 +475,12 @@
         <!-- Results -->
         <div id="txs"></div>
         <br>
-        <!-- <a class="u-go-to" href="#top">Top</a> -->
+        <a class="u-go-to" href="#top">Top</a>
       </p>
-      <!-- <script>
+      <script>
         jQuery(document).ready(function() {
           var offset = 370;
-          var duration = 500;
+          var duration = 1000;
           jQuery(window).scroll(function() {
             if (jQuery(this).scrollTop() > offset) {
               jQuery('.u-go-to').fadeIn(duration);
@@ -484,14 +495,14 @@
             return false;
           })
         });
-	    </script> -->
+	    </script>
     </main>
     <!-- Footer -->
     <footer>
-      <hr class="opacity">
+      <hr class="sep-hor">
       <!-- Credits -->
       <details>
-        <summary>v0.01 &nbsp</summary>
+        <summary>v0.0.1 &nbsp</summary>
           Contribution of <a href="https://t.me/baudenay">Oscar Baudenay</a> to the <a href="https://t.me/Picripto">Community of Pi</a> &nbsp<br>
           Based on source provided by: Manuel Fajardo García, <a href="https://t.me/sosajohan">Johan Sosa Salazar</a>, <a href="https://t.me/gperezalba">Guillermo Pérez Alba</a>, <a href="https://t.me/clrgn">Carlos García Navarro</a> &nbsp<br>
       </details>
@@ -500,9 +511,10 @@
       Address for donations in Pi, Ether and tokens &nbsp
       <a name="bottom"></a>
     </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
