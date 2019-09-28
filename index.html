@@ -131,7 +131,7 @@
                       var txUrl = urlEXPLORER+"tx/"+tx.transactionHash;
                       var inp = document.getElementById("txs").innerHTML;
                       // document.getElementById("txs").innerHTML = inp + "<p>#" + rowCount + mySpace1 + "Block: " + tx.blockNumber + mySpace1 + "Hash: <a href='" + txUrl + "' target='_blank'>" + tx.transactionHash + "</a><br>from: " + tx.returnValues.from + mySpace1 + "to: " + tx.returnValues.to + mySpace1 + "value: " + theValue + "</p>";
-                      document.getElementById("txs").innerHTML = inp + "<p>#" + rowCount + "  - Block: " + tx.blockNumber + "<br>Hash: <a href='" + txUrl + "' target='_blank'>" + tx.transactionHash + "</a><br>from: " + tx.returnValues.from + "<br>to: " + tx.returnValues.to + "<br>value: " + theValue + "</p>";
+                      document.getElementById("txs").innerHTML = inp + "<p>#" + rowCount + "  - Block: " + tx.blockNumber + "  - Hash: <a href='" + txUrl + "' target='_blank'>" + tx.transactionHash + "</a><br>from: " + tx.returnValues.from + "<br>to: " + tx.returnValues.to + "<br>value: " + theValue + "</p>";
                       var strOut = "#" + rowCount + " - Block: " + tx.blockNumber + " - urlHash: " + txUrl + " from: " + tx.returnValues.from + " to: " + tx.returnValues.to + " value: " + theValue + "(" + value + ")";
                       console.log(strOut);
                     }
