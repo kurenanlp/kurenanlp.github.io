@@ -1,0 +1,105 @@
+==========================================
+===             Pi Network             ===
+==========================================
+
+---               Wallet               ---
+------------------------------------------
+[refunds addresses]
+0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513	Gateway (Brigde between PiCEx and PiDEx)
+
+[custody address]
+0x0000000000000000000000000000000000000009	PiChainBlockReward (Commissions to be distributed)
+0x0000000000000000000000000000000000000010	Emisor (Pi issuer contract)
+0x0000000000000000000000000000000000000012	ManageNodes (Purchase/Sale of nodes)
+0x0000000000000000000000000000000000000015	<> (NPI)
+0x917a8d3415f5fe494ddfb029cb0dfdfb242b6942	PiDEx (Smart contract of the decentralized exchanger)
+0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513	Gateway (Brigde between PiCEX and PiDEX)
+0x2762c01534b75D4453c262D95Ae9f1d5c4fAC81a	PiLotto (Pi Casino)
+0xA22E777556ca0149B6754C918c2115898A5C95Cd	PiLotto Inverse (Pi Casino)
+------------------------------------------
+0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513	EURx (Euro)
+0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513	VESx (Bolivar Soberano)
+0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513	COPx (Peso Colombiano)
+0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513	BTCx (Bitcoin)
+0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513	ETHx (Ether)
+0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513	USDTx (Tether)
+0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513	GLDx (Oro Internacional)
+0x024D6AC9c01c54d47719cA62a9aED1717C0254d3	PTR (Petro)
+0x4A95c51507A04F75ce659C1E2c9645C234C7B151	USDR (Dolar R)
+0x7fb8Bc4C0d1b18D381858489d93428c384EA7ed0	PKV9000 (PKVMONEY)
+0x7338d69EE40E733B44a269DA95d0620d565Fe895	BULL (BULL)
+0x2fB77A3B01d5Ca009bC5c6d3c707ba7D50c45E7d	PoPiC (PoPiC)
+0x2fB77A3B01d5Ca009bC5c6d3c707ba7D50c45E7d	LCx (LCCx)
+
+[p2p]
+0xd7D0D606647D98Dc844a7dea00c0861E7215db7f	[VESx] Inversiones Venepi, C.A. / J-41294238-7 / depositos@venepi.org
+0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513	[EURx] Midlantic Technologies S.L. / X / banca@piexchange.io
+0xcf98E77d3b663c58f4C262DA12D6b3b749BE4B10	[COLx] Wilmer Armando Campos Rodríguez / 1.090.388.741 / inversiones_colpi@protonmail.com
+
+---              Contract              ---
+------------------------------------------
+[0][base]
+0x0000000000000000000000000000000000000000	PI (Pi)	maxSupply: 1000000000000.0
+
+[1][currency]
+0x0000000000000000000000000000000000000014	EURx (Euro)	maxSupply: 358033.94
+0x6943e925fd4e9e243230da2e26056b9c8a9cd8ce	VESx (Bolivar Soberano)	maxSupply: 1000000000.0
+0x0ecfe89acdef3ad2e34e90916d50280ba9b22460	COPx (Peso Colombiano)	maxSupply: 400000000.0
+0x4c3c844b751c18299932dcd18a3032bd3481d61a	BTCx (Bitcoin)	maxSupply: 100.0
+0x4ffb535bbbbd3d74d2f593bd9c21daa946a68c56	ETHx (Ether)	maxSupply: 4000.0
+0xf26904604b5f52186175ae8e629fd635af243376	USDTx (Tether)	maxSupply: 200000.0
+
+[2][commodity]
+0x1cd116825039b7feac8cabc2ce83259d8bc9c106	GLDx (Oro Internacional)	maxSupply: 100000.0
+
+[3][stock]
+
+[4][bond]
+
+[5][real_state]
+
+[6][altcoin]
+0x3a87d32E436D7fCe41D2d30F7CaebC33B8edB437	PTR (Petro)	maxSupply: 1000.0	*** Token unlisted ***
+0x3d8a507E356c698DD7F36A2f600Af4451C090e73	USDR (Dolar R)	maxSupply: 1000000.0
+0x4DFC34E47db2e3E1C1b1BABd7d0352375edAeC74	PKV9000 (PKVMONEY)	maxSupply: 10000.0
+0xF56D11Cce74759D81Ee574c6b47f4d6be3891664	BULL (Bull Income Fund)	maxSupply: 5000000000.0
+0x67f3C0b9ABdFCBDC035E4D9845Ce60d02CCd3311	PoPiC (PoPiC)	maxSupply: 10000000.0
+0xc5aD00Cb18F2868888D091637b4f4A84992CA37E	LCx (LCCx)	maxSupply: 8400000.0
+
+[7][node_pool]
+0x0e435Ad350B3C135e9C1737Efff180b24138953D	Pedrox (Pedro)	maxSupply: 0.0  *** pending to acquire the node ***
+0xdd71103F04913Ce28D1DE36DE92F56cE9695dbE5	CTO (CUTUTONUDEX)	maxSupply: 745.481	*** PAD sold out ***
+0xCEDa47E2EDBC6f6468484d68cD92Cb651171175b	CLAx (Clan A)	maxSupply: 757.803
+0x64C718b4fb92cE321830238a1692B8a0BC0Be555	PAHORRO (Pool Ahorro)	maxSupply: 782.75   *** PAD sold out + Unlisted ***
+0x384ba9a8046F1987CC1137dC5A96f373CF2fb28E	Clan B (Clan B)	maxSupply: 770.226
+0xdC21A89348302576948cf600B1E0133d18DE94B1	CLAN (CLAN)	maxSupply: 757.803
+0x1d9CDd424903AB495BB1BE177AfC6D7d01837ad1	THMx (To the moon)	maxSupply: 757.803
+0x5a179F7ABD022DA34A9431f6536504a4A93db9D6	CUT (CUTUTONUDEX2)	maxSupply: 697.203
+0xFdd99eD93352dC42c8F37b03Da1A240cE7043423	ASD (ASD)	maxSupply: 639.128  *** PAD sold out + Unlisted ***
+0x3d2a07f30e960780E4Babed497682c092d1381b2	NEN (NEN)	maxSupply: 697.203
+0xA51FcA88fa4E3C97194e1eB6C79B83389fb4E470	TOE (TOE)	maxSupply: 685.386
+0x29075049b9e1F3C91E1215E02510007f7B55C4AA	DAS (DAS)	maxSupply: 697.203
+0xa1B463eF2BB962d5762377C65eBfb76444c0A8b4	ESD (ESD)	maxSupply: 709.121
+
+---          Validator nodes           ---
+------------------------------------------
+[address]
+0x8854522FBF6FF0ce35951eA9679FeEAC7A4bB02D
+0xdD7F5b5be491DF41Ac0b3517100bF413d070D748
+0xde563309E2b5b103A4a9E0975881552861F6C176
+0x20580de9C6eD939c6d43e06b4E050014971B9EE0
+0xDD1115fF827ef48B83FCA7e1098238047dAaA1ce
+0x54E2af914BAACCD6841378D52e13bD5Faec2d88B
+0xe895b3912adB2dcAB6cA1552795f92743d8373DD
+0xe576439F06DcAFf4D29D150ad50345b91a981b8D
+0x87F4AFCD7Be74AE20183C358Ed0ae7B419068123
+
+
+
+==========================================
+===          Ethereum Network          ===
+==========================================
+
+---               Assets               ---
+------------------------------------------
+0xdac17f958d2ee523a2206206994597c13d831ec7	USDT (Tether)	maxSupply: 1965057493.363429
