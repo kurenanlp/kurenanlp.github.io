@@ -35,33 +35,33 @@
       function run(callAction) {
         // 
         // Formating
-        var mySpace1 = "&nbsp&nbsp&nbsp&nbsp&nbsp";
-        var mySpace2 = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+        const mySpace1 = "&nbsp&nbsp&nbsp&nbsp&nbsp";
+        const mySpace2 = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
         // 
         // Statements: ABI, Addr Contract, Addr Wallet...
-        var tokenABI = [{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"approve","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_from","type":"address"}],"name":"transferFrom","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_spender","type":"address"}],"name":"disapprove","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"balances","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_value","type":"uint256"}],"name":"tokenFallback","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"mint","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_value","type":"uint256"}],"name":"burn","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_from","type":"address"},{"name":"_value","type":"uint256"}],"name":"transferFromValue","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_user","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"charge","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"_owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"emisorAddress","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_value","type":"uint256"},{"name":"receiving","type":"address"},{"name":"price","type":"uint256"},{"name":"side","type":"uint256"},{"name":"exchangeAddress","type":"address"}],"name":"setDexOrder","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"},{"name":"","type":"address"}],"name":"approved","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"name","type":"string"},{"name":"symbol","type":"string"},{"name":"owner","type":"address"},{"name":"initialSupply","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"name":"charger","type":"address"},{"indexed":true,"name":"charged","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Charge","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"owner","type":"address"},{"indexed":true,"name":"spender","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"},{"indexed":true,"name":"data","type":"bytes"}],"name":"Transfer","type":"event"}];
-        var tokenADDRESS = document.getElementById("addr_contract").value;
+        const tokenABI = [{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"approve","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_from","type":"address"}],"name":"transferFrom","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_spender","type":"address"}],"name":"disapprove","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"balances","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_value","type":"uint256"}],"name":"tokenFallback","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"mint","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_value","type":"uint256"}],"name":"burn","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_from","type":"address"},{"name":"_value","type":"uint256"}],"name":"transferFromValue","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_user","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"charge","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"_owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"emisorAddress","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_value","type":"uint256"},{"name":"receiving","type":"address"},{"name":"price","type":"uint256"},{"name":"side","type":"uint256"},{"name":"exchangeAddress","type":"address"}],"name":"setDexOrder","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"},{"name":"","type":"address"}],"name":"approved","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"name","type":"string"},{"name":"symbol","type":"string"},{"name":"owner","type":"address"},{"name":"initialSupply","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"name":"charger","type":"address"},{"indexed":true,"name":"charged","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Charge","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"owner","type":"address"},{"indexed":true,"name":"spender","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"},{"indexed":true,"name":"data","type":"bytes"}],"name":"Transfer","type":"event"}];
+        const tokenADDRESS = document.getElementById("addr_contract").value;
           if(tokenADDRESS == "") tokenADDRESS = document.querySelector('#myTokenSelect').value;
           if(!tokenADDRESS && callAction != "allTokensBalances") {
             console.log("You must select or specify a (token) contract address to check");
             alert("You must select or specify a (token) contract address to check");
             return;
           }
-        var walletADDRESS = document.getElementById("addr_review").value;
-        var fromADDRESS = document.getElementById("addr_from").value;
+        const walletADDRESS = document.getElementById("addr_review").value;
+        const fromADDRESS = document.getElementById("addr_from").value;
         // 
         // The magic of the Iker
-        var chainReview = document.querySelector('input[name="myChain"]:checked').value;
+        const chainReview = document.querySelector('input[name="myChain"]:checked').value;
         // 
         // Connecting to the blockchain and specifying the browser
         if(chainReview == "currentNet") {
-          var web3 = new Web3(new Web3.providers.HttpProvider("https://connect.pichain.io"));
-          var urlEXPLORER = "https://blockexplorer.pichain.io/";
+          const web3 = new Web3(new Web3.providers.HttpProvider("https://connect.pichain.io"));
+          const urlEXPLORER = "https://blockexplorer.pichain.io/";
           console.log("web3.js v" + web3.version);
           console.log("Consulting in current blockchain...")
         } else if(chainReview == "previousNet") {
-          var web3 = new Web3(new Web3.providers.HttpProvider("https://original.pichain.io"));
-          var urlEXPLORER = "https://blockexplorer-original.pichain.io/";
+          const web3 = new Web3(new Web3.providers.HttpProvider("https://original.pichain.io"));
+          const urlEXPLORER = "https://blockexplorer-original.pichain.io/";
           console.log("web3.js v" + web3.version);
           console.log("Consulting in previous blockchain...")
         } else {
@@ -197,6 +197,15 @@
               var nowDate = new Date();
               document.getElementById("txs").innerHTML = "<br>Latest Block: <b>" + lastBlock + "</b><br>Search time: <b>" + nowDate.toUTCString() + "</b><br><br>";
               var rowCount = 0;
+
+              rowCount++;
+              var balance = await web3.eth.getBalance(walletADDRESS).call();
+              var myPI = valueToBalance(balance, 18, web3);
+              var inp = document.getElementById("txs").innerHTML;
+              document.getElementById("txs").innerHTML = inp + "#" + rowCount + mySpace1 + "Balance: " + myPI + " PI<br>";
+              var strOut = "#" + rowCount + " - Balance: " + myPI + " PI [value: " + balance + "]";
+              console.log(strOut);
+
               var all_contratcs = ["0x0000000000000000000000000000000000000014", "0x6943e925fd4e9e243230da2e26056b9c8a9cd8ce", "0x0ecfe89acdef3ad2e34e90916d50280ba9b22460", "0x4c3c844b751c18299932dcd18a3032bd3481d61a", "0x4ffb535bbbbd3d74d2f593bd9c21daa946a68c56", "0xf26904604b5f52186175ae8e629fd635af243376", "0x1cd116825039b7feac8cabc2ce83259d8bc9c106", "0x3a87d32E436D7fCe41D2d30F7CaebC33B8edB437", "0x3d8a507E356c698DD7F36A2f600Af4451C090e73", "0x4DFC34E47db2e3E1C1b1BABd7d0352375edAeC74", "0xF56D11Cce74759D81Ee574c6b47f4d6be3891664", "0x67f3C0b9ABdFCBDC035E4D9845Ce60d02CCd3311", "0x0e435Ad350B3C135e9C1737Efff180b24138953D", "0xdd71103F04913Ce28D1DE36DE92F56cE9695dbE5", "0xCEDa47E2EDBC6f6468484d68cD92Cb651171175b", "0x64C718b4fb92cE321830238a1692B8a0BC0Be555", "0x384ba9a8046F1987CC1137dC5A96f373CF2fb28E", "0xdC21A89348302576948cf600B1E0133d18DE94B1", "0x1d9CDd424903AB495BB1BE177AfC6D7d01837ad1", "0x5a179F7ABD022DA34A9431f6536504a4A93db9D6", "0xFdd99eD93352dC42c8F37b03Da1A240cE7043423", "0x3d2a07f30e960780E4Babed497682c092d1381b2", "0xA51FcA88fa4E3C97194e1eB6C79B83389fb4E470", "0x29075049b9e1F3C91E1215E02510007f7B55C4AA", "0xa1B463eF2BB962d5762377C65eBfb76444c0A8b4", "0xc5aD00Cb18F2868888D091637b4f4A84992CA37E"];
               all_contratcs.forEach(tokenCONTRACT => {
                 var myCONTRACT = new web3.eth.Contract(tokenABI, tokenCONTRACT);
@@ -207,38 +216,48 @@
                   // 18 decimals are assigned directly, because the blockchain so determines.
                   // var myDivider = Math.pow(10, 18);
                   // Consulting only the base crypto balance
-                  if(rowCount == 0) {
-                    rowCount++;
-                    web3.eth.getBalance(String(walletADDRESS)).then(balance => {
-                      if(balance != 0) {
-                        // var myPI = (parseFloat(balance)/myDivider).toFixed(18);
-                        // var myPI = valueToBalance(balance, myDecimals, web3);
-                        var myPI = valueToBalance(balance, 18, web3);
-                        // var myPI = web3.utils.fromWei(balance);
-                        var inp = document.getElementById("txs").innerHTML;
-                        document.getElementById("txs").innerHTML = inp + "#" + rowCount + mySpace1 + "Balance: " + myPI + " PI<br>";
-                        var strOut = "#" + rowCount + " - Balance: " + myPI + " PI [value: " + balance + "]";
-                        console.log(strOut);
-                      }
-                    });
-                  }
+                  // if(rowCount == 0) {
+                  //   rowCount++;
+                  //   web3.eth.getBalance(String(walletADDRESS)).then(balance => {
+                  //     if(balance != 0) {
+                  //       // var myPI = (parseFloat(balance)/myDivider).toFixed(18);
+                  //       // var myPI = valueToBalance(balance, myDecimals, web3);
+                  //       var myPI = valueToBalance(balance, 18, web3);
+                  //       // var myPI = web3.utils.fromWei(balance);
+                  //       var inp = document.getElementById("txs").innerHTML;
+                  //       document.getElementById("txs").innerHTML = inp + "#" + rowCount + mySpace1 + "Balance: " + myPI + " PI<br>";
+                  //       var strOut = "#" + rowCount + " - Balance: " + myPI + " PI [value: " + balance + "]";
+                  //       console.log(strOut);
+                  //     }
+                  //   });
+                  // }
                   // Getting the token symbol
-                  myCONTRACT.methods.symbol().call().then(mySymbol => {
-                    // Consulting token balance
-                    myCONTRACT.methods.balanceOf(walletADDRESS).call().then(balance => {
-                      if(balance != 0) {
-                        rowCount++;
-                        // var myBalance = (parseFloat(balance)/myDivider).toFixed(18);
-                        // var myBalance = valueToBalance(balance, myDecimals, web3);
-                        var myBalance = valueToBalance(balance, 18, web3);
-                        // var myBalance = web3.utils.fromWei(balance);
-                        var inp = document.getElementById("txs").innerHTML;
-                        document.getElementById("txs").innerHTML = inp + "#" + rowCount + mySpace1 + "Balance: " + myBalance + " " + mySymbol + "<br>";
-                        var strOut = "#" + rowCount + " - Balance: " + myBalance + " " + mySymbol + " [value: " + balance + "]";
-                        console.log(strOut);
-                      }
-                    });
-                  });
+                  // myCONTRACT.methods.symbol().call().then(mySymbol => {
+                  //   // Consulting token balance
+                  //   myCONTRACT.methods.balanceOf(walletADDRESS).call().then(balance => {
+                  //     if(balance != 0) {
+                  //       rowCount++;
+                  //       // var myBalance = (parseFloat(balance)/myDivider).toFixed(18);
+                  //       // var myBalance = valueToBalance(balance, myDecimals, web3);
+                  //       var myBalance = valueToBalance(balance, 18, web3);
+                  //       // var myBalance = web3.utils.fromWei(balance);
+                  //       var inp = document.getElementById("txs").innerHTML;
+                  //       document.getElementById("txs").innerHTML = inp + "#" + rowCount + mySpace1 + "Balance: " + myBalance + " " + mySymbol + "<br>";
+                  //       var strOut = "#" + rowCount + " - Balance: " + myBalance + " " + mySymbol + " [value: " + balance + "]";
+                  //       console.log(strOut);
+                  //     }
+                  //   });
+                  // });
+                var mySymbol = await myCONTRACT.methods.symbol().call();
+                var balance = await myCONTRACT.methods.balanceOf(walletADDRESS).call();
+                if(balance != 0) {
+                  rowCount++;
+                  var myBalance = valueToBalance(balance, 18, web3);
+                  var inp = document.getElementById("txs").innerHTML;
+                  document.getElementById("txs").innerHTML = inp + "#" + rowCount + mySpace1 + "Balance: " + myBalance + " " + mySymbol + "<br>";
+                  var strOut = "#" + rowCount + " - Balance: " + myBalance + " " + mySymbol + " [value: " + balance + "]";
+                  console.log(strOut);
+                }
                 // });
               });
             }
