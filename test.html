@@ -197,9 +197,10 @@
               var nowDate = new Date();
               document.getElementById("txs").innerHTML = "<br>Latest Block: <b>" + lastBlock + "</b><br>Search time: <b>" + nowDate.toUTCString() + "</b><br><br>";
               var rowCount = 0;
+              var balance = 0;
 
               rowCount++;
-              var balance = await web3.eth.getBalance(walletADDRESS).call();
+              balance = web3.eth.getBalance(walletADDRESS).call();
               var myPI = valueToBalance(balance, 18, web3);
               var inp = document.getElementById("txs").innerHTML;
               document.getElementById("txs").innerHTML = inp + "#" + rowCount + mySpace1 + "Balance: " + myPI + " PI<br>";
