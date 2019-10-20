@@ -121,7 +121,7 @@
                   var nowDate = new Date();
                   // var omitted_contracts = ["0x0000000000000000000000000000000000000000", "0x917a8d3415f5fe494ddfb029cb0dfdfb242b6942", "0x93039bab251668bacb349667323cecffe9522f5f", "0x0cc81083895ffb0d60710fe5e9ad3f2f01ee2b93", "0x0000000000000000000000000000000000000010", "0x0000000000000000000000000000000000000015"];
                   var omitted_contracts = [];
-                  document.getElementById("txs").innerHTML = "<br>Latest Block: <b>" + lastBlock + "</b><br>Search time: <b>" + nowDate.toUTCString() + "</b><br><br>";
+                  document.getElementById("txs").innerHTML = "<br>Latest Block: <b>" + lastBlock + "</b><br>Search time: <b>" + nowDate.toUTCString() + "</b><br><br> <i>row; block; tx; from; to; valueHuman; valueRaw</i><br><br>";
                   events.forEach(function(tx) {
                     // console.log(tx);
                     var _from = tx.returnValues.from;
