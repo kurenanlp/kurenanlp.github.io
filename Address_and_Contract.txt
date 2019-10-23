@@ -23,7 +23,14 @@
 0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513	BTCx (Bitcoin)
 0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513	ETHx (Ether)
 0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513	USDTx (Tether)
+0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513	TBAx (Token Bolívar Anti-inflacionario)
 0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513	GLDx (Oro Internacional)
+0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513	AUPx (Oro Físico)
+0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513	RSTx (Token Ron Santa Teresa)
+0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513	MVZAx (Token Mercantil Servicios Financieros)
+0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513	FVIBx (Token Fondo de Valores Inmobiliarios)
+0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513	BNCx (Token Banca Nacional de Crédito)
+0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513	BPVx (Token Banco Provincial)
 0x024D6AC9c01c54d47719cA62a9aED1717C0254d3	PTR (Petro)
 0x4A95c51507A04F75ce659C1E2c9645C234C7B151	USDR (Dolar R)
 0x7fb8Bc4C0d1b18D381858489d93428c384EA7ed0	PKV9000 (PKVMONEY)
@@ -48,18 +55,18 @@
 0x4c3c844b751c18299932dcd18a3032bd3481d61a	BTCx (Bitcoin)	maxSupply: 100.0
 0x4ffb535bbbbd3d74d2f593bd9c21daa946a68c56	ETHx (Ether)	maxSupply: 4000.0
 0xf26904604b5f52186175ae8e629fd635af243376	USDTx (Tether)	maxSupply: 200000.0
-0x3a90847163dd52a48cae8cdec48a4fb8ed97ae39	TBAx (Token Bolívar Anti-inflacionario)	maxSupply: 
+0x3a90847163dd52a48cae8cdec48a4fb8ed97ae39	TBAx (Token Bolívar Anti-inflacionario)	maxSupply: 1000000.0
 
 [2][commodity]
 0x1cd116825039b7feac8cabc2ce83259d8bc9c106	GLDx (Oro Internacional)	maxSupply: 100000.0
-0x21427d417f4e4a1b2c547760654cc1239eeb5431	AUPx (Oro Físico)	maxSupply: 
+0x21427d417f4e4a1b2c547760654cc1239eeb5431	AUPx (Oro Físico)	maxSupply: 1000000.0
 
 [3][stock]
-0xe71b5619b64710bb8907ab1a8e975b7e01053470	RSTx (Token Ron Santa Teresa)	maxSupply: 
-0x184b004d90f5b31b30db80ae13e3f3061770e14a	MVZAx (Token Mercantil Servicios Financieros)	maxSupply: 
-0xd08c83025920e110621c1275c72d9b081116d281	FVIBx (Token Fondo de Valores Inmobiliarios)	maxSupply: 
-0x2418f76c9c9822a2773407fcada84a4b0e8bdebf	BNCx (Token Banca Nacional de Crédito)	maxSupply: 
-0x841ded90e46d782da12d52e0c5145da11d9e20f5	BPVx (Token Banco Provincial)	maxSupply: 
+0xe71b5619b64710bb8907ab1a8e975b7e01053470	RSTx (Token Ron Santa Teresa)	maxSupply: 1000000.0
+0x184b004d90f5b31b30db80ae13e3f3061770e14a	MVZAx (Token Mercantil Servicios Financieros)	maxSupply: 1000000.0
+0xd08c83025920e110621c1275c72d9b081116d281	FVIBx (Token Fondo de Valores Inmobiliarios)	maxSupply: 1000000.0
+0x2418f76c9c9822a2773407fcada84a4b0e8bdebf	BNCx (Token Banca Nacional de Crédito)	maxSupply: 1000000.0
+0x841ded90e46d782da12d52e0c5145da11d9e20f5	BPVx (Token Banco Provincial)	maxSupply: 1000000.0
 
 [4][bond]
 
