@@ -48,11 +48,18 @@
 0x4c3c844b751c18299932dcd18a3032bd3481d61a	BTCx (Bitcoin)	maxSupply: 100.0
 0x4ffb535bbbbd3d74d2f593bd9c21daa946a68c56	ETHx (Ether)	maxSupply: 4000.0
 0xf26904604b5f52186175ae8e629fd635af243376	USDTx (Tether)	maxSupply: 200000.0
+0x3a90847163dd52a48cae8cdec48a4fb8ed97ae39	TBAx (Token Bolívar Anti-inflacionario)	maxSupply: 
 
 [2][commodity]
 0x1cd116825039b7feac8cabc2ce83259d8bc9c106	GLDx (Oro Internacional)	maxSupply: 100000.0
+0x21427d417f4e4a1b2c547760654cc1239eeb5431	AUPx (Oro Físico)	maxSupply: 
 
 [3][stock]
+0xe71b5619b64710bb8907ab1a8e975b7e01053470	RSTx (Token Ron Santa Teresa)	maxSupply: 
+0x184b004d90f5b31b30db80ae13e3f3061770e14a	MVZAx (Token Mercantil Servicios Financieros)	maxSupply: 
+0xd08c83025920e110621c1275c72d9b081116d281	FVIBx (Token Fondo de Valores Inmobiliarios)	maxSupply: 
+0x2418f76c9c9822a2773407fcada84a4b0e8bdebf	BNCx (Token Banca Nacional de Crédito)	maxSupply: 
+0x841ded90e46d782da12d52e0c5145da11d9e20f5	BPVx (Token Banco Provincial)	maxSupply: 
 
 [4][bond]
 
