@@ -197,7 +197,7 @@
               var nowDate = new Date();
               document.getElementById("txs").innerHTML = "<br>Latest Block: <b>" + lastBlock + "</b><br>Search time: <b>" + nowDate.toUTCString() + "</b><br><br>";
               var rowCount = 0;
-              var all_contratcs = ["0x0000000000000000000000000000000000000014", "0x6943e925fd4e9e243230da2e26056b9c8a9cd8ce", "0x0ecfe89acdef3ad2e34e90916d50280ba9b22460", "0x4c3c844b751c18299932dcd18a3032bd3481d61a", "0x4ffb535bbbbd3d74d2f593bd9c21daa946a68c56", "0xf26904604b5f52186175ae8e629fd635af243376", "0x1cd116825039b7feac8cabc2ce83259d8bc9c106", "0x3a87d32E436D7fCe41D2d30F7CaebC33B8edB437", "0x3d8a507E356c698DD7F36A2f600Af4451C090e73", "0x4DFC34E47db2e3E1C1b1BABd7d0352375edAeC74", "0xF56D11Cce74759D81Ee574c6b47f4d6be3891664", "0x67f3C0b9ABdFCBDC035E4D9845Ce60d02CCd3311", "0x0e435Ad350B3C135e9C1737Efff180b24138953D", "0xdd71103F04913Ce28D1DE36DE92F56cE9695dbE5", "0xCEDa47E2EDBC6f6468484d68cD92Cb651171175b", "0x64C718b4fb92cE321830238a1692B8a0BC0Be555", "0x384ba9a8046F1987CC1137dC5A96f373CF2fb28E", "0xdC21A89348302576948cf600B1E0133d18DE94B1", "0x1d9CDd424903AB495BB1BE177AfC6D7d01837ad1", "0x5a179F7ABD022DA34A9431f6536504a4A93db9D6", "0xFdd99eD93352dC42c8F37b03Da1A240cE7043423", "0x3d2a07f30e960780E4Babed497682c092d1381b2", "0xA51FcA88fa4E3C97194e1eB6C79B83389fb4E470", "0x29075049b9e1F3C91E1215E02510007f7B55C4AA", "0xa1B463eF2BB962d5762377C65eBfb76444c0A8b4", "0xc5aD00Cb18F2868888D091637b4f4A84992CA37E"];
+              var all_contratcs = ["0x0000000000000000000000000000000000000014", "0x6943e925fd4e9e243230da2e26056b9c8a9cd8ce", "0x0ecfe89acdef3ad2e34e90916d50280ba9b22460", "0x4c3c844b751c18299932dcd18a3032bd3481d61a", "0x4ffb535bbbbd3d74d2f593bd9c21daa946a68c56", "0xf26904604b5f52186175ae8e629fd635af243376", "0x1cd116825039b7feac8cabc2ce83259d8bc9c106", "0x3a87d32E436D7fCe41D2d30F7CaebC33B8edB437", "0x3d8a507E356c698DD7F36A2f600Af4451C090e73", "0x4DFC34E47db2e3E1C1b1BABd7d0352375edAeC74", "0xF56D11Cce74759D81Ee574c6b47f4d6be3891664", "0x67f3C0b9ABdFCBDC035E4D9845Ce60d02CCd3311", "0x0e435Ad350B3C135e9C1737Efff180b24138953D", "0xdd71103F04913Ce28D1DE36DE92F56cE9695dbE5", "0xCEDa47E2EDBC6f6468484d68cD92Cb651171175b", "0x64C718b4fb92cE321830238a1692B8a0BC0Be555", "0x384ba9a8046F1987CC1137dC5A96f373CF2fb28E", "0xdC21A89348302576948cf600B1E0133d18DE94B1", "0x1d9CDd424903AB495BB1BE177AfC6D7d01837ad1", "0x5a179F7ABD022DA34A9431f6536504a4A93db9D6", "0xFdd99eD93352dC42c8F37b03Da1A240cE7043423", "0x3d2a07f30e960780E4Babed497682c092d1381b2", "0xA51FcA88fa4E3C97194e1eB6C79B83389fb4E470", "0x29075049b9e1F3C91E1215E02510007f7B55C4AA", "0xa1B463eF2BB962d5762377C65eBfb76444c0A8b4", "0xc5aD00Cb18F2868888D091637b4f4A84992CA37E", "0x3a90847163dd52a48cae8cdec48a4fb8ed97ae39", "0x21427d417f4e4a1b2c547760654cc1239eeb5431", "0xe71b5619b64710bb8907ab1a8e975b7e01053470", "0x184b004d90f5b31b30db80ae13e3f3061770e14a", "0xd08c83025920e110621c1275c72d9b081116d281", "0x2418f76c9c9822a2773407fcada84a4b0e8bdebf", "0x841ded90e46d782da12d52e0c5145da11d9e20f5"];
               all_contratcs.forEach(tokenCONTRACT => {
                 var myCONTRACT = new web3.eth.Contract(tokenABI, tokenCONTRACT);
                 // 
@@ -426,8 +426,16 @@
                 <option value="0x4c3c844b751c18299932dcd18a3032bd3481d61a">BTCx (Bitcoin)</option>
                 <option value="0x4ffb535bbbbd3d74d2f593bd9c21daa946a68c56">ETHx (Ether)</option>
                 <option value="0xf26904604b5f52186175ae8e629fd635af243376">USDTx (Tether)</option>
+                <option value="0x3a90847163dd52a48cae8cdec48a4fb8ed97ae39">TBAx (Bolivar Anti-inflacionario)</option>
                 <option disabled value="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCOMMODITIES</option>
                 <option value="0x1cd116825039b7feac8cabc2ce83259d8bc9c106">GLDx (Oro Internacional)</option>
+                <option value="0x21427d417f4e4a1b2c547760654cc1239eeb5431">AUPx (Oro Fisico)</option>
+                <option disabled value="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSTOCK</option>
+                <option value="0xe71b5619b64710bb8907ab1a8e975b7e01053470">RSTx (Ron Santa Teresa)</option>
+                <option value="0x184b004d90f5b31b30db80ae13e3f3061770e14a">MVZAx (Mercantil Servicios Financieros)</option>
+                <option value="0xd08c83025920e110621c1275c72d9b081116d281">FVIBx (Fondo de Valores Inmobiliarios)</option>
+                <option value="0x2418f76c9c9822a2773407fcada84a4b0e8bdebf">BNCx (Banca Nacional de Credito)</option>
+                <option value="0x841ded90e46d782da12d52e0c5145da11d9e20f5">BPVx (Banco Provincial)</option>
                 <option disabled value="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspALT COINS</option>
                 <option value="0x3a87d32E436D7fCe41D2d30F7CaebC33B8edB437">PTR (Petro)</option>
                 <option value="0x3d8a507E356c698DD7F36A2f600Af4451C090e73">USDR (Dolar R)</option>
