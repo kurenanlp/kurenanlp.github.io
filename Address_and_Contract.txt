@@ -56,6 +56,8 @@
 0x4ffb535bbbbd3d74d2f593bd9c21daa946a68c56	ETHx (Ether)	maxSupply: 4000.0
 0xf26904604b5f52186175ae8e629fd635af243376	USDTx (Tether)	maxSupply: 200000.0
 0x3a90847163dd52a48cae8cdec48a4fb8ed97ae39	TBAx (Token Bolívar Anti-inflacionario)	maxSupply: 1000000.0
+0x4fc2fc9cc70a98b8adbee7372eeb89f57d48597a	EUCx (Token Euro Cash)	maxSupply: 
+0x6c7841860cfb3da127a76a6875f0d75108e99ba9	USCx (Token Dolar Cash)	maxSupply: 
 
 [2][commodity]
 0x1cd116825039b7feac8cabc2ce83259d8bc9c106	GLDx (Oro Internacional)	maxSupply: 100000.0
