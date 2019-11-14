@@ -60,6 +60,11 @@
           console.log("web3.js v" + web3.version);
           console.log("Consulting in current blockchain...")
         } else if(chainReview == "previousNet") {
+          var web3 = new Web3(new Web3.providers.HttpProvider("https://original2.pichain.io"));
+          var urlEXPLORER = "https://blockexplorer2.pichain.io/";
+          console.log("web3.js v" + web3.version);
+          console.log("Consulting in previous blockchain...")
+        } else if(chainReview == "originalNet") {
           var web3 = new Web3(new Web3.providers.HttpProvider("https://original.pichain.io"));
           var urlEXPLORER = "https://blockexplorer-original.pichain.io/";
           console.log("web3.js v" + web3.version);
@@ -412,10 +417,13 @@
         <br>
         <!-- Network selection -->
         <input type="radio" name="myChain" value="currentNet" checked>
-        <a href="https://blockexplorer.pichain.io/" target="_blank"><b> Pi Main Network </b><img border="0" alt="Block explorer" src="assets/icons/external-link-ltr-icon.png"></a>
+        <a href="https://blockexplorer.pichain.io/" target="_blank"><b> Pi Main Network </b><img border="0" alt="Current Block explorer" src="assets/icons/external-link-ltr-icon.png"></a>
         <br>
         <input type="radio" name="myChain" value="previousNet">
-        <a href="https://blockexplorer-original.pichain.io/" target="_blank"><b> Pi Previous Network </b><img border="0" alt="Old Block Explorer" src="assets/icons/external-link-ltr-icon.png"></a>
+        <a href="https://blockexplorer2.pichain.io/" target="_blank"><b> Pi Previous Network </b><img border="0" alt="Previous Block Explorer" src="assets/icons/external-link-ltr-icon.png"></a>
+        <br>
+        <input type="radio" name="myChain" value="originalNet">
+        <a href="https://blockexplorer-original.pichain.io/" target="_blank"><b> Pi Original Network </b><img border="0" alt="Original Block Explorer" src="assets/icons/external-link-ltr-icon.png"></a>
         <br>
         <br>
         <!-- Form -->
@@ -515,12 +523,14 @@
         </div>
         <br>
         <!-- Buttons -->
-        <button onclick="run('getTXs');">Get TXs</button>
-        <button onclick="run('tokenBalance');">Token Balance</button>
-        <button onclick="run('allTokensBalances');">All Tokens Balances</button>
-        <button onclick="clsPage();">Clear page</button>
-        <br>
-        <br>
+        <div class="col-xs-auto mt-n2">
+          <button onclick="run('getTXs');">Get TXs</button>
+          <button onclick="run('tokenBalance');">Token Balance</button>
+          <button onclick="run('allTokensBalances');">All Tokens Balances</button>
+          <button onclick="clsPage();">Clear page</button>
+        </div>
+        <!-- <br> -->
+        <!-- <br> -->
         <!-- Results -->
         <div id="txs"></div>
         <br>
@@ -550,7 +560,7 @@
     <footer>
       <hr>
       <!-- Version & Credits -->
-      v0.0.3 &nbsp<br>
+      v0.0.4 &nbsp<br>
       Contribution of <a href="https://t.me/baudenay">Oscar Baudenay</a> to the <a href="https://t.me/Picripto">Community of Pi</a> &nbsp<br>
       Based on source provided by: Manuel Fajardo García, <a href="https://t.me/sosajohan">Johan Sosa Salazar</a>, <a href="https://t.me/gperezalba">Guillermo Pérez Alba</a>, <a href="https://t.me/clrgn">Carlos García Navarro</a> &nbsp<br>
       --- &nbsp<br>
