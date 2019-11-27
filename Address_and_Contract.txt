@@ -18,6 +18,7 @@
 0xA22E777556ca0149B6754C918c2115898A5C95Cd	PiLotto Inverse (Pi Casino)
 ------------------------------------------
 0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513	EURx (Euro)
+0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513	USDx (Dolar)
 0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513	VESx (Bolivar Soberano)
 0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513	COPx (Peso Colombiano)
 0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513	BTCx (Bitcoin)
@@ -69,6 +70,7 @@
 0x3a90847163dd52a48cae8cdec48a4fb8ed97ae39	TBAx (Token Bolívar Anti-inflacionario)	maxSupply: 1000000.0
 0x4fc2fc9cc70a98b8adbee7372eeb89f57d48597a	EUCx (Token Euro Cash)	maxSupply: 100000.0
 0x6c7841860cfb3da127a76a6875f0d75108e99ba9	USCx (Token Dolar Cash)	maxSupply: 100000.0
+0x2a3ec23c9d781aa431d300b2475b305cad27d98d	USDx (Dolar)	maxSupply: 5000000.0
 
 [2][commodity]
 0x1cd116825039b7feac8cabc2ce83259d8bc9c106	GLDx (Oro Internacional)	maxSupply: 100000.0
