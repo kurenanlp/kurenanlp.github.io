@@ -106,26 +106,26 @@
 0xc5aD00Cb18F2868888D091637b4f4A84992CA37E	LCCx (LCCx)	maxSupply: 8400000.0
 0x8106bdb63f83baa728e56865df2e78a95593bff2	CSNT (Token Casino)	maxSupply: 0.0
 0xC490f1d39E5dA5F4C92A447Fe9B7d04645E69E98	SP500x (Token Standard & Poor's 500 Index)	maxSupply: 1000000.0
-0x7e9BF3Ee8Fd1F7cFeF98bc877B6dCCAf1557860C	CREATIVE (Creative Funding)	maxSupply: 1000000.0
+0x7e9BF3Ee8Fd1F7cFeF98bc877B6dCCAf1557860C	CREATIVE (Creative Funding)	maxSupply: 1000000.0	*** Token unlisted ***
 0x831dB927D0dA920793656EA63b24c6eE4a5Da72e	CRT (Fundacion Creative)	maxSupply: 1000000.0
 
 [7][node_pool]
-0x0e435Ad350B3C135e9C1737Efff180b24138953D	Pedrox (Pedro)	maxSupply: 0.0  *** pending to acquire the node ***
+0x0e435Ad350B3C135e9C1737Efff180b24138953D	Pedrox (Pedro)	maxSupply: 0.0	*** pending to acquire the node ***
 0xdd71103F04913Ce28D1DE36DE92F56cE9695dbE5	CUTUTODX (CUTUTONUDEX)	maxSupply: 745.481	*** PAD sold out ***
 0xCEDa47E2EDBC6f6468484d68cD92Cb651171175b	CLAx (Clan A)	maxSupply: 757.803
-0x64C718b4fb92cE321830238a1692B8a0BC0Be555	PAHORRO (Pool Ahorro)	maxSupply: 782.75   *** PAD sold out + Unlisted ***
+0x64C718b4fb92cE321830238a1692B8a0BC0Be555	PAHORRO (Pool Ahorro)	maxSupply: 782.75 	*** PAD sold out + Unlisted ***
 0x384ba9a8046F1987CC1137dC5A96f373CF2fb28E	Clan B (Clan B)	maxSupply: 770.226
 0xdC21A89348302576948cf600B1E0133d18DE94B1	CLAN (CLAN)	maxSupply: 757.803
 0x1d9CDd424903AB495BB1BE177AfC6D7d01837ad1	THMx (To the moon)	maxSupply: 757.803
 0x5a179F7ABD022DA34A9431f6536504a4A93db9D6	QTUTODX2 (CUTUTONUDEX2)	maxSupply: 697.203
-0xFdd99eD93352dC42c8F37b03Da1A240cE7043423	ASD (ASD)	maxSupply: 639.128  *** PAD sold out + Unlisted ***
+0xFdd99eD93352dC42c8F37b03Da1A240cE7043423	ASD (ASD)	maxSupply: 639.128	*** PAD sold out + Unlisted ***
 0x3d2a07f30e960780E4Babed497682c092d1381b2	NEN (NEN)	maxSupply: 697.203
 0xA51FcA88fa4E3C97194e1eB6C79B83389fb4E470	TOE (TOE)	maxSupply: 685.386
 0x29075049b9e1F3C91E1215E02510007f7B55C4AA	DAS (DAS)	maxSupply: 697.203
 0xa1B463eF2BB962d5762377C65eBfb76444c0A8b4	ESD (ESD)	maxSupply: 709.121
-0xb03D41F8D8354975574ccfa95C61e1F9b03D83dC	NDD (NDD)	maxSupply: 0.0  *** pending to acquire the node ***
-0x6E8e203212937b2d1f634FbC3B69008D3A4218Ce	EEE (EEE)	maxSupply: 0.0  *** pending to acquire the node ***
-0x71892507e97755C1c92f95DfAd85EbF66a579a38	NODOS (NODOS)	maxSupply: 0.0  *** pending to acquire the node ***
+0xb03D41F8D8354975574ccfa95C61e1F9b03D83dC	NDD (NDD)	maxSupply: 0.0	*** pending to acquire the node ***
+0x6E8e203212937b2d1f634FbC3B69008D3A4218Ce	EEE (EEE)	maxSupply: 0.0	*** pending to acquire the node ***
+0x71892507e97755C1c92f95DfAd85EbF66a579a38	NODOS (NODOS)	maxSupply: 0.0	*** pending to acquire the node ***
 
 ---          Validator nodes           ---
 ------------------------------------------
