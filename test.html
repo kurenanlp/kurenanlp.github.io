@@ -221,7 +221,7 @@
                         var myPI = valueToBalance(balance, 18, web3);
                         // var myPI = web3.utils.fromWei(balance);
                         var inp = document.getElementById("txs").innerHTML;
-                        document.getElementById("txs").innerHTML = inp + "#" + rowCount + mySpace1 + "Balance: " + myPI + " PI<br>";
+                        document.getElementById("txs").innerHTML = inp + "#" + rowCount + " - Balance: " + myPI + " PI<br>";
                         var strOut = "#" + rowCount + " - Balance: " + myPI + " PI [value: " + balance + "]";
                         console.log(strOut);
                       }
@@ -238,7 +238,7 @@
                         var myBalance = valueToBalance(balance, 18, web3);
                         // var myBalance = web3.utils.fromWei(balance);
                         var inp = document.getElementById("txs").innerHTML;
-                        document.getElementById("txs").innerHTML = inp + "#" + rowCount + mySpace1 + "Balance: " + myBalance + " " + mySymbol + "<br>";
+                        document.getElementById("txs").innerHTML = inp + "#" + rowCount " - Balance: " + myBalance + " " + mySymbol + "<br>";
                         var strOut = "#" + rowCount + " - Balance: " + myBalance + " " + mySymbol + " [value: " + balance + "]";
                         console.log(strOut);
                       }
