@@ -55,8 +55,9 @@
 
 [p2p]
 0xd7D0D606647D98Dc844a7dea00c0861E7215db7f	[VESx] Inversiones Venepi, C.A. / J-41294238-7 / depositos@venepi.org
-0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513	[EURx] Midlantic Technologies S.L. / X / banca@piexchange.io
-0xcf98E77d3b663c58f4C262DA12D6b3b749BE4B10	[COLx] Wilmer Armando Campos Rodríguez / 1.090.388.741 / inversiones_colpi@protonmail.com
+0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513	[EURx] Sigma Pi Delta Technologies S.L. / X / banca@piexchange.io
+0xcf98E77d3b663c58f4C262DA12D6b3b749BE4B10	[COLx] ACR Tecnología S.A.S. / 9.013.268.795 / inversiones_colpi@protonmail.com
+0xd7D0D606647D98Dc844a7dea00c0861E7215db7f	[ARSx] Chinellato Janet / 95.996.443 / depositos@venepi.org
 
 ---              Contract              ---
 ------------------------------------------
