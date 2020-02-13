@@ -52,6 +52,7 @@
 0x49C47A32820BA55C57bA37d6ed948EFE2F945208	SP500x (Token Standard & Poor's 500 Index)
 0x4A95c51507A04F75ce659C1E2c9645C234C7B151	CREATIVE (Creative Funding)
 0x4A95c51507A04F75ce659C1E2c9645C234C7B151	CRT (Fundacion Creative)
+0xF44eEc4B15c06278772b249a693Edcf2062A9A75	BLITSx (Distribuidora Blits)
 
 [p2p]
 0xd7D0D606647D98Dc844a7dea00c0861E7215db7f	[VESx] Inversiones Venepi, C.A. / J-41294238-7 / depositos@venepi.org
@@ -111,6 +112,7 @@
 0xC490f1d39E5dA5F4C92A447Fe9B7d04645E69E98	SP500x (Token Standard & Poor's 500 Index)	maxSupply: 1000000.0
 0x7e9BF3Ee8Fd1F7cFeF98bc877B6dCCAf1557860C	CREATIVE (Creative Funding)	maxSupply: 1000000.0	*** Token unlisted ***
 0x831dB927D0dA920793656EA63b24c6eE4a5Da72e	CRT (Fundacion Creative)	maxSupply: 1000000.0
+0x7FFd2A42C0B17c7C2ea00a507d9CFeC60B6Fe46D	BLITSx (Distribuidora Blits)	maxSupply: 100000.0
 
 [7][node_pool]
 0x0e435Ad350B3C135e9C1737Efff180b24138953D	Pedrox (Pedro)	maxSupply: 0.0	*** pending to acquire the node ***
