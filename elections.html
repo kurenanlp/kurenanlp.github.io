@@ -70,7 +70,6 @@
                   // Consulting token balance
                   myCONTRACT.methods.balanceOf(addrCANDIDATE).call().then(balance => {
                     if(balance != 0) {
-                      // var myBalance = valueToBalance(balance, 18, web3);
                       var myBalance = balance/1000000000000000000;
                       var inp = document.getElementById("txs").innerHTML;
                       document.getElementById("txs").innerHTML = inp + "Candidate: " + addrCANDIDATE + mySpace1 + "Votes: " + myBalance + " " + mySymbol + "<br>";
@@ -231,6 +230,7 @@
     <header>
       <a name="top"></a>
       <h1>Pi - Totalization of votes</h1>
+      <h5>Venezuela 19/02/2020</h5>
       <hr>
     </header>
     <!-- Main -->
