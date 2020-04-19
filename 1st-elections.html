@@ -40,8 +40,7 @@
         // 
         // Statements: ABI, Addr Contract, Addr Wallet...
         var tokenABI = [{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"approve","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_from","type":"address"}],"name":"transferFrom","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_spender","type":"address"}],"name":"disapprove","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"balances","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_value","type":"uint256"}],"name":"tokenFallback","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"mint","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_value","type":"uint256"}],"name":"burn","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_from","type":"address"},{"name":"_value","type":"uint256"}],"name":"transferFromValue","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_user","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"charge","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"_owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"emisorAddress","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_value","type":"uint256"},{"name":"receiving","type":"address"},{"name":"price","type":"uint256"},{"name":"side","type":"uint256"},{"name":"exchangeAddress","type":"address"}],"name":"setDexOrder","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"},{"name":"","type":"address"}],"name":"approved","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"name","type":"string"},{"name":"symbol","type":"string"},{"name":"owner","type":"address"},{"name":"initialSupply","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"name":"charger","type":"address"},{"indexed":true,"name":"charged","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Charge","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"owner","type":"address"},{"indexed":true,"name":"spender","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"},{"indexed":true,"name":"data","type":"bytes"}],"name":"Transfer","type":"event"}];
-        var tokenVOTES = ["0x2dE3336A87091bbAF634e0b44A921551802AEdAB", "0xb1aaA7FC513252776DF4f58c0Ffa92B26D10e67b", "0x6ac98953c3DA877a8458702c7ebC53F663402C59", "0x5f063F6987a9cBaF8A41d21A97Ce11c772c18609", "0x0dcBff68baEd55fb972b9BeeF00f9eDD5B78E2D5"];
-        var walletADDRESS = "";
+        var walletADDRESS = "0x3e121769506f1e0302bf79aea458f7378ce0016c";
         // 
         // Connecting to the blockchain and specifying the browser
         var web3 = new Web3(new Web3.providers.HttpProvider("https://connect.pichain.io"));
@@ -51,34 +50,32 @@
         // 
         // Latest block
         web3.eth.getBlockNumber().then(lastBlock => {
-          tokenVOTES.forEach(tokenADDRESS => {
-            var myCONTRACT = new web3.eth.Contract(tokenABI, tokenADDRESS);
-            // 
-            // Actions: getVotes
-            console.log("Latest Block: " + lastBlock);
-            console.log("Addr Contract: " + myCONTRACT.options.address);
-            console.log("Addr Wallet: " + walletADDRESS);
-            // 
-            // Check the all tokens balances
-            if(callAction == "getVotes") {
-              var nowDate = new Date();
-              document.getElementById("txs").innerHTML = "<br>Latest Block: <b>" + lastBlock + "</b><br>Search time: <b>" + nowDate.toUTCString() + "</b><br><br>";
-              var all_candidates = ["0xBbbEF72b5F8aEF258e0C155A93830bfFA3C71f8d", "0x394fB7993862fcd8d2a3EEce872c2C1D38e1061B", "0x384B8d2EFf8a2FbC4f5c6d7B0E0628Dc102d39D9", "0x1Ab14689cF2Bdb74ECAc6aA80d434A9cb00D3A4D", "0x40891A26c8bE0BF5af2ca06F93D9b6A6C2Cf401E", "0x5f63227441aE75874F973A3bC5bb590341Aa51f0", "0x56c9C83E6776454aff795B34EB5A8f552aF37c5A", "0xBc611D9c5A96e1E3CD03A0F37b2ca3e217b9ACc8", "0xf8b3605D65e1231d303c072073B25f48b3DE88a2", "0xFa893d5DED974f61bb7A1A8906313211eadF8Cd1"];
-              all_candidates.forEach(addrCANDIDATE => {
-                // Getting the token symbol
-                myCONTRACT.methods.symbol().call().then(mySymbol => {
-                  // Consulting token balance
-                  myCONTRACT.methods.balanceOf(addrCANDIDATE).call().then(balance => {
-                    if(balance != 0) {
-                      var myBalance = balance/1000000000000000000;
-                      var inp = document.getElementById("txs").innerHTML;
-                      document.getElementById("txs").innerHTML = inp + "Candidate: " + addrCANDIDATE + mySpace1 + "Votes: " + myBalance + " " + mySymbol + "<br>";
-                    }
-                  });
+          var myCONTRACT = new web3.eth.Contract(tokenABI, walletADDRESS);
+          // 
+          // Actions: getVotes
+          console.log("Latest Block: " + lastBlock);
+          console.log("Addr Contract: " + myCONTRACT.options.address);
+          console.log("Addr Wallet: " + walletADDRESS);
+          // 
+          // Check the all tokens balances
+          if(callAction == "getVotes") {
+            var nowDate = new Date();
+            document.getElementById("txs").innerHTML = "<br>Latest Block: <b>" + lastBlock + "</b><br>Search time: <b>" + nowDate.toUTCString() + "</b><br><br>";
+            var all_candidates = ["0xA272f34e47213501c02ED586Cb5cE3f61C20aE73", "0x4a08Fea0Aa2F70215190aE7009F760bF3396547e", "0x967bD9D54B3BF23E6cF279354316cB843989fc90", "0x2fB77A3B01d5Ca009bC5c6d3c707ba7D50c45E7d", "0x004927d7ac72cdF73F185613579Ab80E987680E5", "0xd7D0D606647D98Dc844a7dea00c0861E7215db7f", "0x03cE724DFd7cb2a58Bda6150D1A6DDB680B1e2c8", "0x150FEC6f1E956383C380cdADfA2cC10D8D71BCbB", "0x3A396dA0b82B12f029BBf1E0c634a99AE7CbEF2b"];
+            all_candidates.forEach(addrCANDIDATE => {
+              // Getting the token symbol
+              myCONTRACT.methods.symbol().call().then(mySymbol => {
+                // Consulting token balance
+                myCONTRACT.methods.balanceOf(addrCANDIDATE).call().then(balance => {
+                  if(balance != 0) {
+                    var myBalance = balance/1000000000000000000;
+                    var inp = document.getElementById("txs").innerHTML;
+                    document.getElementById("txs").innerHTML = inp + "Candidate: " + addrCANDIDATE + mySpace1 + "Votes: " + myBalance + " " + mySymbol + "<br>";
+                  }
                 });
               });
-            } // End of allTokensBalances
-          })
+            });
+          } // End of allTokensBalances
         });
       } // End of run function
       // 
