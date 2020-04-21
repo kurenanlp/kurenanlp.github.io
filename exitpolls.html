@@ -9,7 +9,7 @@
     <!-- Icon -->
     <link rel="shortcut icon" href="assets/icons/favicon.ico">
     <!-- Tittle -->
-    <title>Pi Address Explorer</title>
+    <title>Pi - 3rd Election results</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-C7L3CXQHSM"></script>
     <script>
@@ -30,7 +30,7 @@
     <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.2.0/dist/web3.min.js"></script>
     <!-- Establishment of routines and functions -->
     <script type="text/javascript">
-      // 
+      //
       // Main script
       function run(callAction) {
         // 
@@ -40,86 +40,60 @@
         // 
         // Statements: ABI, Addr Contract, Addr Wallet...
         var tokenABI = [{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"approve","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_from","type":"address"}],"name":"transferFrom","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_spender","type":"address"}],"name":"disapprove","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"balances","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_value","type":"uint256"}],"name":"tokenFallback","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"mint","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_value","type":"uint256"}],"name":"burn","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_from","type":"address"},{"name":"_value","type":"uint256"}],"name":"transferFromValue","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_user","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"charge","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"_owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"emisorAddress","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_value","type":"uint256"},{"name":"receiving","type":"address"},{"name":"price","type":"uint256"},{"name":"side","type":"uint256"},{"name":"exchangeAddress","type":"address"}],"name":"setDexOrder","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"},{"name":"","type":"address"}],"name":"approved","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"name","type":"string"},{"name":"symbol","type":"string"},{"name":"owner","type":"address"},{"name":"initialSupply","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"name":"charger","type":"address"},{"indexed":true,"name":"charged","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Charge","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"owner","type":"address"},{"indexed":true,"name":"spender","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"},{"indexed":true,"name":"data","type":"bytes"}],"name":"Transfer","type":"event"}];
-        var tokenADDRESS = "0xFE8e9Caa700D32959c3C51a51D99dc184176881f";
-          if(tokenADDRESS == "") tokenADDRESS = document.querySelector('#myTokenSelect').value;
-          if(!tokenADDRESS && callAction != "allTokensBalances") {
-            console.log("You must select or specify a (token) contract address to check");
-            alert("You must select or specify a (token) contract address to check");
-            return;
-          }
-        var walletADDRESS = "";
-        var fromADDRESS = "";
-        // 
-        // The magic of the Iker
-        var chainReview = document.querySelector('input[name="myChain"]:checked').value;
+        // var tokenVOTES = ["0x2dE3336A87091bbAF634e0b44A921551802AEdAB", "0xb1aaA7FC513252776DF4f58c0Ffa92B26D10e67b", "0x6ac98953c3DA877a8458702c7ebC53F663402C59", "0x5f063F6987a9cBaF8A41d21A97Ce11c772c18609", "0x0dcBff68baEd55fb972b9BeeF00f9eDD5B78E2D5"];
+        var walletADDRESS = "0xFE8e9Caa700D32959c3C51a51D99dc184176881f";
         // 
         // Connecting to the blockchain and specifying the browser
-        if(chainReview == "currentNet") {
-          var web3 = new Web3(new Web3.providers.HttpProvider("https://connect.pichain.io"));
-          var urlEXPLORER = "https://blockexplorer.pichain.io/";
-          console.log("web3.js v" + web3.version);
-          console.log("Consulting in current blockchain...")
-        } else if(chainReview == "previousNet") {
-          var web3 = new Web3(new Web3.providers.HttpProvider("https://original.pichain.io"));
-          var urlEXPLORER = "https://blockexplorer-original.pichain.io/";
-          console.log("web3.js v" + web3.version);
-          console.log("Consulting in previous blockchain...")
-        } else {
-          console.log("> > >  Leaving the script  < < <");
-          return;
-        }
-        // 
-        // Connecting to the contract
-        var myCONTRACT = new web3.eth.Contract(tokenABI, tokenADDRESS);
-        // 
-        // Logging reference values
-        // console.log(web3);
-        // console.log(myCONTRACT);
-        // console.log(myCONTRACT.options.jsonInterface);
+        var web3 = new Web3(new Web3.providers.HttpProvider("https://connect.pichain.io"));
+        var urlEXPLORER = "https://blockexplorer.pichain.io/";
+        console.log("web3.js v" + web3.version);
+        console.log("Consulting in current blockchain...")
         // 
         // Latest block
         web3.eth.getBlockNumber().then(lastBlock => {
-          // 
-          // Actions: getTXs (all, fromAddr, fromBck, fromDay), tokenBalance, allToeknsBalances
-          console.log("Latest Block: " + lastBlock);
-          console.log("Addr Contract: " + myCONTRACT.options.address);
-          console.log("Addr Wallet: " + walletADDRESS);
-          console.log("From Addr: " + fromADDRESS);
-          // 
-          // Check the all tokens balances
-          if(callAction == "getVotes") {
-            // if(!walletADDRESS) {
-            //   console.log("You must specify a wallet address to consult");
-            //   alert("You must specify a wallet address to consult");
-            // } else {
+          // tokenVOTES.forEach(tokenADDRESS => {
+            var myCONTRACT = new web3.eth.Contract(tokenABI, walletADDRESS);
+            // var myCONTRACT = new web3.eth.Contract(tokenABI, tokenADDRESS);
+            // 
+            // Actions: getVotes
+            console.log("Latest Block: " + lastBlock);
+            console.log("Addr Contract: " + myCONTRACT.options.address);
+            console.log("Addr Wallet: " + walletADDRESS);
+            // 
+            // Check the all tokens balances
+            if(callAction == "getVotes") {
               var nowDate = new Date();
               document.getElementById("txs").innerHTML = "<br>Latest Block: <b>" + lastBlock + "</b><br>Search time: <b>" + nowDate.toUTCString() + "</b><br><br>";
-              var rowCount = 0;
-              var totalVotes = 0;
-              var all_candidates = ["0x03cE724DFd7cb2a58Bda6150D1A6DDB680B1e2c8", "0x75847A664FcFA4b1B64165dA666796d9d67CDd70", "0x967bD9D54B3BF23E6cF279354316cB843989fc90", "0xECba46fe13158c657a42a1557d1188481317F1c9", "0x150FEC6f1E956383C380cdADfA2cC10D8D71BCbB", "0xff4D621bd095A67FFa7aD48aEe056A69da611435", "0xC3fCD1758B18211560FF7528f10557E8d53470e6"];
+              var all_candidates = ["0x03cE724DFd7cb2a58Bda6150D1A6DDB680B1e2c8", "0x75847A664FcFA4b1B64165dA666796d9d67CDd70", "0x967bD9D54B3BF23E6cF279354316cB843989fc90", "0xECba46fe13158c657a42a1557d1188481317F1c9",];
               all_candidates.forEach(addrCANDIDATE => {
                 // Getting the token symbol
                 myCONTRACT.methods.symbol().call().then(mySymbol => {
                   // Consulting token balance
                   myCONTRACT.methods.balanceOf(addrCANDIDATE).call().then(balance => {
                     if(balance != 0) {
-                      rowCount++;
-                      // var myBalance = (parseFloat(balance)/myDivider).toFixed(18);
-                      // var myBalance = valueToBalance(balance, myDecimals, web3);
-                      var myBalance = valueToBalance(balance, 18, web3);
-                      totalVotes = totalVotes + Number(balance);
-                      // var myBalance = web3.utils.fromWei(balance);
+                      var myBalance = balance/1000000000000000000;
                       var inp = document.getElementById("txs").innerHTML;
-                      document.getElementById("txs").innerHTML = inp + "#" + rowCount + mySpace1 + addrCANDIDATE + " Votes: " + myBalance + " " + mySymbol + "<br>";
-                      var strOut = "#" + rowCount + " - Votes: " + myBalance + " " + mySymbol + " [value: " + balance + "]";
-                      console.log(strOut);
-                      console.log(valueToBalance(totalVotes, 18, web3));
+                      document.getElementById("txs").innerHTML = inp + "Candidate: " + addrCANDIDATE + mySpace1 + "Votes: " + myBalance + " " + mySymbol + "<br>";
                     }
                   });
                 });
               });
-            // }
-          } // End of allTokensBalances
+              var all_candidates = ["0x150FEC6f1E956383C380cdADfA2cC10D8D71BCbB", "0xff4D621bd095A67FFa7aD48aEe056A69da611435", "0xC3fCD1758B18211560FF7528f10557E8d53470e6"];
+              all_candidates.forEach(addrCANDIDATE => {
+                // Getting the token symbol
+                myCONTRACT.methods.symbol().call().then(mySymbol => {
+                  // Consulting token balance
+                  myCONTRACT.methods.balanceOf(addrCANDIDATE).call().then(balance => {
+                    if(balance != 0) {
+                      var myBalance = balance/1000000000000000000;
+                      var inp = document.getElementById("txs").innerHTML;
+                      document.getElementById("txs").innerHTML = inp + "Candidate: " + addrCANDIDATE + mySpace1 + "Votes: " + myBalance + " " + mySymbol + "<br>";
+                    }
+                  });
+                });
+              });
+            } // End of allTokensBalances
+          // })
         });
       } // End of run function
       // 
@@ -270,112 +244,18 @@
     <!-- Header -->
     <header>
       <a name="top"></a>
-      <h1>Exitpolls</h1>
+      <h1>Pi @Totalization of votes - 3rd elections</h1>
+      <h5>Venezuela 19/04/2020</h5>
       <hr>
     </header>
     <!-- Main -->
     <main>
       <p>
         <br>
-        Select the blockchain to consult:
-        <br>
-        <br>
-        <!-- Network selection -->
-        <input type="radio" name="myChain" value="currentNet" checked>
-        <a href="https://blockexplorer.pichain.io/" target="_blank"><b> Pi Main Network </b><img border="0" alt="Block explorer" src="assets/icons/external-link-ltr-icon.png"></a>
-        <br>
-        <input type="radio" name="myChain" value="previousNet">
-        <a href="https://blockexplorer-original.pichain.io/" target="_blank"><b> Pi Previous Network </b><img border="0" alt="Old Block Explorer" src="assets/icons/external-link-ltr-icon.png"></a>
-        <br>
-        <br>
-        <!-- Form -->
-        <!-- <div class="container ml-n4">
-          <div class="row align-items-center">
-            <div class="col-sm-auto mt-n4 mr-n5">
-              <select class="form-control" id="myTokenSelect">
-                <option disabled value="" selected>Select Asset/Token</option>
-                <option value="0x0000000000000000000000000000000000000000">PI (Pi)</option>
-                <option disabled value="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCURRUENCIES</option>
-                <option value="0x0000000000000000000000000000000000000014">EURx (Euro)</option>
-                <option value="0x6943e925fd4e9e243230da2e26056b9c8a9cd8ce">VESx (Bolivar Soberano)</option>
-                <option value="0x0ecfe89acdef3ad2e34e90916d50280ba9b22460">COPx (Peso Colombiano)</option>
-                <option value="0x4c3c844b751c18299932dcd18a3032bd3481d61a">BTCx (Bitcoin)</option>
-                <option value="0x4ffb535bbbbd3d74d2f593bd9c21daa946a68c56">ETHx (Ether)</option>
-                <option value="0xf26904604b5f52186175ae8e629fd635af243376">USDTx (Tether)</option>
-                <option value="0x3a90847163dd52a48cae8cdec48a4fb8ed97ae39">TBAx (Bolivar Anti-inflacionario)</option>
-                <option value="0x4fc2fc9cc70a98b8adbee7372eeb89f57d48597a">EUCx (Euro Cash)</option>
-                <option value="0x6c7841860cfb3da127a76a6875f0d75108e99ba9">USCx (Dolar Cash)</option>
-                <option disabled value="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCOMMODITIES</option>
-                <option value="0x1cd116825039b7feac8cabc2ce83259d8bc9c106">GLDx (Oro Internacional)</option>
-                <option value="0x21427d417f4e4a1b2c547760654cc1239eeb5431">AUPx (Oro Fisico)</option>
-                <option disabled value="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSTOCK</option>
-                <option value="0xe71b5619b64710bb8907ab1a8e975b7e01053470">RSTx (Ron Santa Teresa)</option>
-                <option value="0x184b004d90f5b31b30db80ae13e3f3061770e14a">MVZAx (Mercantil Servicios Financieros)</option>
-                <option value="0xd08c83025920e110621c1275c72d9b081116d281">FVIBx (Fondo de Valores Inmobiliarios)</option>
-                <option value="0x2418f76c9c9822a2773407fcada84a4b0e8bdebf">BNCx (Banca Nacional de Credito)</option>
-                <option value="0x841ded90e46d782da12d52e0c5145da11d9e20f5">BPVx (Banco Provincial)</option>
-                <option disabled value="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspALT COINS</option>
-                <option value="0x3a87d32E436D7fCe41D2d30F7CaebC33B8edB437">PTR (Petro)</option>
-                <option value="0x3d8a507E356c698DD7F36A2f600Af4451C090e73">USDR (Dolar R)</option>
-                <option value="0x4DFC34E47db2e3E1C1b1BABd7d0352375edAeC74">PKV9000 (PKVMONEY)</option>
-                <option value="0xF56D11Cce74759D81Ee574c6b47f4d6be3891664">BULL (Bull Income Fund)</option>
-                <option value="0x67f3C0b9ABdFCBDC035E4D9845Ce60d02CCd3311">PoPiC (PoPiC)</option>
-                <option value="0xc5aD00Cb18F2868888D091637b4f4A84992CA37E">LCx (LCCx)</option>
-                <option disabled value="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspNODES POOL</option>
-                <option value="0x0e435Ad350B3C135e9C1737Efff180b24138953D">Pedrox (Pedro)</option>
-                <option value="0xdd71103F04913Ce28D1DE36DE92F56cE9695dbE5">CTO (CUTUTONUDEX)</option>
-                <option value="0xCEDa47E2EDBC6f6468484d68cD92Cb651171175b">CLAx (Clan A)</option>
-                <option value="0x64C718b4fb92cE321830238a1692B8a0BC0Be555">PAHORRO (Pool Ahorro)</option>
-                <option value="0x384ba9a8046F1987CC1137dC5A96f373CF2fb28E">Clan B (Clan B)</option>
-                <option value="0xdC21A89348302576948cf600B1E0133d18DE94B1">CLAN (CLAN)</option>
-                <option value="0x1d9CDd424903AB495BB1BE177AfC6D7d01837ad1">THMx (To the moon)</option>
-                <option value="0x5a179F7ABD022DA34A9431f6536504a4A93db9D6">CUT (CUTUTONUDEX2)</option>
-                <option value="0xFdd99eD93352dC42c8F37b03Da1A240cE7043423">ASD (ASD)</option>
-                <option value="0x3d2a07f30e960780E4Babed497682c092d1381b2">NEN (NEN)</option>
-                <option value="0xA51FcA88fa4E3C97194e1eB6C79B83389fb4E470">TOE (TOE)</option>
-                <option value="0x29075049b9e1F3C91E1215E02510007f7B55C4AA">DAS (DAS)</option>
-                <option value="0xa1B463eF2BB962d5762377C65eBfb76444c0A8b4">ESD (ESD)</option>
-              </select>
-            </div>
-            <div class="col-sm-auto mt-n3 mr-n5">or enter a token contract</div>
-          </div>
-          <div class="row align-items-center">
-            <div class="col-sm-auto mt-n4 mr-n5"><input class="form-control" type="text" name="" value="" id="addr_contract" size="42" maxlength="42" placeholder="eg: 0x14af2...   <42 digits>" pattern="[A-Fa-f0-9x-x]{42}" title="Token contract"></div>
-            <div class="col-sm-auto mt-n3 mr-n5">Token Contract (address)</div>
-          </div>
-          <div class="row align-items-center">
-            <div class="col-sm-auto mt-n4 mr-n5"><input class="form-control" type="text" name="" value="" id="addr_review" size="42" maxlength="42" placeholder="eg: 0x30f92...   <42 digits>" pattern="[A-Fa-f0-9x-x]{42}"  title="Wallet address (to:)" list="addresses"></div>
-            <div class="col-sm-auto mt-n3 mr-n5">Wallet address to check</div>
-          </div>
-          <div class="row align-items-center">
-            <div class="col-sm-auto mt-n4 mr-n5"><input class="form-control" type="text" name="" value="" id="addr_from" size="42" maxlength="42" placeholder="eg: 0x13f74...   <42 digits>" pattern="[A-Fa-f0-9x-x]{42}" title="Address (from:)" list="addresses"></div>
-            <div class="col-sm-auto mt-n3 mr-n5">Address from</div>
-          </div>
-          <div class="row align-items-center w-75">
-            <div class="col-sm-auto mt-n4 mr-n5"><input class="form-control" type="text" name="" value="" id="back_blocks" size="10" maxlength="42" placeholder="eg: 31075" pattern="[0-9]{42}" title="Back blocks"></div>
-            <div class="col-sm-auto mt-n3 mr-n5">Back blocks or<p></p></div>
-            <div class="col-sm-auto mt-n4 mr-n5"><input class="form-control" type="text" name="" value="" id="back_days" size="10" maxlength="42" placeholder="eg: 365" pattern="[0-9]{42}" title="Back dayss"></div>
-            <div class="col-sm-auto mt-n3 mr-n5">Back days<p></p></div>
-          </div>
-          <datalist id="addresses">
-            <option value="0x917a8d3415f5fe494ddfb029cb0dfdfb242b6942">PiDEX</option>
-            <option value="0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513">Brigde</option>
-            <option value="0x0000000000000000000000000000000000000009">Block rewards</option>
-            <option value="0x0000000000000000000000000000000000000010">Pi issuing contract</option>
-            <option value="0x0000000000000000000000000000000000000012">Collected by nodes</option>
-            <option value="0x2762c01534b75D4453c262D95Ae9f1d5c4fAC81a">EuroPillon</option>
-            <option value="0xA22E777556ca0149B6754C918c2115898A5C95Cd">EuroPillon Inverse</option>
-            <option value="0xd7D0D606647D98Dc844a7dea00c0861E7215db7f">VENEPI</option>
-            <option value="0xcf98E77d3b663c58f4C262DA12D6b3b749BE4B10">COLPI</option>
-            <option value="0x4535E0F7F4AA8216d1575F6B96Ed18013A8b7513">ASESPI</option>
-          </datalist>
-        </div> -->
-        <br>
         <!-- Buttons -->
         <button onclick="run('getVotes');">Check votes</button>
         <!-- <button onclick="run('getTXs');">Get TXs</button> -->
         <button onclick="clsPage();">Clear page</button>
-        <br>
         <br>
         <!-- Results -->
         <div id="txs"></div>
