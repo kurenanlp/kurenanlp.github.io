@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Icon -->
+    <link rel="shortcut icon" href="assets/icons/favicon.ico">
+    <!-- Tittle -->
+    <title>Pi Last Block</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C7L3CXQHSM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-C7L3CXQHSM');
+    </script>
+    <!-- Importing jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Importing web3.js client -->
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.2.0/dist/web3.min.js"></script>
+    <!-- Establishment of routines and functions -->
+    <script type="text/javascript">
+      // 
+      // Main script
+      function run() {
+        // 
+        // The magic of the Iker
+        // var chainReview = document.querySelector('input[name="myChain"]:checked').value;
+        var chainReview = "currentNet";
+        // 
+        // Connecting to the blockchain and specifying the browser
+        if(chainReview == "currentNet") {
+          var web3 = new Web3(new Web3.providers.HttpProvider("https://connect.pichain.io"));
+          var urlEXPLORER = "https://blockexplorer.pichain.io/";
+          console.log("web3.js v" + web3.version);
+          console.log("Consulting in current blockchain...")
+        } else if(chainReview == "previousNet") {
+          var web3 = new Web3(new Web3.providers.HttpProvider("https://original2.pichain.io"));
+          var urlEXPLORER = "https://blockexplorer2.pichain.io/";
+          console.log("web3.js v" + web3.version);
+          console.log("Consulting in previous blockchain...")
+        } else if(chainReview == "originalNet") {
+          var web3 = new Web3(new Web3.providers.HttpProvider("https://original.pichain.io"));
+          var urlEXPLORER = "https://blockexplorer-original.pichain.io/";
+          console.log("web3.js v" + web3.version);
+          console.log("Consulting in previous blockchain...")
+        } else {
+          console.log("> > >  Leaving the script  < < <");
+          return;
+        }
+        // 
+        // Connecting to the contract
+        // var myCONTRACT = new web3.eth.Contract(tokenABI, tokenADDRESS);
+        // 
+        // Logging reference values
+        // console.log(web3);
+        // console.log(myCONTRACT);
+        // console.log(myCONTRACT.options.jsonInterface);
+        // 
+        // Latest block
+        web3.eth.getBlockNumber().then(lastBlock => {
+          // 
+          // Print to console
+          console.log("Latest Block: " + lastBlock);
+          // 
+          // Print to monitor
+		  var nowDate = new Date();
+          document.getElementById("txs").innerHTML = "<br>Latest Block: <b>" + lastBlock + "</b><br>Search time: <b>" + nowDate.toUTCString() + "</b><br>";
+        });
+      } // End of run function
+      // 
+      // Clean screen and console
+      function clsPage() {
+        document.getElementById("txs").innerHTML = "<br><b>Cleaning done...</b>";
+        console.clear();
+      } // End of clsPage function
+    </script>
+    <style>
+      html {
+        font-size: 12px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: #d6d6d6!important;
+        background-color: #2e2e2e
+      }
+      body {
+        font-size: 12px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: #d6d6d6!important;
+        background-color: #2e2e2e
+      }
+      header {
+        margin: 0.5em;
+        font-size: 12px;
+        text-align: left!important;
+        color: #d6d6d6!important;
+        background-color: #2e2e2e
+      }
+      main {
+        font-size: 12px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: #d6d6d6!important;
+        background-color: #2e2e2e
+      }
+      footer {
+        margin: 0.5em;
+        font-size: 12px;
+        text-align: right!important;
+        color: #d6d6d6!important;
+        background-color: #2e2e2e
+      }
+      p,
+      div {
+        margin: 1.0em
+      }
+      h1 {
+        margin: 0em;
+        font-size: 24px;
+        font-weight: bold;
+        font-family: Verdana, Geneva, Tahoma, sans-serif
+      }
+      a {
+        text-decoration: none;
+        color:rgba(162,185,200,.7)
+      }
+      a:hover {
+        color:#a2b9c8
+      }
+      .form-control {
+        margin: 0.1em;
+        padding: 0.25em;
+        color: #d6d6d6!important;
+        border: solid 0.1em;
+        border-color: #7c7c7c!important;
+        border-radius: 5px;
+        background-color: #242424!important
+      }
+      .form-control::placeholder {
+        color: gray;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-style: italic;
+        font-size: 10px
+      }
+      button {
+        font-size: 12px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        background-color: lightgray;
+        border: 1em;
+        color: black;
+        padding: 5px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 9px
+      }
+      button:hover {
+        color: lightgray;
+        background-color: #0a95eb51
+      }
+      hr { 
+        display: block;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        margin-left: auto;
+        margin-right: auto;
+        border-style: inset;
+        border-width: 1px;
+        opacity: 0.33
+      }
+      .u-go-to {
+        display: none;
+        position: fixed;
+        top: 15px;
+        right: 25px;
+        padding: .75em;
+        background-color: lightgray;
+        color: black;
+        font-size: 10px;
+        border-radius: .25rem;
+        opacity: .5;
+        transition: .3s ease-out;
+        text-decoration: none
+      }
+      .u-go-to:hover {
+        color: lightgray;
+        background-color: #0a95eb51
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <a name="top"></a>
+      <h1>Pi Last Block</h1>
+      <hr>
+    </header>
+    <!-- Main -->
+    <main>
+      <p>
+        <div id="txs"></div>
+		<script>
+			run();
+		</script>
+        <br>
+        <a class="u-go-to" href="#top">Top</a>
+      </p>
+      <script>
+        jQuery(document).ready(function() {
+          var offset = 370;
+          var duration = 1000;
+          jQuery(window).scroll(function() {
+            if (jQuery(this).scrollTop() > offset) {
+              jQuery('.u-go-to').fadeIn(duration);
+            } else {
+              jQuery('.u-go-to').fadeOut(duration);
+            }
+          });
+          // 
+          jQuery('.u-go-to').click(function(event) {
+            event.preventDefault();
+            jQuery('html, body').animate({scrollTop: 0}, duration);
+            return false;
+          })
+        });
+	    </script>
+    </main>
+    <!-- Footer -->
+    <footer>
+      <hr>
+      <!-- Version & Credits -->
+      v0.0.4 &nbsp<br>
+      Contribution of <a href="https://t.me/baudenay">Oscar Baudenay</a> to the <a href="https://t.me/Picripto">Community of Pi</a> &nbsp<br>
+      <!-- Based on source provided by: Manuel Fajardo García, <a href="https://t.me/sosajohan">Johan Sosa Salazar</a>, <a href="https://t.me/gperezalba">Guillermo Pérez Alba</a>, <a href="https://t.me/clrgn">Carlos García Navarro</a> &nbsp<br> -->
+      --- &nbsp<br>
+      Donations <a target="_blank" href="https://blockexplorer.pichain.io/address/0xd6C2A4f5aDdF2026cB07b37a4B43B3B744023545">0xd6C2A4f5aDdF2026cB07b37a4B43B3B744023545</a> &nbsp<br>
+      Address for donations in Pi, Ether and tokens &nbsp
+      <a name="bottom"></a>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
