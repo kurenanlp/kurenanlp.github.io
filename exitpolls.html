@@ -9,7 +9,7 @@
     <!-- Icon -->
     <link rel="shortcut icon" href="assets/icons/favicon.ico">
     <!-- Tittle -->
-    <title>Pi - 3rd Election results</title>
+    <title>Pi - 4th Election results</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-C7L3CXQHSM"></script>
     <script>
@@ -33,76 +33,67 @@
       //
       // Main script
       function run(callAction) {
-        // 
+        //
         // Formating
         var mySpace1 = "&nbsp&nbsp&nbsp&nbsp&nbsp";
         var mySpace2 = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
-        // 
+        //
         // Statements: ABI, Addr Contract, Addr Wallet...
-        var tokenABI = [{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"approve","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_from","type":"address"}],"name":"transferFrom","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_spender","type":"address"}],"name":"disapprove","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"balances","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_value","type":"uint256"}],"name":"tokenFallback","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"mint","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_value","type":"uint256"}],"name":"burn","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_from","type":"address"},{"name":"_value","type":"uint256"}],"name":"transferFromValue","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_user","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"charge","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"_owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"emisorAddress","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_value","type":"uint256"},{"name":"receiving","type":"address"},{"name":"price","type":"uint256"},{"name":"side","type":"uint256"},{"name":"exchangeAddress","type":"address"}],"name":"setDexOrder","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"},{"name":"","type":"address"}],"name":"approved","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"name","type":"string"},{"name":"symbol","type":"string"},{"name":"owner","type":"address"},{"name":"initialSupply","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"name":"charger","type":"address"},{"indexed":true,"name":"charged","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Charge","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"owner","type":"address"},{"indexed":true,"name":"spender","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"},{"indexed":true,"name":"data","type":"bytes"}],"name":"Transfer","type":"event"}];
-        // var tokenVOTES = ["0x2dE3336A87091bbAF634e0b44A921551802AEdAB", "0xb1aaA7FC513252776DF4f58c0Ffa92B26D10e67b", "0x6ac98953c3DA877a8458702c7ebC53F663402C59", "0x5f063F6987a9cBaF8A41d21A97Ce11c772c18609", "0x0dcBff68baEd55fb972b9BeeF00f9eDD5B78E2D5"];
-        var walletADDRESS = "0xFE8e9Caa700D32959c3C51a51D99dc184176881f";
-        // 
+        var tokenABI = [{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"_name","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_new","type":"address"}],"name":"setOwner","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"},{"name":"","type":"bytes32"}],"name":"balances","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"},{"name":"_tokenId","type":"bytes32"}],"name":"balanceById","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"tokenOfOwner","outputs":[{"name":"","type":"bytes32[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"},{"name":"_index","type":"uint256"}],"name":"tokenOfOwnerByIndex","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"tokens","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"},{"name":"_destination","type":"address"},{"name":"_tokenId","type":"bytes32"}],"name":"getApproved","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_owner","type":"address"},{"name":"_approved","type":"address"},{"name":"_tokenId","type":"bytes32"},{"name":"_amount","type":"uint256"}],"name":"approve","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_tokenId","type":"bytes32"}],"name":"isExpired","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"balanceOf","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_json","type":"uint256[5]"},{"name":"_amount","type":"uint256"}],"name":"mint","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_tokenId","type":"bytes32"},{"name":"_amount","type":"uint256"}],"name":"burn","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_to","type":"address"},{"name":"_tokenId","type":"bytes32"},{"name":"_amount","type":"uint256"}],"name":"transferFrom","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_new","type":"string"}],"name":"setJsonReference","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"_symbol","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_operator","type":"address"},{"name":"_approved","type":"bool"}],"name":"setApprovalForAll","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_tokenId","type":"bytes32"}],"name":"getMetadata","outputs":[{"name":"","type":"uint256[5]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getTokens","outputs":[{"name":"","type":"bytes32[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_to","type":"address"},{"name":"_tokenId","type":"bytes32"},{"name":"_amount","type":"uint256"},{"name":"_data","type":"bytes"}],"name":"safeTransferFromApproved","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_to","type":"address"},{"name":"_tokenId","type":"bytes32"},{"name":"_amount","type":"uint256"},{"name":"_data","type":"bytes"}],"name":"safeTransferFrom","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"},{"name":"_operator","type":"address"}],"name":"isApprovedForAll","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"bytes32"}],"name":"supplyByCategory","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"jsonReference","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"_name","type":"string"},{"name":"_symbol","type":"string"},{"name":"_owner","type":"address"},{"name":"_jsonReference","type":"string"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_from","type":"address"},{"indexed":true,"name":"_to","type":"address"},{"indexed":true,"name":"_tokenId","type":"bytes32"},{"indexed":false,"name":"_amount","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_owner","type":"address"},{"indexed":true,"name":"_approved","type":"address"},{"indexed":true,"name":"_tokenId","type":"bytes32"},{"indexed":false,"name":"_amount","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_owner","type":"address"},{"indexed":true,"name":"_operator","type":"address"},{"indexed":false,"name":"_approved","type":"bool"}],"name":"ApprovalForAll","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"tokenId","type":"bytes32"},{"indexed":false,"name":"json","type":"uint256[5]"}],"name":"NewJson","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"old","type":"string"},{"indexed":false,"name":"current","type":"string"}],"name":"NewJsonReference","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"old","type":"address"},{"indexed":true,"name":"current","type":"address"}],"name":"NewOwner","type":"event"}];
+        var walletADDRESS = "0xD2b28CC2dE7284A24421AA12f598291eC30c7840";
+        //
         // Connecting to the blockchain and specifying the browser
         var web3 = new Web3(new Web3.providers.HttpProvider("https://connect.pichain.io"));
         var urlEXPLORER = "https://blockexplorer.pichain.io/";
         console.log("web3.js v" + web3.version);
         console.log("Consulting in current blockchain...")
-        // 
+        //
         // Latest block
         web3.eth.getBlockNumber().then(lastBlock => {
           // tokenVOTES.forEach(tokenADDRESS => {
             var myCONTRACT = new web3.eth.Contract(tokenABI, walletADDRESS);
             // var myCONTRACT = new web3.eth.Contract(tokenABI, tokenADDRESS);
-            // 
+            //
             // Actions: getVotes
             console.log("Latest Block: " + lastBlock);
             console.log("Addr Contract: " + myCONTRACT.options.address);
             console.log("Addr Wallet: " + walletADDRESS);
-            // 
+            //
             // Check the all tokens balances
             if(callAction == "getVotes") {
+
+              const TOKEN_ID = "0xe43d15c6dafcf0f8ad6053a925e6a1d718007372684d0a1a993c42376c7b3ed3";
+              const ACEPTO = "0xc869ee35524228876a8c8ccec4c55cdeeba145f9";
+              const NO_ACEPTO = "0xe531941b8a37b6277216275f63717a6fbf17cad3";
+
+              async function getBalanceById(_address){
+                let _balance = await myCONTRACT.methods.balanceById(_address, TOKEN_ID).call();
+                var inp = document.getElementById("txs").innerHTML;
+                if(_address == ACEPTO){
+                  document.getElementById("txs").innerHTML = inp + "ACEPTO" + mySpace2 + mySpace1 + ": " + _balance/1e18 + " Votes " + "<br>";
+                } else {
+                  document.getElementById("txs").innerHTML = inp + "NO ACEPTO" + mySpace2 + ": " + _balance/1e18 + " Votes " + "<br>";
+                }
+                console.log(_balance / 1e18)
+              }
+
               var nowDate = new Date();
               document.getElementById("txs").innerHTML = "<br>Latest Block: <b>" + lastBlock + "</b><br>Search time: <b>" + nowDate.toUTCString() + "</b><br><br>";
-              var all_candidates = ["0x03cE724DFd7cb2a58Bda6150D1A6DDB680B1e2c8", "0x75847A664FcFA4b1B64165dA666796d9d67CDd70", "0x967bD9D54B3BF23E6cF279354316cB843989fc90", "0xECba46fe13158c657a42a1557d1188481317F1c9",];
-              all_candidates.forEach(addrCANDIDATE => {
-                // Getting the token symbol
-                myCONTRACT.methods.symbol().call().then(mySymbol => {
-                  // Consulting token balance
-                  myCONTRACT.methods.balanceOf(addrCANDIDATE).call().then(balance => {
-                    if(balance != 0) {
-                      var myBalance = balance/1000000000000000000;
-                      var inp = document.getElementById("txs").innerHTML;
-                      document.getElementById("txs").innerHTML = inp + "Candidate: " + addrCANDIDATE + mySpace1 + "Votes: " + myBalance + " " + mySymbol + "<br>";
-                    }
-                  });
-                });
-              });
-              var all_candidates = ["0x150FEC6f1E956383C380cdADfA2cC10D8D71BCbB", "0xff4D621bd095A67FFa7aD48aEe056A69da611435", "0xC3fCD1758B18211560FF7528f10557E8d53470e6"];
-              all_candidates.forEach(addrCANDIDATE => {
-                // Getting the token symbol
-                myCONTRACT.methods.symbol().call().then(mySymbol => {
-                  // Consulting token balance
-                  myCONTRACT.methods.balanceOf(addrCANDIDATE).call().then(balance => {
-                    if(balance != 0) {
-                      var myBalance = balance/1000000000000000000;
-                      var inp = document.getElementById("txs").innerHTML;
-                      document.getElementById("txs").innerHTML = inp + "Candidate: " + addrCANDIDATE + mySpace1 + "Votes: " + myBalance + " " + mySymbol + "<br>";
-                    }
-                  });
-                });
-              });
+
+              getBalanceById(ACEPTO);
+              getBalanceById(NO_ACEPTO);
+
             } // End of allTokensBalances
           // })
         });
       } // End of run function
-      // 
+      //
       // Transforming value to precise balance
       function valueToBalance(value, decimals, web3) {
         var strLeft = "";
         var strRight = "";
         var returnBalance = "";
-        // 
+        //
         if(value.length <= decimals) {
           strLeft = "0";
           strRight = web3.utils.padLeft(value, decimals);
@@ -115,7 +106,7 @@
         }
         return(returnBalance);
       } // End of valueToBalance
-      // 
+      //
       // Clean screen and console
       function clsPage() {
         document.getElementById("txs").innerHTML = "<br><b>Cleaning done...</b>";
@@ -210,7 +201,7 @@
         color: lightgray;
         background-color: #0a95eb51
       }
-      hr { 
+      hr {
         display: block;
         margin-top: 0.5em;
         margin-bottom: 0.5em;
@@ -244,8 +235,8 @@
     <!-- Header -->
     <header>
       <a name="top"></a>
-      <h1>Pi @Totalization of votes - 3rd elections</h1>
-      <h5>Venezuela 19/04/2020</h5>
+      <h1>Pi @Totalization of votes - 4th elections</h1>
+      <h5>Venezuela 05/08/2020</h5>
       <hr>
     </header>
     <!-- Main -->
@@ -273,7 +264,7 @@
               jQuery('.u-go-to').fadeOut(duration);
             }
           });
-          // 
+          //
           jQuery('.u-go-to').click(function(event) {
             event.preventDefault();
             jQuery('html, body').animate({scrollTop: 0}, duration);
