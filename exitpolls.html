@@ -71,10 +71,11 @@
                 var inp = document.getElementById("txs").innerHTML;
                 if(_address == ACEPTO){
                   document.getElementById("txs").innerHTML = inp + "ACEPTO" + mySpace2 + mySpace1 + ": " + _balance/1e18 + " Votes " + "<br>";
+                  console.log(_balance / 1e18 + "ACEPTO")
                 } else {
                   document.getElementById("txs").innerHTML = inp + "NO ACEPTO" + mySpace2 + ": " + _balance/1e18 + " Votes " + "<br>";
+                  console.log(_balance / 1e18 + "NO_ACEPTO")
                 }
-                console.log(_balance / 1e18)
               }
 
               var nowDate = new Date();
