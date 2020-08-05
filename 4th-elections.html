@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Icon -->
+    <link rel="shortcut icon" href="assets/icons/favicon.ico">
+    <!-- Tittle -->
+    <title>Pi - 4th Election results</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C7L3CXQHSM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-C7L3CXQHSM');
+    </script>
+    <!-- Importing jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Importing web3.js client -->
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.2.0/dist/web3.min.js"></script>
+    <!-- Establishment of routines and functions -->
+    <script type="text/javascript">
+      //
+      // Main script
+      function run(callAction) {
+        //
+        // Formating
+        var mySpace1 = "&nbsp&nbsp&nbsp&nbsp&nbsp";
+        var mySpace2 = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+        //
+        // Statements: ABI, Addr Contract, Addr Wallet...
+        var tokenABI = [{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"_name","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_new","type":"address"}],"name":"setOwner","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"},{"name":"","type":"bytes32"}],"name":"balances","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"},{"name":"_tokenId","type":"bytes32"}],"name":"balanceById","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"tokenOfOwner","outputs":[{"name":"","type":"bytes32[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"},{"name":"_index","type":"uint256"}],"name":"tokenOfOwnerByIndex","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"tokens","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"},{"name":"_destination","type":"address"},{"name":"_tokenId","type":"bytes32"}],"name":"getApproved","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_owner","type":"address"},{"name":"_approved","type":"address"},{"name":"_tokenId","type":"bytes32"},{"name":"_amount","type":"uint256"}],"name":"approve","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_tokenId","type":"bytes32"}],"name":"isExpired","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"balanceOf","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_json","type":"uint256[5]"},{"name":"_amount","type":"uint256"}],"name":"mint","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_tokenId","type":"bytes32"},{"name":"_amount","type":"uint256"}],"name":"burn","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_to","type":"address"},{"name":"_tokenId","type":"bytes32"},{"name":"_amount","type":"uint256"}],"name":"transferFrom","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_new","type":"string"}],"name":"setJsonReference","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"_symbol","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_operator","type":"address"},{"name":"_approved","type":"bool"}],"name":"setApprovalForAll","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_tokenId","type":"bytes32"}],"name":"getMetadata","outputs":[{"name":"","type":"uint256[5]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getTokens","outputs":[{"name":"","type":"bytes32[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_to","type":"address"},{"name":"_tokenId","type":"bytes32"},{"name":"_amount","type":"uint256"},{"name":"_data","type":"bytes"}],"name":"safeTransferFromApproved","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_to","type":"address"},{"name":"_tokenId","type":"bytes32"},{"name":"_amount","type":"uint256"},{"name":"_data","type":"bytes"}],"name":"safeTransferFrom","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"},{"name":"_operator","type":"address"}],"name":"isApprovedForAll","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"bytes32"}],"name":"supplyByCategory","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"jsonReference","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"_name","type":"string"},{"name":"_symbol","type":"string"},{"name":"_owner","type":"address"},{"name":"_jsonReference","type":"string"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_from","type":"address"},{"indexed":true,"name":"_to","type":"address"},{"indexed":true,"name":"_tokenId","type":"bytes32"},{"indexed":false,"name":"_amount","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_owner","type":"address"},{"indexed":true,"name":"_approved","type":"address"},{"indexed":true,"name":"_tokenId","type":"bytes32"},{"indexed":false,"name":"_amount","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_owner","type":"address"},{"indexed":true,"name":"_operator","type":"address"},{"indexed":false,"name":"_approved","type":"bool"}],"name":"ApprovalForAll","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"tokenId","type":"bytes32"},{"indexed":false,"name":"json","type":"uint256[5]"}],"name":"NewJson","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"old","type":"string"},{"indexed":false,"name":"current","type":"string"}],"name":"NewJsonReference","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"old","type":"address"},{"indexed":true,"name":"current","type":"address"}],"name":"NewOwner","type":"event"}];
+        var walletADDRESS = "0xD2b28CC2dE7284A24421AA12f598291eC30c7840";
+        //
+        // Connecting to the blockchain and specifying the browser
+        var web3 = new Web3(new Web3.providers.HttpProvider("https://connect.pichain.io"));
+        var urlEXPLORER = "https://blockexplorer.pichain.io/";
+        console.log("web3.js v" + web3.version);
+        console.log("Consulting in current blockchain...")
+        //
+        // Latest block
+        web3.eth.getBlockNumber().then(lastBlock => {
+          // tokenVOTES.forEach(tokenADDRESS => {
+            var myCONTRACT = new web3.eth.Contract(tokenABI, walletADDRESS);
+            // var myCONTRACT = new web3.eth.Contract(tokenABI, tokenADDRESS);
+            //
+            // Actions: getVotes
+            console.log("Latest Block: " + lastBlock);
+            console.log("Addr Contract: " + myCONTRACT.options.address);
+            console.log("Addr Wallet: " + walletADDRESS);
+            //
+            // Check the all tokens balances
+            if(callAction == "getVotes") {
+
+              const TOKEN_ID = "0xe43d15c6dafcf0f8ad6053a925e6a1d718007372684d0a1a993c42376c7b3ed3";
+              const ACEPTO = "0xc869ee35524228876a8c8ccec4c55cdeeba145f9";
+              const NO_ACEPTO = "0xe531941b8a37b6277216275f63717a6fbf17cad3";
+
+              async function getBalanceById(_address){
+                let _balance = await myCONTRACT.methods.balanceById(_address, TOKEN_ID).call();
+                var inp = document.getElementById("txs").innerHTML;
+                if(_address == ACEPTO){
+                  document.getElementById("txs").innerHTML = inp + "ACEPTO" + mySpace2 + mySpace1 + ": " + _balance/1e18 + " Votes " + "<br>";
+                } else {
+                  document.getElementById("txs").innerHTML = inp + "NO ACEPTO" + mySpace2 + ": " + _balance/1e18 + " Votes " + "<br>";
+                }
+                console.log(_balance / 1e18)
+              }
+
+              var nowDate = new Date();
+              document.getElementById("txs").innerHTML = "<br>Latest Block: <b>" + lastBlock + "</b><br>Search time: <b>" + nowDate.toUTCString() + "</b><br><br>";
+
+              getBalanceById(ACEPTO);
+              getBalanceById(NO_ACEPTO);
+
+            } // End of allTokensBalances
+          // })
+        });
+      } // End of run function
+      //
+      // Transforming value to precise balance
+      function valueToBalance(value, decimals, web3) {
+        var strLeft = "";
+        var strRight = "";
+        var returnBalance = "";
+        //
+        if(value.length <= decimals) {
+          strLeft = "0";
+          strRight = web3.utils.padLeft(value, decimals);
+          returnBalance = strLeft + "." + strRight;
+        } else {
+          var myDot = value.length - decimals;
+          strLeft = value.slice(0, myDot);
+          strRight = value.slice(myDot);
+          returnBalance = strLeft + "." + strRight;
+        }
+        return(returnBalance);
+      } // End of valueToBalance
+      //
+      // Clean screen and console
+      function clsPage() {
+        document.getElementById("txs").innerHTML = "<br><b>Cleaning done...</b>";
+        document.getElementById("addr_contract").value = "";
+        document.getElementById("addr_review").value = "";
+        document.getElementById("addr_from").value = "";
+        document.getElementById("back_blocks").value = "";
+        document.getElementById("back_days").value = "";
+        console.clear();
+      } // End of clsPage function
+    </script>
+    <style>
+      html {
+        font-size: 12px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: #d6d6d6!important;
+        background-color: #2e2e2e
+      }
+      body {
+        font-size: 12px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: #d6d6d6!important;
+        background-color: #2e2e2e
+      }
+      header {
+        margin: 0.5em;
+        font-size: 12px;
+        text-align: left!important;
+        color: #d6d6d6!important;
+        background-color: #2e2e2e
+      }
+      main {
+        font-size: 12px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: #d6d6d6!important;
+        background-color: #2e2e2e
+      }
+      footer {
+        margin: 0.5em;
+        font-size: 12px;
+        text-align: right!important;
+        color: #d6d6d6!important;
+        background-color: #2e2e2e
+      }
+      p,
+      div {
+        margin: 1.0em
+      }
+      h1 {
+        margin: 0em;
+        font-size: 24px;
+        font-weight: bold;
+        font-family: Verdana, Geneva, Tahoma, sans-serif
+      }
+      a {
+        text-decoration: none;
+        color:rgba(162,185,200,.7)
+      }
+      a:hover {
+        color:#a2b9c8
+      }
+      .form-control {
+        margin: 0.1em;
+        padding: 0.25em;
+        color: #d6d6d6!important;
+        border: solid 0.1em;
+        border-color: #7c7c7c!important;
+        border-radius: 5px;
+        background-color: #242424!important
+      }
+      .form-control::placeholder {
+        color: gray;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-style: italic;
+        font-size: 10px
+      }
+      button {
+        font-size: 12px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        background-color: lightgray;
+        border: 1em;
+        color: black;
+        padding: 5px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 9px
+      }
+      button:hover {
+        color: lightgray;
+        background-color: #0a95eb51
+      }
+      hr {
+        display: block;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        margin-left: auto;
+        margin-right: auto;
+        border-style: inset;
+        border-width: 1px;
+        opacity: 0.33
+      }
+      .u-go-to {
+        display: none;
+        position: fixed;
+        top: 15px;
+        right: 25px;
+        padding: .75em;
+        background-color: lightgray;
+        color: black;
+        font-size: 10px;
+        border-radius: .25rem;
+        opacity: .5;
+        transition: .3s ease-out;
+        text-decoration: none
+      }
+      .u-go-to:hover {
+        color: lightgray;
+        background-color: #0a95eb51
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <a name="top"></a>
+      <h1>Pi @Totalization of votes - 4th elections</h1>
+      <h5>Venezuela 05/08/2020</h5>
+      <hr>
+    </header>
+    <!-- Main -->
+    <main>
+      <p>
+        <br>
+        <!-- Buttons -->
+        <button onclick="run('getVotes');">Check votes</button>
+        <!-- <button onclick="run('getTXs');">Get TXs</button> -->
+        <button onclick="clsPage();">Clear page</button>
+        <br>
+        <!-- Results -->
+        <div id="txs"></div>
+        <br>
+        <a class="u-go-to" href="#top">Top</a>
+      </p>
+      <script>
+        jQuery(document).ready(function() {
+          var offset = 370;
+          var duration = 1000;
+          jQuery(window).scroll(function() {
+            if (jQuery(this).scrollTop() > offset) {
+              jQuery('.u-go-to').fadeIn(duration);
+            } else {
+              jQuery('.u-go-to').fadeOut(duration);
+            }
+          });
+          //
+          jQuery('.u-go-to').click(function(event) {
+            event.preventDefault();
+            jQuery('html, body').animate({scrollTop: 0}, duration);
+            return false;
+          })
+        });
+	    </script>
+    </main>
+    <!-- Footer -->
+    <footer>
+      <hr>
+      <!-- Version & Credits -->
+      v0.0.1 &nbsp<br>
+      Contribution of <a href="https://t.me/baudenay">Oscar Baudenay</a> to the <a href="https://t.me/Picripto">Community of Pi</a> &nbsp<br>
+      --- &nbsp<br>
+      Donations <a target="_blank" href="https://blockexplorer.pichain.io/address/0xd6C2A4f5aDdF2026cB07b37a4B43B3B744023545">0xd6C2A4f5aDdF2026cB07b37a4B43B3B744023545</a> &nbsp<br>
+      Address for donations in Pi, Ether and tokens &nbsp
+      <a name="bottom"></a>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
