@@ -30,14 +30,14 @@
     <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.2.0/dist/web3.min.js"></script>
     <!-- Establishment of routines and functions -->
     <script type="text/javascript">
-      // 
+      //
       // Main script
       function run(callAction) {
-        // 
+        //
         // Formating
         var mySpace1 = "&nbsp&nbsp&nbsp&nbsp&nbsp";
         var mySpace2 = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
-        // 
+        //
         // Statements: ABI, Addr Contract, Addr Wallet...
         var tokenABI = [{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"approve","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_from","type":"address"}],"name":"transferFrom","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_spender","type":"address"}],"name":"disapprove","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"balances","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_value","type":"uint256"}],"name":"tokenFallback","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"mint","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_value","type":"uint256"}],"name":"burn","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_from","type":"address"},{"name":"_value","type":"uint256"}],"name":"transferFromValue","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_user","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"charge","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"_owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"emisorAddress","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_value","type":"uint256"},{"name":"receiving","type":"address"},{"name":"price","type":"uint256"},{"name":"side","type":"uint256"},{"name":"exchangeAddress","type":"address"}],"name":"setDexOrder","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"},{"name":"","type":"address"}],"name":"approved","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"name","type":"string"},{"name":"symbol","type":"string"},{"name":"owner","type":"address"},{"name":"initialSupply","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"name":"charger","type":"address"},{"indexed":true,"name":"charged","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Charge","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"owner","type":"address"},{"indexed":true,"name":"spender","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"},{"indexed":true,"name":"data","type":"bytes"}],"name":"Transfer","type":"event"}];
         var tokenADDRESS = document.getElementById("addr_contract").value;
@@ -49,10 +49,10 @@
           }
         var walletADDRESS = document.getElementById("addr_review").value;
         var fromADDRESS = document.getElementById("addr_from").value;
-        // 
+        //
         // The magic of the Iker
         var chainReview = document.querySelector('input[name="myChain"]:checked').value;
-        // 
+        //
         // Connecting to the blockchain and specifying the browser
         if(chainReview == "currentNet") {
           var web3 = new Web3(new Web3.providers.HttpProvider("https://connect.pichain.io"));
@@ -73,24 +73,24 @@
           console.log("> > >  Leaving the script  < < <");
           return;
         }
-        // 
+        //
         // Connecting to the contract
         var myCONTRACT = new web3.eth.Contract(tokenABI, tokenADDRESS);
-        // 
+        //
         // Logging reference values
         // console.log(web3);
         // console.log(myCONTRACT);
         // console.log(myCONTRACT.options.jsonInterface);
-        // 
+        //
         // Latest block
         web3.eth.getBlockNumber().then(lastBlock => {
-          // 
+          //
           // Actions: getTXs (all, fromAddr, fromBck, fromDay), tokenBalance, allToeknsBalances
           console.log("Latest Block: " + lastBlock);
           console.log("Addr Contract: " + myCONTRACT.options.address);
           console.log("Addr Wallet: " + walletADDRESS);
           console.log("From Addr: " + fromADDRESS);
-          // 
+          //
           // Check transactions
           if(callAction == "getTXs") {
             if(document.getElementById("back_blocks").value != "" && document.getElementById("back_days").value != "") {
@@ -103,11 +103,11 @@
               var numBackBLOCKS = Number(document.getElementById("back_blocks").value);
               var numBackDAYS = Number(document.getElementById("back_days").value);
               console.log("To the blocks: " + numToBLOCK + "  -  Back blocks: " + numBackBLOCKS + "  -  Back days: " + numBackDAYS);
-              // 
+              //
               toTheBlock = (numToBLOCK != 0) ? numToBLOCK : 'latest';
               if(numBackBLOCKS != 0) sinceBLOCK = lastBlock - numBackBLOCKS;
               else if(numBackDAYS != 0) sinceBLOCK = lastBlock - (numBackDAYS * 17280);
-              // 
+              //
               var myOptions = {
                 filter: {
                   from: fromADDRESS,
@@ -152,7 +152,7 @@
               });
             }
           } // End of getTXs
-          // 
+          //
           // Check the token balance
           if(callAction == "tokenBalance") {
             if(!walletADDRESS) {
@@ -161,7 +161,7 @@
             } else {
               var nowDate = new Date();
               document.getElementById("txs").innerHTML = "<br>Latest Block: <b>" + lastBlock + "</b><br>Search time: <b>" + nowDate.toUTCString() + "</b><br><br>";
-              // 
+              //
               // Consulting the decimals
               // myCONTRACT.methods.decimals().call().then(myDecimals => {
                 // var myDivider = Math.pow(10, myDecimals);
@@ -199,7 +199,7 @@
               // });
             }
           } // End of tokenBalance
-          // 
+          //
           // Check the all tokens balances
           if(callAction == "allTokensBalances") {
             if(!walletADDRESS) {
@@ -209,10 +209,10 @@
               var nowDate = new Date();
               document.getElementById("txs").innerHTML = "<br>Latest Block: <b>" + lastBlock + "</b><br>Search time: <b>" + nowDate.toUTCString() + "</b><br><br>";
               var rowCount = 0;
-              var all_contratcs = ["0x0000000000000000000000000000000000000014", "0x6943e925fd4e9e243230da2e26056b9c8a9cd8ce", "0x0ecfe89acdef3ad2e34e90916d50280ba9b22460", "0x4c3c844b751c18299932dcd18a3032bd3481d61a", "0x4ffb535bbbbd3d74d2f593bd9c21daa946a68c56", "0xf26904604b5f52186175ae8e629fd635af243376", "0x1cd116825039b7feac8cabc2ce83259d8bc9c106", "0x3a87d32E436D7fCe41D2d30F7CaebC33B8edB437", "0x3d8a507E356c698DD7F36A2f600Af4451C090e73", "0x4DFC34E47db2e3E1C1b1BABd7d0352375edAeC74", "0xF56D11Cce74759D81Ee574c6b47f4d6be3891664", "0x67f3C0b9ABdFCBDC035E4D9845Ce60d02CCd3311", "0x0e435Ad350B3C135e9C1737Efff180b24138953D", "0xdd71103F04913Ce28D1DE36DE92F56cE9695dbE5", "0xCEDa47E2EDBC6f6468484d68cD92Cb651171175b", "0x64C718b4fb92cE321830238a1692B8a0BC0Be555", "0x384ba9a8046F1987CC1137dC5A96f373CF2fb28E", "0xdC21A89348302576948cf600B1E0133d18DE94B1", "0x1d9CDd424903AB495BB1BE177AfC6D7d01837ad1", "0x5a179F7ABD022DA34A9431f6536504a4A93db9D6", "0xFdd99eD93352dC42c8F37b03Da1A240cE7043423", "0x3d2a07f30e960780E4Babed497682c092d1381b2", "0xA51FcA88fa4E3C97194e1eB6C79B83389fb4E470", "0x29075049b9e1F3C91E1215E02510007f7B55C4AA", "0xa1B463eF2BB962d5762377C65eBfb76444c0A8b4", "0xc5aD00Cb18F2868888D091637b4f4A84992CA37E", "0x3a90847163dd52a48cae8cdec48a4fb8ed97ae39", "0x21427d417f4e4a1b2c547760654cc1239eeb5431", "0xe71b5619b64710bb8907ab1a8e975b7e01053470", "0x184b004d90f5b31b30db80ae13e3f3061770e14a", "0xd08c83025920e110621c1275c72d9b081116d281", "0x2418f76c9c9822a2773407fcada84a4b0e8bdebf", "0x841ded90e46d782da12d52e0c5145da11d9e20f5", "0x4fc2fc9cc70a98b8adbee7372eeb89f57d48597a", "0x6c7841860cfb3da127a76a6875f0d75108e99ba9", "0x8106bdb63f83baa728e56865df2e78a95593bff2", "0x2e053d725fd2d261d581872f50ddbf4650e76f4d", "0xc1b574d657d45085806f86071cf0427a894d4769", "0x9eeecdf6c7107dbafa9e33780120c9c73f0d7128", "0xf59b9718c128e26091418ac848b78ffa1ec01626", "0xc23f1052c7018d3fb728c19c4538479e3b532d36", "0x0daee33b5aca4cbe533056cd7dbc916af0b9e010", "0xd120bb7ebcdc0f250ce1512a62c49892ce4e5365", "0xf1b2bc465f55f50f51bf5195700acb6b50fbcd10", "0xb03D41F8D8354975574ccfa95C61e1F9b03D83dC", "0x6E8e203212937b2d1f634FbC3B69008D3A4218Ce", "0xC490f1d39E5dA5F4C92A447Fe9B7d04645E69E98", "0x71892507e97755C1c92f95DfAd85EbF66a579a38", "0x2a3ec23c9d781aa431d300b2475b305cad27d98d", "0x7e9BF3Ee8Fd1F7cFeF98bc877B6dCCAf1557860C", "0x831dB927D0dA920793656EA63b24c6eE4a5Da72e", "0xf95178e39B4D468f2ADA82bca87B700d0BdE9b6A", "0x7FFd2A42C0B17c7C2ea00a507d9CFeC60B6Fe46D", "0x7b47E489c2eC1841c09b346CA1ADd03853A5dA85", "0xF0225744bE2eD355712F2E274F127D0Ab5fC638C", "0x2bD64c5A25fcd9c124E9e5d20B582D8a8942b2Cc", "0x7b692A4382cC939CCBd06a037Aaa8D8c756C7ad5", "0x225CB2DC30da1Cfd9dfa0b9Efc850B7b3Dcebd89"];
+              var all_contratcs = ["0x0000000000000000000000000000000000000014", "0x6943e925fd4e9e243230da2e26056b9c8a9cd8ce", "0x0ecfe89acdef3ad2e34e90916d50280ba9b22460", "0x4c3c844b751c18299932dcd18a3032bd3481d61a", "0x4ffb535bbbbd3d74d2f593bd9c21daa946a68c56", "0xf26904604b5f52186175ae8e629fd635af243376", "0x1cd116825039b7feac8cabc2ce83259d8bc9c106", "0x3a87d32E436D7fCe41D2d30F7CaebC33B8edB437", "0x3d8a507E356c698DD7F36A2f600Af4451C090e73", "0x4DFC34E47db2e3E1C1b1BABd7d0352375edAeC74", "0xF56D11Cce74759D81Ee574c6b47f4d6be3891664", "0x67f3C0b9ABdFCBDC035E4D9845Ce60d02CCd3311", "0x0e435Ad350B3C135e9C1737Efff180b24138953D", "0xdd71103F04913Ce28D1DE36DE92F56cE9695dbE5", "0xCEDa47E2EDBC6f6468484d68cD92Cb651171175b", "0x64C718b4fb92cE321830238a1692B8a0BC0Be555", "0x384ba9a8046F1987CC1137dC5A96f373CF2fb28E", "0xdC21A89348302576948cf600B1E0133d18DE94B1", "0x1d9CDd424903AB495BB1BE177AfC6D7d01837ad1", "0x5a179F7ABD022DA34A9431f6536504a4A93db9D6", "0xFdd99eD93352dC42c8F37b03Da1A240cE7043423", "0x3d2a07f30e960780E4Babed497682c092d1381b2", "0xA51FcA88fa4E3C97194e1eB6C79B83389fb4E470", "0x29075049b9e1F3C91E1215E02510007f7B55C4AA", "0xa1B463eF2BB962d5762377C65eBfb76444c0A8b4", "0xc5aD00Cb18F2868888D091637b4f4A84992CA37E", "0x3a90847163dd52a48cae8cdec48a4fb8ed97ae39", "0x21427d417f4e4a1b2c547760654cc1239eeb5431", "0xe71b5619b64710bb8907ab1a8e975b7e01053470", "0x184b004d90f5b31b30db80ae13e3f3061770e14a", "0xd08c83025920e110621c1275c72d9b081116d281", "0x2418f76c9c9822a2773407fcada84a4b0e8bdebf", "0x841ded90e46d782da12d52e0c5145da11d9e20f5", "0x4fc2fc9cc70a98b8adbee7372eeb89f57d48597a", "0x6c7841860cfb3da127a76a6875f0d75108e99ba9", "0x8106bdb63f83baa728e56865df2e78a95593bff2", "0x2e053d725fd2d261d581872f50ddbf4650e76f4d", "0xc1b574d657d45085806f86071cf0427a894d4769", "0x9eeecdf6c7107dbafa9e33780120c9c73f0d7128", "0xf59b9718c128e26091418ac848b78ffa1ec01626", "0xc23f1052c7018d3fb728c19c4538479e3b532d36", "0x0daee33b5aca4cbe533056cd7dbc916af0b9e010", "0xd120bb7ebcdc0f250ce1512a62c49892ce4e5365", "0xf1b2bc465f55f50f51bf5195700acb6b50fbcd10", "0xb03D41F8D8354975574ccfa95C61e1F9b03D83dC", "0x6E8e203212937b2d1f634FbC3B69008D3A4218Ce", "0xC490f1d39E5dA5F4C92A447Fe9B7d04645E69E98", "0x71892507e97755C1c92f95DfAd85EbF66a579a38", "0x2a3ec23c9d781aa431d300b2475b305cad27d98d", "0x7e9BF3Ee8Fd1F7cFeF98bc877B6dCCAf1557860C", "0x831dB927D0dA920793656EA63b24c6eE4a5Da72e", "0xf95178e39B4D468f2ADA82bca87B700d0BdE9b6A", "0x7FFd2A42C0B17c7C2ea00a507d9CFeC60B6Fe46D", "0x7b47E489c2eC1841c09b346CA1ADd03853A5dA85", "0xF0225744bE2eD355712F2E274F127D0Ab5fC638C", "0x2bD64c5A25fcd9c124E9e5d20B582D8a8942b2Cc", "0x7b692A4382cC939CCBd06a037Aaa8D8c756C7ad5", "0x225CB2DC30da1Cfd9dfa0b9Efc850B7b3Dcebd89", "0x6e5040f4ba7a6ec228a5247fe690d5df73539b83", "0x7777079bc93ece8a66424aa6bbed0546ec20d06e", "0xbe7a8d8c2a26a847bbde18a401066f196bf5657d", "0xd3ef3182d53add05ae74ef74d19a0c29beef99ab", "0xd9a7f80cd3552e30b62168164bd04c3b8e5dfcc0", "0xe3f8af7dc825cc072bf50f1ef12fbc8a8133709b", "0xc28ce4d4a4428415f810097244646ef23d0f7f22", "0x8106bdb63f83baa728e56865df2e78a95593bff2", "0xB79D13C1f4312dd0E69443Bb9e32a30F7c7aAb30"];
               all_contratcs.forEach(tokenCONTRACT => {
                 var myCONTRACT = new web3.eth.Contract(tokenABI, tokenCONTRACT);
-                // 
+                //
                 // Consulting the decimals
                 // myCONTRACT.methods.decimals().call().then(myDecimals => {
                   // var myDivider = Math.pow(10, myDecimals);
@@ -257,13 +257,13 @@
           } // End of allTokensBalances
         });
       } // End of run function
-      // 
+      //
       // Transforming value to precise balance
       function valueToBalance(value, decimals, web3) {
         var strLeft = "";
         var strRight = "";
         var returnBalance = "";
-        // 
+        //
         if(value.length <= decimals) {
           strLeft = "0";
           strRight = web3.utils.padLeft(value, decimals);
@@ -276,7 +276,7 @@
         }
         return(returnBalance);
       } // End of valueToBalance
-      // 
+      //
       // Clean screen and console
       function clsPage() {
         document.getElementById("txs").innerHTML = "<br><b>Cleaning done...</b>";
@@ -371,7 +371,7 @@
         color: lightgray;
         background-color: #0a95eb51
       }
-      hr { 
+      hr {
         display: block;
         margin-top: 0.5em;
         margin-bottom: 0.5em;
@@ -439,11 +439,17 @@
                 <option value="0x2bD64c5A25fcd9c124E9e5d20B582D8a8942b2Cc">VESpi (Bolivar)</option>
                 <option value="0x7b692A4382cC939CCBd06a037Aaa8D8c756C7ad5">COPpi (Peso Colombiano)</option>
                 <option value="0x225CB2DC30da1Cfd9dfa0b9Efc850B7b3Dcebd89">ARSpi (Peso Argentino)</option>
+                <option value="0xe3f8af7dc825cc072bf50f1ef12fbc8a8133709b">EURs (TDN Euro)</option>
+                <option value="0xd3ef3182d53add05ae74ef74d19a0c29beef99ab">USDs (TDN Dolar)</option>
+                <option value="0x7777079bc93ece8a66424aa6bbed0546ec20d06e">VESs (TDN Bolivar)</option>
+                <option value="0xbe7a8d8c2a26a847bbde18a401066f196bf5657d">COPs (TDN Peso Colombiano)</option>
+                <option value="0x6e5040f4ba7a6ec228a5247fe690d5df73539b83">ARSs (TDN Peso Argentino)</option>
+                <option value="0xd9a7f80cd3552e30b62168164bd04c3b8e5dfcc0">CLPs (TDN Peso Chileno)</option>
                 <option value="0x0000000000000000000000000000000000000014">EURx (Euro)</option>
                 <option value="0x2a3ec23c9d781aa431d300b2475b305cad27d98d">USDx (Dolar)</option>
                 <option value="0x6943e925fd4e9e243230da2e26056b9c8a9cd8ce">VESx (Bolivar)</option>
-                <option value="0xf95178e39B4D468f2ADA82bca87B700d0BdE9b6A">ARSx (Peso Argentino)</option>
                 <option value="0x0ecfe89acdef3ad2e34e90916d50280ba9b22460">COPx (Peso Colombiano)</option>
+                <option value="0xf95178e39B4D468f2ADA82bca87B700d0BdE9b6A">ARSx (Peso Argentino)</option>
                 <option value="0x4c3c844b751c18299932dcd18a3032bd3481d61a">BTCx (Bitcoin)</option>
                 <option value="0x4ffb535bbbbd3d74d2f593bd9c21daa946a68c56">ETHx (Ether)</option>
                 <option value="0xf26904604b5f52186175ae8e629fd635af243376">USDTx (Tether)</option>
@@ -454,6 +460,7 @@
                 <option disabled value="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCOMMODITIES</option>
                 <option value="0x1cd116825039b7feac8cabc2ce83259d8bc9c106">GLDx (Oro Internacional)</option>
                 <option value="0x21427d417f4e4a1b2c547760654cc1239eeb5431">AUPx (Oro Fisico)</option>
+                <option value="0xc28ce4d4a4428415f810097244646ef23d0f7f22">CMTs (TDN Cemento (saco))</option>
                 <option disabled value="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSTOCK</option>
                 <option value="0xe71b5619b64710bb8907ab1a8e975b7e01053470">RSTx (Ron Santa Teresa)</option>
                 <option value="0x184b004d90f5b31b30db80ae13e3f3061770e14a">MVZAx (Mercantil Servicios Financieros)</option>
@@ -469,6 +476,7 @@
                 <option value="0xd120bb7ebcdc0f250ce1512a62c49892ce4e5365">CGQx (Corporacion Grupo Quimico)</option>
                 <option value="0xf1b2bc465f55f50f51bf5195700acb6b50fbcd10">IVCx (INVACA)</option>
                 <option disabled value="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspALT COINS</option>
+                <option value="0x8106bdb63f83baa728e56865df2e78a95593bff2">CSNT (Token Casino)</option>
                 <option value="0x3a87d32E436D7fCe41D2d30F7CaebC33B8edB437">PTR (Petro)</option>
                 <option value="0x3d8a507E356c698DD7F36A2f600Af4451C090e73">USDR (Dolar R)</option>
                 <option value="0x4DFC34E47db2e3E1C1b1BABd7d0352375edAeC74">PKV9000 (PKVMONEY)</option>
@@ -480,6 +488,7 @@
                 <option value="0x7e9BF3Ee8Fd1F7cFeF98bc877B6dCCAf1557860C">CREATIVE (Creative Funding)</option>
                 <option value="0x831dB927D0dA920793656EA63b24c6eE4a5Da72e">CRT (Fundacion Creative)</option>
                 <option value="0x7FFd2A42C0B17c7C2ea00a507d9CFeC60B6Fe46D">BLITSx (Distribuidora Blits)</option>
+                <option value="0xB79D13C1f4312dd0E69443Bb9e32a30F7c7aAb30">Lerele (Leuros)</option>
                 <option disabled value="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspNODES POOL</option>
                 <option value="0x0e435Ad350B3C135e9C1737Efff180b24138953D">Pedrox (Pedro)</option>
                 <option value="0xdd71103F04913Ce28D1DE36DE92F56cE9695dbE5">CUTUTODX (CUTUTONUDEX)</option>
@@ -561,7 +570,7 @@
               jQuery('.u-go-to').fadeOut(duration);
             }
           });
-          // 
+          //
           jQuery('.u-go-to').click(function(event) {
             event.preventDefault();
             jQuery('html, body').animate({scrollTop: 0}, duration);
