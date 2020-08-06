@@ -93,6 +93,7 @@
 0xd3ef3182d53add05ae74ef74d19a0c29beef99ab	USDs (TDN Dolar)
 0xd9a7f80cd3552e30b62168164bd04c3b8e5dfcc0	CLPs (TDN Peso Chileno)
 0xe3f8af7dc825cc072bf50f1ef12fbc8a8133709b	EURs (TDN Euro)
+0x6e0c484e9efccf8d29ef229cc5b47b8b79ed8f97	PENs (TDN Sol Peruano)
 
 [2][commodity]
 0x1cd116825039b7feac8cabc2ce83259d8bc9c106	GLDx (Oro Internacional)	maxSupply: 100000.0
