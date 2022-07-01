@@ -56,12 +56,12 @@
         // Connecting to the blockchain and specifying the browser
         if(chainReview == "currentNet") {
           var web3 = new Web3(new Web3.providers.HttpProvider("http://18.229.97.105"));
-          var urlEXPLORER = "https://blockexplorer.pichain.io/";
+          var urlEXPLORER = "http://18.229.97.105/";
           console.log("web3.js v" + web3.version);
           console.log("Consulting in current blockchain...")
         } else if(chainReview == "previousNet") {
           var web3 = new Web3(new Web3.providers.HttpProvider("https://18.229.97.105"));
-          var urlEXPLORER = "https://blockexplorer.pichain.io/";
+          var urlEXPLORER = "http://18.229.97.105";
           console.log("web3.js v" + web3.version);
           console.log("Consulting in previous blockchain...")
         } else {
