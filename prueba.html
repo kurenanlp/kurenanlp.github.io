@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Icon -->
+    <link rel="shortcut icon" href="assets/icons/favicon.ico">
+    <!-- Tittle -->
+    <title>Pi Last Block</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C7L3CXQHSM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-C7L3CXQHSM');
+    </script>
+    <!-- Importing jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Importing web3.js client -->
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.2.0/dist/web3.min.js"></script>
+    <!-- Establishment of routines and functions -->
+    <script type="text/javascript">
+      //
+      // Main script
+      function run() {
+        //
+        // The magic of the Iker
+        // var chainReview = document.querySelector('input[name="myChain"]:checked').value;
+        var chainReview = "currentNet";
+        //
+        // Connecting to the blockchain and specifying the browser
+        if(chainReview == "currentNet") {
+          var web3 = new Web3(new Web3.providers.HttpProvider("http://18.229.97.105"));
+          var urlEXPLORER = "https://blockexplorer.pichain.io/";
+          console.log("web3.js v" + web3.version);
+          console.log("Consulting in current blockchain...")
+        } else {
+          console.log("> > >  Leaving the script  < < <");
+          return;
+        }
+        //
+        // Connecting to the contract
+        // var myCONTRACT = new web3.eth.Contract(tokenABI, tokenADDRESS);
+        //
+        // Logging reference values
+        // console.log(web3);
+        // console.log(myCONTRACT);
+        // console.log(myCONTRACT.options.jsonInterface);
+        //
+        // Statements: ABI, Addr Contract, Addr Wallet...
+        var tokenABI = [{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"approve","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_from","type":"address"}],"name":"transferFrom","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_spender","type":"address"}],"name":"disapprove","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"balances","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_value","type":"uint256"}],"name":"tokenFallback","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"mint","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_value","type":"uint256"}],"name":"burn","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_from","type":"address"},{"name":"_value","type":"uint256"}],"name":"transferFromValue","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_user","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"charge","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"_owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"emisorAddress","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_value","type":"uint256"},{"name":"receiving","type":"address"},{"name":"price","type":"uint256"},{"name":"side","type":"uint256"},{"name":"exchangeAddress","type":"address"}],"name":"setDexOrder","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"},{"name":"","type":"address"}],"name":"approved","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"name","type":"string"},{"name":"symbol","type":"string"},{"name":"owner","type":"address"},{"name":"initialSupply","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"name":"charger","type":"address"},{"indexed":true,"name":"charged","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Charge","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"owner","type":"address"},{"indexed":true,"name":"spender","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"},{"indexed":true,"name":"data","type":"bytes"}],"name":"Transfer","type":"event"}];
+        //
+        function valueToBalance(value, decimals, web3) {
+          var strLeft = "";
+          var strRight = "";
+          var returnBalance = "";
+          //
+          if(value.length <= decimals) {
+            strLeft = "0";
+            strRight = web3.utils.padLeft(value, decimals);
+            returnBalance = strLeft + "." + strRight;
+          } else {
+            var myDot = value.length - decimals;
+            strLeft = value.slice(0, myDot);
+            strRight = value.slice(myDot);
+            returnBalance = strLeft + "." + strRight;
+          }
+        return(returnBalance);
+      }
+        //
+        web3.eth.getBlockNumber().then(lastBlock => {
+        // Print to console
+          console.log("Latest Block: " + lastBlock);
+        // Print to monitor
+		      var nowDate = new Date();
+          document.getElementById("txs").innerHTML = "<br>Latest Block: <b>" + lastBlock + "</b><br>Search time: <b>" + nowDate.toUTCString() + "</b><br>";
+        });
+      //
+        var walletADDRESS = "0x0000000000000000000000000000000000000010"
+        var nowDate = new Date();
+        var rowCount = 0;
+        var all_contratcs = ["0x4c3c844b751c18299932dcd18a3032bd3481d61a"];
+      //
+      all_contratcs.forEach(tokenCONTRACT => {
+        var myCONTRACT = new web3.eth.Contract(tokenABI, tokenCONTRACT);
+        if(rowCount == 0) {
+          rowCount++;
+          web3.eth.getBalance(String(walletADDRESS)).then(balance => {
+            if(balance != 0) {
+              var myPI = 1000000000000 - valueToBalance(balance, 18, web3);
+              var inp = document.getElementById("txs").innerHTML;
+              document.getElementById("txs").innerHTML = inp + "#" + rowCount + " - Balance: " + myPI + " PI<br>";
+              var strOut = "#" + rowCount + " - Balance: " + myPI + " PI [value: " + balance + "]";
+              console.log(strOut);
+              }
+            });
+          }
+        //
+        myCONTRACT.methods.symbol().call().then(mySymbol => {
+          // Consulting token balance
+          myCONTRACT.methods.balanceOf(walletADDRESS).call().then(balance => {
+            if(balance != 0) {
+              rowCount++;
+              var myBalance = valueToBalance(balance, 18, web3);
+              var inp = document.getElementById("txs").innerHTML;
+              document.getElementById("txs").innerHTML = inp + "#" + rowCount + " - Balance: " + myBalance + " " + mySymbol + "<br>";
+              var strOut = "#" + rowCount + " - Balance: " + myBalance + " " + mySymbol + " [value: " + balance + "]";
+              console.log(strOut)
+            }
+          });
+        })
+      });
+    console.log(myPI);
+    } // End of run function
+
+    </script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <a name="top"></a>
+      <h1>Pi Last Block</h1>
+      <hr>
+    </header>
+    <!-- Main -->
+    <main>
+      <p>
+        <div id="txs"></div>
+		<script>
+			run();
+		</script>
+        <!-- <br>
+        <a class="u-go-to" href="#top">Top</a>
+      </p>
+      <script>
+        jQuery(document).ready(function() {
+          var offset = 370;
+          var duration = 1000;
+          jQuery(window).scroll(function() {
+            if (jQuery(this).scrollTop() > offset) {
+              jQuery('.u-go-to').fadeIn(duration);
+            } else {
+              jQuery('.u-go-to').fadeOut(duration);
+            }
+          });
+          // 
+          jQuery('.u-go-to').click(function(event) {
+            event.preventDefault();
+            jQuery('html, body').animate({scrollTop: 0}, duration);
+            return false;
+          })
+        }); -->
+	    </script>
+    </main>
+    <!-- Footer -->
+    <footer>
+      <hr>
+      <!-- Version & Credits -->
+      v0.0.1 &nbsp<br>
+      <a name="bottom"></a>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
