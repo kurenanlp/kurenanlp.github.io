@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>PEL Intereses</title>
+    <script charset="utf-8"
+        src="https://cdn.ethers.io/scripts/ethers-v4.min.js"
+        type="text/javascript">
+    </script>
+    <script type="text/javascript">
+        const contractABI = [{"constant":true,"inputs":[],"name":"holdersSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"funder","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"payIndex","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getPending","outputs":[{"name":"","type":"address[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_new","type":"address"}],"name":"changeFunder","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_new","type":"address"}],"name":"setOwner","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"pay","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"balances","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"holders","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"nTransfers","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"withdrawl","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_value","type":"uint256"}],"name":"tokenFallback","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"withdrawler","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"updatePending","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getHolders","outputs":[{"name":"","type":"address[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_holder","type":"address"}],"name":"balanceOf","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_new","type":"address"}],"name":"changePayToken","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"payToken","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"pending","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"holder","type":"address"}],"name":"_isReceiver","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"checkSupply","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"payAmount","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_holders","type":"address[]"},{"name":"_nTransfers","type":"uint256"}],"name":"updateBalanceArray","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"resetPending","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_badHolder","type":"address"}],"name":"removeBadHolder","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"globalIndex","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"isPaying","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"token","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"indexOf","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"_token","type":"address"},{"name":"_payToken","type":"address"},{"name":"_owner","type":"address"},{"name":"_funder","type":"address"},{"name":"_withdrawler","type":"address"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"name":"holder","type":"address"},{"indexed":false,"name":"amount","type":"uint256"}],"name":"BadHolder","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"old","type":"address"},{"indexed":true,"name":"current","type":"address"}],"name":"NewOwner","type":"event"}];
+        const contractADDRESS = "0x928d67Ea8d806f118B3d0b7c5928d779d3F075c8";
+        const tokenABI = [{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"approve","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_from","type":"address"}],"name":"transferFrom","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_new","type":"address"}],"name":"setOwner","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_spender","type":"address"}],"name":"disapprove","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"balances","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"mint","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_value","type":"uint256"}],"name":"burn","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_from","type":"address"},{"name":"_value","type":"uint256"}],"name":"transferFromValue","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_user","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"charge","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"emisorAddress","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_value","type":"uint256"},{"name":"receiving","type":"address"},{"name":"price","type":"uint256"},{"name":"side","type":"uint256"},{"name":"exchangeAddress","type":"address"}],"name":"setDexOrder","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"},{"name":"","type":"address"}],"name":"approved","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"name","type":"string"},{"name":"symbol","type":"string"},{"name":"_owner","type":"address"},{"name":"initialSupply","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"name":"charger","type":"address"},{"indexed":true,"name":"charged","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Charge","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"old","type":"address"},{"indexed":true,"name":"current","type":"address"}],"name":"NewOwner","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"owner","type":"address"},{"indexed":true,"name":"spender","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"},{"indexed":true,"name":"data","type":"bytes"}],"name":"Transfer","type":"event"}];
+        const tokenADDRESS = "0x21678b6bd9b321abc54540cc8cd06af9f67ecf81";
+        const GRAPH_URL = "https://graph.pimarkets.io/subgraphs/name/gperezalba/pesolibre-holders-mainnet";
+        const URL = "http://18.229.97.105";
+        //const URL = "http://52.28.106.166:23001";
+		const PATH_0 = "m/44'/60'/0'/0/7";
+        //0xEaBbCA6F6CFa07F246Fd7E9549375F32E559F586
+        const MNEMONIC = "stock engine maximum news mercy wool town moment effort bright clean curious"
+        let isPaying = false;
+        // const blackList = ["0x7755B9009d1e76aDbCf4D1D9a430159fff5aE9d6", "0xa621c522E6eAfCdDB7DaE7b80F4799cF3D337bd5", "0xE643Ff076d882253c42c07E382C579C77C5Ab769", "0xAe8259075E77B7c8EB78472a2727Fb3fE5B2Aed8", "0xc0cE7e94A0390390120924B8978d7fe453d03d15", "0x3679b73Aa2e6e9771eDB846F494c55d4a96Fc473", "0xb9c2A67E245951ae0311591163C82075120549ff", "0xb5Ea0ad4D8F766D6ea5E137AB276C112C3059Be4", "0x9a6de300172D9027102Ab15859c1A2e56c4D5243", "0xF69082e2e159BEEb6BB96571bE42745d6438F344", "0x864865f4ACbABFB0cdeE37676A48697dde28532b", "0xF7588c357f1e961Df9196Fca34396c45258f6094", "0x127c74CC8F9f7AAd9Bd8879C9b318358551E5BD6", "0x79CD02c64f780AD6105DCD2e6D34A5cAB3558AE7", "0x219e5644679B3BF47CE25D07C3d7156bd31b1Eb8", "0x0dce72FFB131E0e5afa956e773CB48986cc34429", "0xa8ef60a42b77795FE14a5dC539e95699ad561463", "0x609072E59A4223eb0747795222D1B8FCFB29C046", "0x33bF66029CbD43a8875b0E3a470AdAd360573b19", "0x4247Bc2A705C0250f13437f6d2749880a852fb33", "0x36fa33A62B8eb5D108D6225F3479D0d1a247821D", "0x00eD81699f43B1706B48A45D77a6f27Ad9803377", "0xD999638DB66e128EA538945bfE01A6A3a4D39877", "0x3A5401AF979e736b67D741879FA002874378C5cb", "0xF370d2AF93096b0d832fD9433b53A61a6199533f", "0x75e539B85d7ecC621C9141e9a7D3c7AcD9CaDEA7", "0x46d2865691e93677625Fc1Ebe80904e1399FA93a", "0x917C566fAf2c0Be7fce1E5fEc323b834CbC115a6", "0xf25480DD1191a464417413AAB7EE2f0D1bcA4F1f", "0xAd5E1C0d203bC29d61687ED872f17F6eC44D08a3", "0xCEf7436bbb674Fed703Cf42660e19D04Fd08f404", "0x05a266a642Ae85e6c66E29422e90A8D4911508b8", "0x854850CEcE7B57AE33b003C97A8dD8CE2Ad26C3B", "0xA25624059787e377aa7b9c0fae82b295899156eB"]; {% endcomment %}
+	const blackList =[""]        
+	//const blackList = ["0x79cd02c64f780ad6105dcd2e6d34a5cab3558ae7", "0x4731f27775E23e1AE20D5D3008b5427Aa9E26842", "0xC4917d481014ad859Ee692C195777B4C806173fD", "0x219e5644679B3BF47CE25D07C3d7156bd31b1Eb8", "0x0dce72FFB131E0e5afa956e773CB48986cc34429", "0xa8ef60a42b77795FE14a5dC539e95699ad561463", "0x46aCE7D360b15e54d67278fd5C86B284867193E6", "0xf1a5637B8bd0f72726A7537973C93FF96C19F3Dd", "0x4D64877d6956A92f7aB0F2B8464954E831daDA54", "0xd833e837a781943b1ff506ff9621d4e39da42c8a", "0xe21675d6a60F38c9aC6adF7e68E763C3663Fc4B6", "0xd85794cD8C7b2D0488b323f0Bd9f67A6b84562e6", "0xbac61948f5FA7458337F43794B5dCC3a46897588", "0x51a5231c726a6a7908f7f43904ef6837688211bc", "0x27DC88df75fD30DDe10D613A50cc664D3355E0C6", "0x609072E59A4223eb0747795222D1B8FCFB29C046", "0x33bF66029CbD43a8875b0E3a470AdAd360573b19", "0xb1668b861f48F72e0B56F0604708cDdc5A4CE2D3", "0x7549c11d2B445Ab83dFfC689E4360c1C0d676699", "0x85de159Ee4Ab9cc655F4e6838Ee69302CDF15B49", "0x4247bc2a705c0250f13437f6d2749880a852fb33", "0xc468dE55816Ea1b4bA2A18E6c83753EEff6EfE89", "0x36fa33a62b8eb5d108d6225f3479d0d1a247821d", "0x00ed81699f43b1706b48a45d77a6f27ad9803377", "0xd999638db66e128ea538945bfe01a6a3a4d39877", "0x3a5401af979e736b67d741879fa002874378c5cb", "0x6166e4e1285dd0ba2b821f3dd5d0ba0a64f0d355", "0x60d9a871283da21e47504bcaea7fb6606eac0760", "0xf370d2af93096b0d832fd9433b53a61a6199533f", "0x75e539b85d7ecc621c9141e9a7d3c7acd9cadea7", "0x6689524b95162407d8d2b041ca76b27212bf20e2", "0xD66C7D76F8D7B51Ce2522b83e4dd49A60854C9B6", "0x1ff805f45ace464b1d84bd114d5a7d50a6aeed3d", "0xb5ea0ad4d8f766d6ea5e137ab276c112c3059be4", "0xf7588c357f1e961df9196fca34396c45258f6094", "0x928d67Ea8d806f118B3d0b7c5928d779d3F075c8"]
+
+        //updateInfo();
+        async function updateInfo() {
+            document.getElementById("info").innerHTML = "Cargando...";
+            document.getElementById("paymentInfo").innerHTML = "Cargando..."
+            let contract = getContractCaller(contractADDRESS, contractABI);
+            let _isPaying = await contract.isPaying();
+            let _payIndex = await contract.payIndex();
+            let _holders = await contract.getHolders();
+            let _holdersSupply = await contract.holdersSupply();
+            let _payAmount = await contract.payAmount();
+            let _nTransfers = await contract.nTransfers();
+            let _eventTransfers = await getTransferEvents(parseInt(_nTransfers.toString()));
+            _eventTransfers = _eventTransfers + parseInt(_nTransfers.toString());
+            let _pending = await contract.getPending();
+            let checkSupply = await contract.checkSupply();
+            console.log(checkSupply)
+
+            document.getElementById("info").innerHTML = "PEL holdeados: " + 
+                parseInt(_holdersSupply)/1e18 + 
+                " <br>  Intereses a repartir: " + 
+                parseInt(_payAmount)/1e18 + " (0x928d67Ea8d806f118B3d0b7c5928d779d3F075c8)" +
+                " <br>  Transferencias notificadas: " + 
+                _nTransfers + " de " + _eventTransfers + 
+                " (" + parseInt(_pending.length/2) + " tras el corte)";
+
+            if (_isPaying) {
+                document.getElementById("paymentInfo").innerHTML = "Pagados " + 
+                    _payIndex + 
+                    " de " + 
+                    _holders.length;
+            } else {
+                document.getElementById("paymentInfo").innerHTML = "No hay pago pendiente" + 
+                    " <br> Holders: " + _holders.length;
+            }
+        }
+
+        _check();
+        async function _check() {
+            let contract = getContractCaller(contractADDRESS, contractABI);
+            let token = getContractCaller(tokenADDRESS, tokenABI);
+            let _holdersSupply = await contract.holdersSupply();
+            let _totalSupply = await token.totalSupply();
+
+            let sum = ethers.utils.bigNumberify("0");
+
+            for (let i = 0; i < blackList.length; i++) {
+                let bal = await token.balanceOf(blackList[i]);
+                sum = sum.add(bal);
+            }
+
+            let dif = _totalSupply.sub(sum);
+
+            let dif2 = dif.sub(_holdersSupply)
+
+            console.log(sum.toString());
+            console.log(_holdersSupply.toString());
+            console.log(_totalSupply.toString());
+            console.log(dif2.toString())
+        }
+
+        async function _getTransferEvents() {
+            let topic = ethers.utils.id("Transfer(address,address,uint256)");
+
+            let filter = {
+                address: tokenADDRESS,
+                fromBlock: 0,
+                toBlock: "latest",
+                topics: [ topic ]
+            }
+
+            let provider = getProvider();
+
+            let result = await provider.getLogs(filter);
+
+            return result.length;
+        }
+
+        async function getTransferEvents(_skip) {
+            let response;
+            let responseData;
+            let query = '{ transactions (orderBy: block, orderDirection: asc, first: 1000, skip: ' + _skip + ') { id from to block } }'
+
+            try {
+                response = await fetch(GRAPH_URL, {
+                    "method": 'POST',
+                    "headers": {
+                        "Accept": 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    "body": JSON.stringify({
+                        query: query
+                    }),
+                });
+
+                if (response.ok) {
+                    responseData = await response.json();
+                    return responseData.data.transactions.length;
+                } else {
+                    return null;
+                }   
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+
+        async function pay() {
+            document.getElementById("response").innerHTML = "Espere...";
+            let contract = getContractCaller(contractADDRESS, contractABI);
+            let _isPaying = await contract.isPaying();
+
+            if (_isPaying) {
+                if (!isPaying) {
+                    isPaying = true;
+
+                    try {
+                        let wallet = await createWalletFromMnemonic(MNEMONIC, PATH_0);
+                        let contract = getContractSigner(contractADDRESS, contractABI, wallet);
+                        let response = await contract.pay({gasPrice: 0, gasLimit: 6283184});
+                        let receipt = await response.wait();
+                        document.getElementById("response").innerHTML = "TRANSACCIÓN EXITOSA";
+                        await updateInfo();
+                    } catch (error) {
+                        document.getElementById("response").innerHTML = error.message;
+                        console.error(error);
+                    }
+
+                    isPaying = false;
+                }
+            } else {
+                alert("No hay pago pendiente o no están notificadas todas las TXs");
+                document.getElementById("response").innerHTML = "";
+            }
+        }
+
+        function getContractSigner(address, abi, wallet) {
+            wallet = wallet.connect(getProvider());
+            return getContractCaller(address, abi).connect(wallet);
+        }
+
+        function getContractCaller(address, abi) {
+            return new ethers.Contract(address, abi, getProvider());
+        }
+
+        function getProvider() {
+            return new ethers.providers.JsonRpcProvider(URL);
+        }
+
+		function createWalletFromMnemonic(mnemonic, path) {
+			return ethers.Wallet.fromMnemonic(mnemonic, path);
+		}
+
+		function isValidMnemonic(mnemonic) {
+			return ethers.utils.HDNode.isValidMnemonic(mnemonic);
+		}
+
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <style type='text/css'>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 400;
+            background-color: #004381
+        }
+        
+        h1 {
+            color: white;
+        }
+
+        h2 {
+            color: white;
+        }
+
+        h3 {
+            color: white;
+        }
+
+        h4 {
+            color: white;
+        }
+
+        .myButton {
+            box-shadow: 0px 1px 0px 0px #fff6af;
+            background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+            background-color:#ffec64;
+            border-radius:6px;
+            border:1px solid #ffaa22;
+            display:inline-block;
+            cursor:pointer;
+            color:#333333;
+            font-family:Arial;
+            font-size:15px;
+            font-weight:bold;
+            padding:6px 24px;
+            text-decoration:none;
+            text-shadow:0px 1px 0px #ffee66;
+        }
+        .myButton:hover {
+            background:linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+            background-color:#ffab23;
+        }
+        .myButton:active {
+            position:relative;
+            top:1px;
+        }
+
+        .redondeadonorelieve {
+            border-radius: 5px;
+            border: 1px solid #39c;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        .center {
+            margin: auto;
+            padding: 10px;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <div class="center">
+        <h1>Peso Libre</h1>
+        <h3> -- Pago intereses --</h3>
+        <br>
+        <button class="myButton" onclick="updateInfo();">Actualizar</button>
+        <br>
+        <br>
+        <div style="color: white;" id="info">(info)</div>
+        <br>
+        <br>
+        <button class="myButton" onclick="pay();">Pagar</button>
+        <br>
+        <br>
+        <div style="color: white;" id="response"></div>
+        <br>
+        <div style="color: white;" id="paymentInfo">(payment info)</div>
+        
+        
+    </div>
+  </body>
+</html>
