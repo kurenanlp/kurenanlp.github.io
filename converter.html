@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.2.0/dist/web3.min.js"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-C7L3CXQHSM"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-C7L3CXQHSM');
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <title>Pi Converter</title>
+        <!-- for styling -->
+        <style>
+            span {
+                color: Blue;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Title of your Converter -->
+        <h2 style="color: Blue;">Pi Converter</h2>
+        <p>Ingrese un valor en el campo Pi para convertir :</p>
+        <p>
+            <!-- input tag for enter the data -->
+            <!-- PiConvert function call function PiConvert to evaluate value-->
+            <input id="Pi"
+                   type="number"
+                   placeholder="Cantidad"
+                   oninput="PiConvert(this.value)"
+                   onchange="PiConvert(this.value)" />
+            <!-- label the input field -->
+            <label>Pi </label>
+        </p>
+        <!-- output field-->
+        <p>BTC: <span id="BTC"></span></p>
+        <p>Dolares: <span id="Dolares"></span></p>
+        <p>Bolivares: <span id="Bolivares"></span></p>
+        <!-- Start the Script -->
+        <script type="text/javascript">
+          // Main script
+          function PiConvert(value) {
+            //
+          $.getJSON("https://api.coindesk.com/v1/bpi/currentprice.json", function(data){
+            let bitRateUsd = JSON.stringify(data.bpi.USD.rate_float);
+            console.log(bitRateUsd);
+            //
+            var chainReview = "currentNet";
+            if(chainReview == "currentNet") {
+              var web3 = new Web3(new Web3.providers.HttpProvider("http://18.229.97.105"));
+              var urlEXPLORER = "https://blockexplorer.pichain.io/";
+              console.log("web3.js v" + web3.version);
+              console.log("Consulting in current blockchain...")
+            } else {
+              console.log("> > >  Leaving the script  < < <");
+              return;
+            }
+	          //
+            // Statements: ABI, Addr Contract, Addr Wallet..
+            var compositionABI = [{"constant":true,"inputs":[],"name":"getComposition","outputs":[{"name":"","type":"address[]"},{"name":"","type":"uint256[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"recalculate","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"emisorTokenBalance","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"tokenAddress","type":"address"}],"name":"removeFromComposition","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"emisorAddress","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"modifiedToken","type":"address"},{"name":"tokenAmount","type":"uint256"},{"name":"sign","type":"bool"}],"name":"modifyBalance","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"newTokenAddress","type":"address"}],"name":"addToken","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"getEmisorBalances","outputs":[{"name":"","type":"address[]"},{"name":"","type":"uint256[]"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}];
+            var tokenABI = [{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"approve","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_from","type":"address"}],"name":"transferFrom","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_spender","type":"address"}],"name":"disapprove","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"balances","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_value","type":"uint256"}],"name":"tokenFallback","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"mint","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_value","type":"uint256"}],"name":"burn","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_from","type":"address"},{"name":"_value","type":"uint256"}],"name":"transferFromValue","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_user","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"charge","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"_owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"emisorAddress","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_value","type":"uint256"},{"name":"receiving","type":"address"},{"name":"price","type":"uint256"},{"name":"side","type":"uint256"},{"name":"exchangeAddress","type":"address"}],"name":"setDexOrder","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"},{"name":"","type":"address"}],"name":"approved","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"name","type":"string"},{"name":"symbol","type":"string"},{"name":"owner","type":"address"},{"name":"initialSupply","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"name":"charger","type":"address"},{"indexed":true,"name":"charged","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Charge","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"owner","type":"address"},{"indexed":true,"name":"spender","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"},{"indexed":true,"name":"data","type":"bytes"}],"name":"Transfer","type":"event"}];
+            const compositionADDRESS = "0x0000000000000000000000000000000000000011";
+            const emisorAddress = "0x0000000000000000000000000000000000000010";
+            const btcAddress = "0x4c3c844b751c18299932dcd18a3032bd3481d61a";
+            //
+            getPiComposition();
+              async function getPiComposition() {
+                let contract = new web3.eth.Contract(compositionABI, compositionADDRESS);
+                let piAmount = await contract.methods.emisorTokenBalance(emisorAddress).call();
+                let btcAmount = await contract.methods.emisorTokenBalance(btcAddress).call();
+                let ValorPi = bitRateUsd*(btcAmount/piAmount);
+                document.getElementById("BTC").innerHTML = value * ValorPi / bitRateUsd;
+                document.getElementById("Dolares").innerHTML = value * ValorPi;
+                document.getElementById("Bolivares").innerHTML = value * ValorPi * 9;
+              }
+
+            //
+            web3.eth.getBlockNumber().then(lastBlock => {
+              console.log("Latest Block: " + lastBlock);
+		          var nowDate = new Date();
+              document.getElementById("txs").innerHTML = "<br>Ultimo Bloque: <b>" + lastBlock + "</b><br>Tiempo de Busqueda: <b>" + nowDate.toUTCString() + "</b><br>";
+            });
+
+          //
+        });
+      } // End of run function
+     //function that evaluates the weight and return result
+        </script>
+    </body>
+</html>
