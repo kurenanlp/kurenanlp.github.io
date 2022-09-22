@@ -58,43 +58,25 @@
         // console.log(myCONTRACT.options.jsonInterface);
         //
         // Statements: ABI, Addr Contract, Addr Wallet...
-        var compositionABI = [{"constant":true,"inputs":[],"name":"getComposition","outputs":[{"name":"","type":"address[]"},{"name":"","type":"uint256[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"recalculate","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"emisorTokenBalance","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"tokenAddress","type":"address"}],"name":"removeFromComposition","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"emisorAddress","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"modifiedToken","type":"address"},{"name":"tokenAmount","type":"uint256"},{"name":"sign","type":"bool"}],"name":"modifyBalance","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"newTokenAddress","type":"address"}],"name":"addToken","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"getEmisorBalances","outputs":[{"name":"","type":"address[]"},{"name":"","type":"uint256[]"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}];
-        const compositionADDRESS = "0x0000000000000000000000000000000000000011";
-        const emisorAddress = "0x0000000000000000000000000000000000000010";
-        const btcAddress = "0x4c3c844b751c18299932dcd18a3032bd3481d61a";
         var tokenABI = [{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"approve","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_from","type":"address"}],"name":"transferFrom","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_spender","type":"address"}],"name":"disapprove","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"balances","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_value","type":"uint256"}],"name":"tokenFallback","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"mint","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_value","type":"uint256"}],"name":"burn","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_from","type":"address"},{"name":"_value","type":"uint256"}],"name":"transferFromValue","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_user","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"charge","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"_owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"emisorAddress","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_value","type":"uint256"},{"name":"receiving","type":"address"},{"name":"price","type":"uint256"},{"name":"side","type":"uint256"},{"name":"exchangeAddress","type":"address"}],"name":"setDexOrder","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"},{"name":"","type":"address"}],"name":"approved","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"name","type":"string"},{"name":"symbol","type":"string"},{"name":"owner","type":"address"},{"name":"initialSupply","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"name":"charger","type":"address"},{"indexed":true,"name":"charged","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Charge","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"owner","type":"address"},{"indexed":true,"name":"spender","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"},{"indexed":true,"name":"data","type":"bytes"}],"name":"Transfer","type":"event"}];
-        getPiComposition();
-          async function getPiComposition() {
-            let contract = new web3.eth.Contract(compositionABI, compositionADDRESS);
-            let piAmount = await contract.methods.emisorTokenBalance(emisorAddress).call();
-            let btcAmount = await contract.methods.emisorTokenBalance(btcAddress).call();
-            let ValorPi =  (btcAmount/piAmount);
-            let Fecha = new Date();
-            // console.log(contract)
-            // console.log(piAmount)
-            // console.log(btcAmount)
-            // console.log(btcAmount/piAmount)
-            //document.body.innerHTML = Fecha+" Pi "+ValorPi+" BTC"
-            document.getElementById('resultado').innerHTML = ValorPi+" BTC/Pi";
-          }
         //
-        // function valueToBalance(value, decimals, web3) {
-        //   var strLeft = "";
-        //   var strRight = "";
-        //   var returnBalance = "";
-        //   //
-        //   if(value.length <= decimals) {
-        //     strLeft = "0";
-        //     strRight = web3.utils.padLeft(value, decimals);
-        //     returnBalance = strLeft + "." + strRight;
-        //   } else {
-        //     var myDot = value.length - decimals;
-        //     strLeft = value.slice(0, myDot);
-        //     strRight = value.slice(myDot);
-        //     returnBalance = strLeft + "." + strRight;
-        //   }
-        // return(returnBalance);
-        //}
+        function valueToBalance(value, decimals, web3) {
+          var strLeft = "";
+          var strRight = "";
+          var returnBalance = "";
+          //
+          if(value.length <= decimals) {
+            strLeft = "0";
+            strRight = web3.utils.padLeft(value, decimals);
+            returnBalance = strLeft + "." + strRight;
+          } else {
+            var myDot = value.length - decimals;
+            strLeft = value.slice(0, myDot);
+            strRight = value.slice(myDot);
+            returnBalance = strLeft + "." + strRight;
+          }
+        return(returnBalance);
+      }
         //
         web3.eth.getBlockNumber().then(lastBlock => {
         // Print to console
@@ -104,155 +86,44 @@
           document.getElementById("txs").innerHTML = "<br>Latest Block: <b>" + lastBlock + "</b><br>Search time: <b>" + nowDate.toUTCString() + "</b><br>";
         });
       //
-        // var walletADDRESS = "0x0000000000000000000000000000000000000010"
-        // var nowDate = new Date();
-        // var rowCount = 0;
-        // var all_contratcs = ["0x4c3c844b751c18299932dcd18a3032bd3481d61a"];
-        // //
-        // all_contratcs.forEach(tokenCONTRACT => {
-        // var myCONTRACT = new web3.eth.Contract(tokenABI, tokenCONTRACT);
-        // if(rowCount == 0) {
-        //   rowCount++;
-        //   web3.eth.getBalance(String(walletADDRESS)).then(balance => {
-        //     if(balance != 0) {
-        //       var myPI = 1000000000000 - valueToBalance(balance, 18, web3);
-        //       var inp = document.getElementById("txs").innerHTML;
-        //       document.getElementById("txs").innerHTML = inp + "#" + rowCount + " - Balance: " + myPI + " PI<br>";
-        //       var strOut = "#" + rowCount + " - Balance: " + myPI + " PI [value: " + balance + "]";
-        //       console.log(strOut);
-        //       }
-        //     });
-        //   }
-        // //
-        // myCONTRACT.methods.symbol().call().then(mySymbol => {
-        //   // Consulting token balance
-        //   myCONTRACT.methods.balanceOf(walletADDRESS).call().then(balance => {
-        //     if(balance != 0) {
-        //       rowCount++;
-        //       var myBalance = valueToBalance(balance, 18, web3);
-        //       var inp = document.getElementById("txs").innerHTML;
-        //       document.getElementById("txs").innerHTML = inp + "#" + rowCount + " - Balance: " + myBalance + " " + mySymbol + "<br>";
-        //       var strOut = "#" + rowCount + " - Balance: " + myBalance + " " + mySymbol + " [value: " + balance + "]";
-        //       console.log(strOut)
-      //       }
-      //     });
-      //   })
-      // });
+        var walletADDRESS = "0x0000000000000000000000000000000000000010"
+        var nowDate = new Date();
+        var rowCount = 0;
+        var all_contratcs = ["0x4c3c844b751c18299932dcd18a3032bd3481d61a"];
+      //
+      all_contratcs.forEach(tokenCONTRACT => {
+        var myCONTRACT = new web3.eth.Contract(tokenABI, tokenCONTRACT);
+        if(rowCount == 0) {
+          rowCount++;
+          web3.eth.getBalance(String(walletADDRESS)).then(balance => {
+            if(balance != 0) {
+              var myPI = 1000000000000 - valueToBalance(balance, 18, web3);
+              var inp = document.getElementById("txs").innerHTML;
+              document.getElementById("txs").innerHTML = inp + "#" + rowCount + " - Balance: " + myPI + " PI<br>";
+              var strOut = "#" + rowCount + " - Balance: " + myPI + " PI [value: " + balance + "]";
+              console.log(strOut);
+              }
+            });
+          }
+        //
+        myCONTRACT.methods.symbol().call().then(mySymbol => {
+          // Consulting token balance
+          myCONTRACT.methods.balanceOf(walletADDRESS).call().then(balance => {
+            if(balance != 0) {
+              rowCount++;
+              var myBalance = valueToBalance(balance, 18, web3);
+              var inp = document.getElementById("txs").innerHTML;
+              document.getElementById("txs").innerHTML = inp + "#" + rowCount + " - Balance: " + myBalance + " " + mySymbol + "<br>";
+              var strOut = "#" + rowCount + " - Balance: " + myBalance + " " + mySymbol + " [value: " + balance + "]";
+              console.log(strOut)
+            }
+          });
+        })
+      });
+    console.log(myPI);
     } // End of run function
 
     </script>
-    <style>
-      html {
-        font-size: 12px;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        color: #d6d6d6!important;
-        background-color: #2e2e2e
-      }
-      body {
-        font-size: 12px;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        color: #d6d6d6!important;
-        background-color: #2e2e2e
-      }
-      header {
-        margin: 0.5em;
-        font-size: 12px;
-        text-align: left!important;
-        color: #d6d6d6!important;
-        background-color: #2e2e2e
-      }
-      main {
-        font-size: 12px;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        color: #d6d6d6!important;
-        background-color: #2e2e2e
-      }
-      footer {
-        margin: 0.5em;
-        font-size: 12px;
-        text-align: right!important;
-        color: #d6d6d6!important;
-        background-color: #2e2e2e
-      }
-      p,
-      div {
-        margin: 1.0em
-      }
-      h1 {
-        margin: 0em;
-        font-size: 24px;
-        font-weight: bold;
-        font-family: Verdana, Geneva, Tahoma, sans-serif
-      }
-      a {
-        text-decoration: none;
-        color:rgba(162,185,200,.7)
-      }
-      a:hover {
-        color:#a2b9c8
-      }
-      .form-control {
-        margin: 0.1em;
-        padding: 0.25em;
-        color: #d6d6d6!important;
-        border: solid 0.1em;
-        border-color: #7c7c7c!important;
-        border-radius: 5px;
-        background-color: #242424!important
-      }
-      .form-control::placeholder {
-        color: gray;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        font-style: italic;
-        font-size: 10px
-      }
-      button {
-        font-size: 12px;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        background-color: lightgray;
-        border: 1em;
-        color: black;
-        padding: 5px 10px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        margin: 1px 1px;
-        cursor: pointer;
-        border-radius: 9px
-      }
-      button:hover {
-        color: lightgray;
-        background-color: #0a95eb51
-      }
-      hr { 
-        display: block;
-        margin-top: 0.5em;
-        margin-bottom: 0.5em;
-        margin-left: auto;
-        margin-right: auto;
-        border-style: inset;
-        border-width: 1px;
-        opacity: 0.33
-      }
-      .u-go-to {
-        display: none;
-        position: fixed;
-        top: 15px;
-        right: 25px;
-        padding: .75em;
-        background-color: lightgray;
-        color: black;
-        font-size: 10px;
-        border-radius: .25rem;
-        opacity: .5;
-        transition: .3s ease-out;
-        text-decoration: none
-      }
-      .u-go-to:hover {
-        color: lightgray;
-        background-color: #0a95eb51
-      }
-    </style>
   </head>
   <body>
     <!-- Header -->
@@ -265,11 +136,10 @@
     <main>
       <p>
         <div id="txs"></div>
-        <div id='resultado'></div>
 		<script>
 			run();
 		</script>
-        <br>
+        <!-- <br>
         <a class="u-go-to" href="#top">Top</a>
       </p>
       <script>
@@ -289,19 +159,14 @@
             jQuery('html, body').animate({scrollTop: 0}, duration);
             return false;
           })
-        });
+        }); -->
 	    </script>
     </main>
     <!-- Footer -->
     <footer>
       <hr>
       <!-- Version & Credits -->
-      v0.0.4 &nbsp<br>
-      Contribution of <a href="https://t.me/baudenay">Oscar Baudenay</a> to the <a href="https://t.me/Picripto">Community of Pi</a> &nbsp<br>
-      <!-- Based on source provided by: Manuel Fajardo García, <a href="https://t.me/sosajohan">Johan Sosa Salazar</a>, <a href="https://t.me/gperezalba">Guillermo Pérez Alba</a>, <a href="https://t.me/clrgn">Carlos García Navarro</a> &nbsp<br> -->
-      --- &nbsp<br>
-      Donations <a target="_blank" href="https://blockexplorer.pichain.io/address/0xd6C2A4f5aDdF2026cB07b37a4B43B3B744023545">0xd6C2A4f5aDdF2026cB07b37a4B43B3B744023545</a> &nbsp<br>
-      Address for donations in Pi, Ether and tokens &nbsp
+      v0.0.1 &nbsp<br>
       <a name="bottom"></a>
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
